@@ -192,7 +192,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         
         movieImage.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, size: .init(width: view.width, height: 563))
         
-        movieTitle.anchor(top: contentView.safeAreaLayoutGuide.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 589, left: 20, bottom: 0, right: 0), size: .init(width: contentView.width, height: 0))
+        movieTitle.anchor(top: contentView.safeAreaLayoutGuide.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 469, left: 20, bottom: 0, right: 0), size: .init(width: contentView.width, height: 0))
         
         moviePlaytime.anchor(top: movieTitle.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 9, left: 20, bottom: 0, right: 0))
         
