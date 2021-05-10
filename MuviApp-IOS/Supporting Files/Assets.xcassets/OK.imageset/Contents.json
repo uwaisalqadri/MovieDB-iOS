@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Its+kind+of+funny+how+in+a+conversation+you+can+_20aa9e123dcf7bd41112e9832336b30a.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
