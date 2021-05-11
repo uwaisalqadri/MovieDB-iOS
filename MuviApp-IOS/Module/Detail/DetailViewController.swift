@@ -14,7 +14,9 @@ import SafariServices
 class DetailViewController: UIViewController {
     
     private var viewModel = DetailViewModel(detailUseCase: Injection.init().provideDetail())
+    
     private let bag = DisposeBag()
+    var isFavorite = false
     let idMovie: Int
     
     init(idMovie: Int) {
@@ -79,10 +81,8 @@ class DetailViewController: UIViewController {
     
     private let buttonFavorite = configure(UIButton()) {
         $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        $0.setImage(UIImage(named: "AddIcon"), for: .normal)
         $0.layer.cornerRadius = 4
         $0.layer.borderWidth = 1
-        $0.setTitle("Add to Favorite", for: .normal)
         $0.backgroundColor = .clear
         $0.layer.borderColor = .init(gray: 20, alpha: 5)
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
@@ -130,6 +130,16 @@ class DetailViewController: UIViewController {
             }
         }).disposed(by: bag)
         
+        viewModel.favMovies.subscribe(onNext: { [self] result in
+            result.forEach { item in
+                if item.id == idMovie {
+                    isFavorite = true
+                } else {
+                    isFavorite = false
+                }
+            }
+        }).disposed(by: bag)
+        
         viewModel.movie.subscribe(onNext: { [self] result in
             self.movieTitle.text = result.title
             self.moviePlaytime.text = result.release_date
@@ -150,6 +160,14 @@ class DetailViewController: UIViewController {
         viewModel.errorMessage.observe { result in
             !result.isEmpty ? print("ERROR: \(result)") : print("cool")
         }
+        
+        if isFavorite {
+            buttonFavorite.setImage(UIImage(named: "AddIcon"), for: .normal)
+            buttonFavorite.setTitle("Remove from Favorite", for: .normal)
+        } else {
+            buttonFavorite.setImage(UIImage(named: "AddIcon"), for: .normal)
+            buttonFavorite.setTitle("Add to Favorite", for: .normal)
+        }
     }
     
     @objc private func backButtonTapped() {
@@ -166,7 +184,7 @@ class DetailViewController: UIViewController {
     
     @objc private func addToFavorite(_ sender: CustomTapGesture) {
         guard let movie = sender.movie else { return }
-        
+        isFavorite = true
         viewModel.addFavoriteMovie(from: movie)
 
     }
