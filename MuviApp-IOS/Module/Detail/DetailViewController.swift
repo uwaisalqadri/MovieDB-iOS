@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
     
     private let scrollView = configure(UIScrollView()) {
         $0.isScrollEnabled = true
-        //$0.isUserInteractionEnabled = true
         $0.contentInsetAdjustmentBehavior = .never
     }
     
@@ -76,7 +75,6 @@ class DetailViewController: UIViewController {
         $0.setImage(UIImage(named: "PlayIcon"), for: .normal)
         $0.backgroundColor = UIColor(named: "AccentColor")
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        //$0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
     private let buttonFavorite = configure(UIButton()) {
@@ -86,8 +84,8 @@ class DetailViewController: UIViewController {
         $0.layer.borderWidth = 1
         $0.setTitle("Add to Favorite", for: .normal)
         $0.backgroundColor = .clear
+        $0.layer.borderColor = .init(gray: 20, alpha: 5)
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        //$0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
     private let movieOverview = configure(UILabel()) {
@@ -110,13 +108,6 @@ class DetailViewController: UIViewController {
         collectionView.backgroundColor = UIColor(named: "BackgroundColor")
         return collectionView
     }()
-    
-    // imageHD (optional)
-    // buttonFavorite
-    // movieOverview
-    // castLabel
-    // castList (UITableView)
-    // castCell (UIImage with circle, castName: 15)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,18 +124,23 @@ class DetailViewController: UIViewController {
         viewModel.trailers.subscribe(onNext: { [self] result in
             result.forEach {
                 print("trailers \($0.key)")
-                let tapGesture = CustomTapGesture(target: self, action: #selector(openTrailer(_:)))
+                let tapGesture = CustomTapGesture(target: self, action: #selector(playTrailer(_:)))
                 tapGesture.customValue = $0.key
                 buttonPlay.addGestureRecognizer(tapGesture)
             }
         }).disposed(by: bag)
         
-        viewModel.movie.subscribe(onNext: { result in
+        viewModel.movie.subscribe(onNext: { [self] result in
             self.movieTitle.text = result.title
             self.moviePlaytime.text = result.release_date
             self.movieGenre.text = String(result.popularity)
             self.movieOverview.text = result.overview
             self.movieImage.sd_setImage(with: URL(string: "\(Constants.urlImage)\(result.poster_path ?? "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg")"))
+            
+            // MARK: -- add to favorite
+            let tapGesture = CustomTapGesture(target: self, action: #selector(addToFavorite(_:)))
+            tapGesture.movie = result
+            buttonFavorite.addGestureRecognizer(tapGesture)
         }).disposed(by: bag)
         
         viewModel.loadingState.observe { result in
@@ -160,11 +156,18 @@ class DetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func openTrailer(_ sender: CustomTapGesture) {
+    @objc private func playTrailer(_ sender: CustomTapGesture) {
         guard let key = sender.customValue else { return }
         
         guard let url = URL(string: "\(Constants.youtubeUrl + key)") else { return }
         present(SFSafariViewController(url: url), animated: true, completion: nil)
+
+    }
+    
+    @objc private func addToFavorite(_ sender: CustomTapGesture) {
+        guard let movie = sender.movie else { return }
+        
+        viewModel.addFavoriteMovie(from: movie)
 
     }
 
@@ -215,7 +218,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         
         movieOverview.anchor(top: buttonPlay.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20))
         
-        castLabel.anchor(top: movieOverview.bottomAnchor, leading: contentView.leadingAnchor, bottom: castList.topAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+        castLabel.anchor(top: movieOverview.bottomAnchor, leading: contentView.leadingAnchor, bottom: castList.topAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 10, right: 20))
         
         castList.anchor(top: castLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 0, left: 20, bottom: 20, right: 20), size: .init(width: contentView.width, height: 200))
         

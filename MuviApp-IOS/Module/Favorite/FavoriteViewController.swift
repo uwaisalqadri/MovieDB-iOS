@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FavoriteViewController: UIViewController {
     
     private var viewModel = FavoriteViewModel(favoriteUseCase: Injection.init().provideFavorite())
+    
+    private let bag = DisposeBag()
     
     private let navBar = configure(UIStackView()) {
         $0.backgroundColor = UIColor(named: "BrandColor")
@@ -37,24 +41,32 @@ class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getFavoriteMovie()
-        
-        favoriteList.delegate = self
-        favoriteList.dataSource = self
         addLayoutAndSubViews()
+        bindFavoriteList()
+        
+        favoriteList.rx.setDelegate(self).disposed(by: bag)
     }
 }
 
-extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+extension FavoriteViewController: UITableViewDelegate {
+    
+    func bindFavoriteList() {
+        viewModel.favMovies.bind(to: favoriteList.rx.items(cellIdentifier: "favCell", cellType: FavoriteCell.self)) { (row, item, cell) in
+            cell.set(movie: item)
+        }.disposed(by: bag)
+        
+        favoriteList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
+            self.showDetail(idMovie: item.id)
+        }).disposed(by: bag)
+        
+        viewModel.getFavoriteMovie()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath)
-        return cell
+    func showDetail(idMovie: Int) {
+        let vc = DetailViewController(idMovie: idMovie)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
-    
     
 }
 

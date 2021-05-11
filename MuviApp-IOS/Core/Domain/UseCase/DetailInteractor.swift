@@ -12,6 +12,10 @@ protocol DetailUseCase {
     func getDetailMovie(idMovie: Int) -> Observable<Movie>
     func getMovieCast(idMovie: Int) -> Observable<[Cast]>
     func getMovieTrailer(idMovie: Int) -> Observable<[Video]>
+    
+    func getFavoriteMovie() -> Observable<[Movie]>
+    func addFavoriteMovie(from movie: Movie) -> Observable<Bool>
+    func removeFavoriteMovie(idMovie: Int) -> Observable<Bool>
 }
 
 
@@ -33,5 +37,17 @@ class DetailInteractor: DetailUseCase {
     
     func getMovieTrailer(idMovie: Int) -> Observable<[Video]> {
         return repository.getMovieTrailer(idMovie: idMovie)
+    }
+    
+    func getFavoriteMovie() -> Observable<[Movie]> {
+        return repository.getFavoriteMovie()
+    }
+    
+    func addFavoriteMovie(from movie: Movie) -> Observable<Bool> {
+        return repository.addFavoriteMovie(from: movie)
+    }
+    
+    func removeFavoriteMovie(idMovie: Int) -> Observable<Bool> {
+        return repository.removeFavoriteMovie(idMovie: idMovie)
     }
 }

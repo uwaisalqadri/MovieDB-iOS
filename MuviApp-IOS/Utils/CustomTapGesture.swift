@@ -9,4 +9,5 @@ import UIKit
 
 class CustomTapGesture: UITapGestureRecognizer {
     var customValue: String?
+    var movie: Movie?
 }

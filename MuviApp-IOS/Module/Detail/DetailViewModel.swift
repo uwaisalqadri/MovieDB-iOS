@@ -14,6 +14,7 @@ class DetailViewModel: ObservableObject {
     private let detailUseCase: DetailUseCase
     
     var movie = PublishSubject<Movie>()
+    var favMovies = PublishSubject<[Movie]>()
     var casts = PublishSubject<[Cast]>()
     var trailers = PublishSubject<[Video]>()
     var errorMessage: Box<String> = Box("")
@@ -31,7 +32,7 @@ class DetailViewModel: ObservableObject {
                 self.movie.onNext(result)
                 self.movie.onCompleted()
             } onError: { error in
-                self.errorMessage.value = error.localizedDescription
+                self.errorMessage.value = String(describing: error)
             } onCompleted: {
                 self.loadingState.value = false
             }.disposed(by: disposeBag)
@@ -62,6 +63,38 @@ class DetailViewModel: ObservableObject {
                 self.errorMessage.value = error.localizedDescription
             } onCompleted: {
                 self.loadingState.value = false
+            }.disposed(by: disposeBag)
+    }
+    
+    func getFavoriteMovie() {
+        detailUseCase.getFavoriteMovie()
+            .observe(on: MainScheduler.instance)
+            .subscribe{ result in
+                print("from viewModel directly \(result)")
+                self.favMovies.onNext(result)
+                self.favMovies.onCompleted()
+            } onError: { error in
+                self.errorMessage.value = String(describing: error)
+            }.disposed(by: disposeBag)
+    }
+    
+    func addFavoriteMovie(from movie: Movie) {
+        detailUseCase.addFavoriteMovie(from: movie)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                print(result)
+            } onError: { error in
+                self.errorMessage.value = String(describing: error)
+            }.disposed(by: disposeBag)
+    }
+    
+    func removeFavoriteMovie(idMovie: Int) {
+        detailUseCase.removeFavoriteMovie(idMovie: idMovie)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                print(result)
+            } onError: { error in
+                self.errorMessage.value = String(describing: error)
             }.disposed(by: disposeBag)
     }
     

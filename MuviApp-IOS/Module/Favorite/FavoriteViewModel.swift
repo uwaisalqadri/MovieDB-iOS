@@ -14,6 +14,8 @@ class FavoriteViewModel: NSObject {
     private let disposeBag = DisposeBag()
     private let favoriteUseCase: FavoriteUseCase
     
+    var favMovies = PublishSubject<[Movie]>()
+    var errorMessage: Box<String> = Box("")
     
     init(favoriteUseCase: FavoriteUseCase) {
       self.favoriteUseCase = favoriteUseCase
@@ -24,8 +26,10 @@ class FavoriteViewModel: NSObject {
             .observe(on: MainScheduler.instance)
             .subscribe{ result in
                 print("from viewModel directly \(result)")
+                self.favMovies.onNext(result)
+                self.favMovies.onCompleted()
             } onError: { error in
-            } onCompleted: {
+                self.errorMessage.value = String(describing: error)
             }.disposed(by: disposeBag)
     }
 }

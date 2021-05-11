@@ -32,7 +32,7 @@ class PopularViewModel: ObservableObject {
                 self.movies.onNext(result)
                 self.movies.onCompleted()
             } onError: { error in
-                self.errorMessage.value = error.localizedDescription
+                self.errorMessage.value = String(describing: error)
             } onCompleted: {
                 self.loadingState.value = false
             }.disposed(by: disposeBag)
