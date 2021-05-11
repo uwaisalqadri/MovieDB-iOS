@@ -83,7 +83,13 @@ extension PopularViewController: UICollectionViewDelegateFlowLayout {
             print("selected result \(item)")
         }).disposed(by: bag)
         
-        viewModel.searchMovies(query: "naruto")
+        
+//        searchField.rx.text
+//            .orEmpty
+//            .throttle(0.5, scheduler: MainScheduler.instance)
+//            .distinctUntilChanged()
+//            .bind(to: viewModel.movies.)
+//            .disposed(by: bag)
     }
 }
 

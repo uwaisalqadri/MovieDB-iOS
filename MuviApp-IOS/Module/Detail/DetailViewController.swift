@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
     private let scrollView = configure(UIScrollView()) {
         $0.isScrollEnabled = true
         $0.isUserInteractionEnabled = true
+        $0.contentInsetAdjustmentBehavior = .never
     }
     
     private let progress = JGProgressHUD(style: .dark)
@@ -123,16 +124,19 @@ class DetailViewController: UIViewController {
         bindCastList()
         
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
-        buttonPlay.addTarget(self, action: #selector(openTrailer), for: .touchUpInside)
 
         viewModel.getDetailMovie(idMovie: idGame)
         viewModel.getMovieCast(idMovie: idGame)
         viewModel.getMovieTrailer(idMovie: idGame)
         castList.rx.setDelegate(self).disposed(by: bag)
         
-        viewModel.trailers.subscribe(onNext: { result in
-            print("trailers \(result)")
+        viewModel.trailers.subscribe(onNext: { [self] result in
+            result.forEach {
+                print("trailers \($0.key)")
+                let tapGesture = CustomTapGesture(target: self, action: #selector(openTrailer(_:)))
+                tapGesture.customValue = $0.key
+                buttonPlay.addGestureRecognizer(tapGesture)
+            }
         }).disposed(by: bag)
         
         viewModel.movie.subscribe(onNext: { result in
@@ -152,8 +156,9 @@ class DetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func openTrailer() {
-        guard let url = URL(string: "\(Constants.youtubeUrl)NYH2sLid0Zc") else { return }
+    @objc private func openTrailer(_ sender: CustomTapGesture) {
+        guard let key = sender.customValue else { return }
+        guard let url = URL(string: "\(Constants.youtubeUrl)\(key)") else { return }
         present(SFSafariViewController(url: url), animated: true, completion: nil)
     }
 
@@ -192,7 +197,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         
         movieImage.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, size: .init(width: view.width, height: 563))
         
-        movieTitle.anchor(top: contentView.safeAreaLayoutGuide.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 469, left: 20, bottom: 0, right: 0), size: .init(width: contentView.width, height: 0))
+        movieTitle.anchor(top: contentView.safeAreaLayoutGuide.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 439, left: 20, bottom: 0, right: 0), size: .init(width: contentView.width, height: 0))
         
         moviePlaytime.anchor(top: movieTitle.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 9, left: 20, bottom: 0, right: 0))
         

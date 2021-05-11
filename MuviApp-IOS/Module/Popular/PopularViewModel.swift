@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class PopularViewModel: ObservableObject {
     
@@ -14,6 +15,7 @@ class PopularViewModel: ObservableObject {
     private let popularUseCase: PopularUseCase
     
     var movies = PublishSubject<[Movie]>()
+    var search = PublishRelay<String>()
     var errorMessage: Box<String> = Box("")
     var loadingState: Box<Bool> = Box(false)
     

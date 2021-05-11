@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FSPagerView
 import RxSwift
 import RxCocoa
 import JGProgressHUD
@@ -37,13 +36,24 @@ class HomeViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    private let pagerView = configure(FSPagerView()) {
-        $0.isInfinite = true
-        $0.automaticSlidingInterval = 3.0
-        $0.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "bannerCell")
-    }
+    private let pagerView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: "bannerCell")
+        collectionView.backgroundColor = UIColor(named: "BackgroundColor")
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.isScrollEnabled = true
+        return collectionView
+    }()
     
-    private let pagerControl = FSPageControl()
+    private let pagerControl = configure(UIPageControl()) {
+        $0.numberOfPages = 3
+        $0.currentPage = 0
+    }
     
     private let popularLabel = configure(UILabel()) {
         $0.text = "Popular Movies"
@@ -77,41 +87,44 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    var timer = Timer()
+    var counter = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addLayoutAndSubViews()
+        bindPagerList()
         bindPopularList()
         bindUpComingList()
                                 
-        pagerView.dataSource = self
-        pagerView.delegate = self
-        
+        pagerView.rx.setDelegate(self).disposed(by: bag)
         popularList.rx.setDelegate(self).disposed(by: bag)
         upComingList.rx.setDelegate(self).disposed(by: bag)
         
         viewModel.loadingState.observe { result in
             result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
         }
+        
+        viewModel.popularMovies.subscribe(onNext: { item in
+            print("oke \(item)")
+        }).disposed(by: bag)
     }
     
-}
-
-extension HomeViewController: FSPagerViewDataSource, FSPagerViewDelegate {
-    
-    func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 5
-    }
-    
-    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "bannerCell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string: "\(Constants.urlImage)/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg"))
-        cell.imageView?.contentMode = .scaleAspectFill
-        return cell
-    }
-
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
+    func bindPagerList() {
+        viewModel.popularMovies.bind(to: pagerView.rx.items(cellIdentifier: "bannerCell", cellType: BannerCell.self)) {
+            (row, item, cell) in
+            cell.set(movie: item)
+        }.disposed(by: bag)
+        
+        pagerView.rx.modelSelected(Movie.self).subscribe(onNext: { item in
+            print("banner \(item)")
+            self.showDetail(idGame: item.id)
+        }).disposed(by: bag)
+    }
     
     func bindPopularList() {
         viewModel.popularMovies.bind(to: popularList.rx.items(cellIdentifier: "popularCell", cellType: PopularCell.self)) { (row, item, cell) in
@@ -120,9 +133,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         popularList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected popular: \(item)")
-            let vc = DetailViewController(idGame: item.id)
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            self.showDetail(idGame: item.id)
         }).disposed(by: bag)
         
         viewModel.getDiscoverMovies(year: "2021")
@@ -136,18 +147,27 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         upComingList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected upcoming \(item)")
+            self.showDetail(idGame: item.id)
         }).disposed(by: bag)
         
         viewModel.getUpComingMovies(year: "2022")
     }
 
+    func showDetail(idGame: Int) {
+        let vc = DetailViewController(idGame: idGame)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = pagerView.frame.size
         if collectionView == upComingList {
             return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
+        } else if collectionView == pagerView {
+            return CGSize(width: scrollView.width, height: size.height)
         }
         return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
     }
-    
 }
 
 extension HomeViewController {
@@ -172,7 +192,7 @@ extension HomeViewController {
         
         pagerView.anchor(top: navBar.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 45, right: 0), size: .init(width: scrollView.width, height: 300))
 
-        // pagerControl.anchorSize(to: pagerView)
+        pagerControl.anchor(top: nil, leading: scrollView.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: nil)
         
         popularLabel.anchor(top: pagerView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
         
