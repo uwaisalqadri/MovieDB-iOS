@@ -67,6 +67,13 @@ class PopularViewController: UIViewController {
         viewModel.loadingState.observe { result in
             result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
         }
+        
+        let tapGesture = CustomTapGesture(target: self, action: #selector(searchMovie(_:)))
+        searchIcon.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func searchMovie(_ sender: UIImageView) {
+        viewModel.searchMovies(query: searchField.text ?? "")
     }
     
 }

@@ -124,13 +124,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		52029868263EFC0700A5790E /* View */ = {
+		52029868263EFC0700A5790E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				52029869263EFC2600A5790E /* CastCell.swift */,
-				520E1712264A1A3800B49069 /* CustomTapGesture.swift */,
 			);
-			path = View;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5245B258263DA09800914123 /* Cell */ = {
@@ -146,7 +145,7 @@
 		5245B262263DA38600914123 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				52029868263EFC0700A5790E /* View */,
+				52029868263EFC0700A5790E /* Cell */,
 				5245B263263DA3AF00914123 /* DetailViewController.swift */,
 				5245B267263DA3BB00914123 /* DetailViewModel.swift */,
 			);
@@ -216,6 +215,7 @@
 		5273D2B8263CB607004FF8E0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				520E1712264A1A3800B49069 /* CustomTapGesture.swift */,
 				5273D2C5263CB770004FF8E0 /* Constants.swift */,
 				5273D2C0263CB74C004FF8E0 /* Extensions.swift */,
 				5273D2F4263CB96E004FF8E0 /* CustomError.swift */,
