@@ -11,8 +11,9 @@ class CastCell: UICollectionViewCell {
     
     private let castImage = configure(UIImageView()) {
         $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = $0.frame.size.height / 2
+        $0.layer.masksToBounds = false
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = 52
     }
     
     private let castName = configure(UILabel()) {
@@ -29,7 +30,7 @@ class CastCell: UICollectionViewCell {
         super.init(frame: frame)
         
         [castName, castImage].forEach{addSubview($0)}
-        
+                
         castImage.anchor(top: topAnchor, leading: leadingAnchor, bottom: castName.topAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 10), size: .init(width: 130, height: 130))
         
         castName.anchor(top: castImage.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 10, left: 20, bottom: 20, right: 20))

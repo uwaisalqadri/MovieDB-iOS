@@ -76,9 +76,9 @@ class DetailViewController: UIViewController {
         $0.layer.cornerRadius = 4
         $0.layer.borderWidth = 1
         $0.setImage(UIImage(named: "PlayIcon"), for: .normal)
-        // $0.layer.borderColor = CGColor(s)
         $0.backgroundColor = UIColor(named: "AccentColor")
-        $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        //$0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
     private let buttonFavorite = configure(UIButton()) {
@@ -88,7 +88,8 @@ class DetailViewController: UIViewController {
         $0.layer.borderWidth = 1
         $0.setTitle("Add to Favorite", for: .normal)
         $0.backgroundColor = .clear
-        $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        //$0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
     private let movieOverview = configure(UILabel()) {
@@ -209,9 +210,9 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         
         movieGenre.anchor(top: moviePlaytime.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 9, left: 20, bottom: 0, right: 0))
         
-        buttonPlay.anchor(top: movieGenre.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 24, left: 20, bottom: 0, right: 0),size: .init(width: 180, height: 38))
+        buttonPlay.anchor(top: movieGenre.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: buttonFavorite.leadingAnchor, padding: .init(top: 24, left: 20, bottom: 0, right: 10), size: .init(width: view.width/2.5, height: 50))
         
-        buttonFavorite.anchor(top: movieGenre.bottomAnchor, leading: nil, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 24, left: 0, bottom: 0, right: 20), size: .init(width: 180, height: 38))
+        buttonFavorite.anchor(top: movieGenre.bottomAnchor, leading: buttonPlay.trailingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 24, left: 10, bottom: 0, right: 20), size: .init(width: view.width/2.5, height: 50))
         
         movieOverview.anchor(top: buttonPlay.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20))
         
