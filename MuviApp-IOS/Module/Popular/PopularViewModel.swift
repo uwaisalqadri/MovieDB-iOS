@@ -28,6 +28,7 @@ class PopularViewModel: ObservableObject {
         popularUseCase.searchMovies(query: query)
             .observe(on: MainScheduler.instance)
             .subscribe{ result in
+                print("search result \(result)")
                 self.movies.onNext(result)
                 self.movies.onCompleted()
             } onError: { error in

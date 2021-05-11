@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol MovieRepositoryProtocol {
-    func getDiscoverMovies(year: String) -> Observable<[Movie]>
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[Movie]>
     func getDetailMovie(idMovie: Int) -> Observable<Movie>
     func getMovieCast(idMovie: Int) -> Observable<[Cast]>
     func getMovieTrailer(idMovie: Int) -> Observable<[Video]>
@@ -39,8 +39,8 @@ final class MovieRepository: NSObject {
 
 extension MovieRepository: MovieRepositoryProtocol {
     
-    func getDiscoverMovies(year: String) -> Observable<[Movie]> {
-        return self.remote.getDiscoverMovies(year: year)
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[Movie]> {
+        return self.remote.getDiscoverMovies(year: year, page: page)
             .map{ ObjectMapper.mapMoviesResponseToDomain(input: $0) }
     }
     

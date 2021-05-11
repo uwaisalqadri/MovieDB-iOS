@@ -24,6 +24,7 @@ class PopularViewController: UIViewController {
     
     private let searchIcon = configure(UIImageView()) {
         $0.image = UIImage(named: "SearchIcon")
+        $0.isUserInteractionEnabled = true
     }
     
     private let searchField = configure(UITextField()) {
@@ -43,7 +44,6 @@ class PopularViewController: UIViewController {
     }
     
     private let searchedText = configure(UILabel()) {
-        $0.text = "'Naruto'"
         $0.textColor = .white
         $0.font = .systemFont(ofSize: 18, weight: .bold)
     }
@@ -68,12 +68,18 @@ class PopularViewController: UIViewController {
             result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
         }
         
+        viewModel.errorMessage.observe { result in
+            print("ERROR: \(result)")
+        }
+        
         let tapGesture = CustomTapGesture(target: self, action: #selector(searchMovie(_:)))
         searchIcon.addGestureRecognizer(tapGesture)
     }
     
-    @objc func searchMovie(_ sender: UIImageView) {
-        viewModel.searchMovies(query: searchField.text ?? "")
+    @objc func searchMovie(_ sender: CustomTapGesture) {
+        let query = searchField.text ?? ""
+        viewModel.searchMovies(query: query)
+        searchedText.text = "'\(query)'"
     }
     
 }
@@ -86,17 +92,16 @@ extension PopularViewController: UICollectionViewDelegateFlowLayout {
             cell.set(movie: item)
         }.disposed(by: bag)
         
-        movieList.rx.modelSelected(PopularSearchCell.self).subscribe(onNext: { item in
+        movieList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected result \(item)")
+            self.showDetail(idGame: item.id)
         }).disposed(by: bag)
-        
-        
-//        searchField.rx.text
-//            .orEmpty
-//            .throttle(0.5, scheduler: MainScheduler.instance)
-//            .distinctUntilChanged()
-//            .bind(to: viewModel.movies.)
-//            .disposed(by: bag)
+    }
+    
+    func showDetail(idGame: Int) {
+        let vc = DetailViewController(idGame: idGame)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 
@@ -107,13 +112,13 @@ extension PopularViewController {
         movieList.backgroundColor = UIColor(named: "BackgroundColor")
         movieList.frame = view.bounds
 
-        [searchIcon, searchField].forEach { navBar.addSubview($0) }
+        [searchField, searchIcon].forEach { navBar.addSubview($0) }
 
         [navBar, movieList, beforeSearchedText, searchedText].forEach { view.addSubview($0) }
         
         navBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: view.width, height: 125))
         
-        searchField.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: navBar.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 30, left: 20, bottom: 0, right: 50), size: .init(width: view.width-20, height: 20))
+        searchField.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: navBar.leadingAnchor, bottom: nil, trailing: searchIcon.leadingAnchor, padding: .init(top: 30, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 20))
         
         searchIcon.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: nil, bottom: nil, trailing: navBar.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 0, right: 20), size: .init(width: 20, height: 20))
         

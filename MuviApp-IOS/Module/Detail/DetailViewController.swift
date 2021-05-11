@@ -150,6 +150,10 @@ class DetailViewController: UIViewController {
         viewModel.loadingState.observe { result in
             result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
         }
+        
+        viewModel.errorMessage.observe { result in
+            print("ERROR: \(result)")
+        }
     }
     
     @objc private func backButtonTapped() {

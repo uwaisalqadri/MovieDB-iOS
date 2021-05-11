@@ -10,7 +10,7 @@ import RxSwift
 
 
 protocol MovieUseCase {
-    func getDiscoverMovies(year: String) -> Observable<[Movie]>
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[Movie]>
     func getDetailMovie(idMovie: Int) -> Observable<Movie>
 }
 
@@ -21,8 +21,8 @@ class MovieInteractor: MovieUseCase {
         self.repository = repository
     }
     
-    func getDiscoverMovies(year: String) -> Observable<[Movie]> {
-        return repository.getDiscoverMovies(year: year)
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[Movie]> {
+        return repository.getDiscoverMovies(year: year, page: page)
     }
     
     func getDetailMovie(idMovie: Int) -> Observable<Movie> {

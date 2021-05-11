@@ -11,7 +11,7 @@ import RxSwift
 
 protocol RemoteDataSourceProtocol: class {
     
-    func getDiscoverMovies(year: String) -> Observable<[MovieItem]>
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[MovieItem]>
     
 //    func getGenres() -> Observable<[MovieItem]>
 //
@@ -32,10 +32,10 @@ final class RemoteDataSource: NSObject {
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
     
-    func getDiscoverMovies(year: String) -> Observable<[MovieItem]> {
+    func getDiscoverMovies(year: String, page: Int) -> Observable<[MovieItem]> {
         return Observable<[MovieItem]>.create{ observer in
             if let url =
-                URL(string: Endpoints.Gets.discover.url + "?api_key=\(Constants.apiKey)&languange=\(Constants.lang)&sort_by=\(Constants.sortBy)&include_adult=false&page=1&year=\(year)")
+                URL(string: Endpoints.Gets.discover.url + "?api_key=\(Constants.apiKey)&languange=\(Constants.lang)&sort_by=\(Constants.sortBy)&include_adult=false&page=\(page)&year=\(year)")
             {
                 AF.request(url)
                     .validate()

@@ -31,7 +31,7 @@ class DetailViewModel: ObservableObject {
                 self.movie.onNext(result)
                 self.movie.onCompleted()
             } onError: { error in
-                print("\(error)")
+                self.errorMessage.value = error.localizedDescription
             } onCompleted: {
                 self.loadingState.value = false
             }.disposed(by: disposeBag)
@@ -45,7 +45,7 @@ class DetailViewModel: ObservableObject {
                 self.casts.onNext(result)
                 self.casts.onCompleted()
             } onError: { error in
-                print("\(error)")
+                self.errorMessage.value = error.localizedDescription
             } onCompleted: {
                 self.loadingState.value = false
             }.disposed(by: disposeBag)
@@ -59,7 +59,7 @@ class DetailViewModel: ObservableObject {
                 self.trailers.onNext(result)
                 self.trailers.onCompleted()
             } onError: { error in
-                print("\(error)")
+                self.errorMessage.value = error.localizedDescription
             } onCompleted: {
                 self.loadingState.value = false
             }.disposed(by: disposeBag)

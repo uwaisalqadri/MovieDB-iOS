@@ -50,10 +50,7 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
-    private let pagerControl = configure(UIPageControl()) {
-        $0.numberOfPages = 3
-        $0.currentPage = 0
-    }
+    private let pagerControl = UIPageControl()
     
     private let popularLabel = configure(UILabel()) {
         $0.text = "Popular Movies"
@@ -105,9 +102,30 @@ class HomeViewController: UIViewController {
             result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
         }
         
+        viewModel.errorMessage.observe { result in
+            print("ERROR: \(result)")
+        }
+        
         viewModel.popularMovies.subscribe(onNext: { item in
             print("oke \(item)")
+            self.pagerControl.numberOfPages = 10
         }).disposed(by: bag)
+        
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
+    }
+    
+    @objc func slideMovie() {
+        if counter < 10 {
+            let index = IndexPath.init(item: counter, section: 0)
+            self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            pagerControl.currentPage = counter
+            counter += 1
+        } else {
+            counter = 0
+            let index = IndexPath.init(item: counter, section: 0)
+            self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+            pagerControl.currentPage = counter
+        }
     }
     
 }
@@ -115,7 +133,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func bindPagerList() {
-        viewModel.popularMovies.bind(to: pagerView.rx.items(cellIdentifier: "bannerCell", cellType: BannerCell.self)) {
+        viewModel.bannerMovies.bind(to: pagerView.rx.items(cellIdentifier: "bannerCell", cellType: BannerCell.self)) {
             (row, item, cell) in
             cell.set(movie: item)
         }.disposed(by: bag)
@@ -124,6 +142,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             print("banner \(item)")
             self.showDetail(idGame: item.id)
         }).disposed(by: bag)
+        
+        viewModel.getBannerMovies(year: "2021", page: 2)
     }
     
     func bindPopularList() {
@@ -136,9 +156,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             self.showDetail(idGame: item.id)
         }).disposed(by: bag)
         
-        viewModel.getDiscoverMovies(year: "2021")
+        viewModel.getDiscoverMovies(year: "2021", page: 1)
     }
-    
+     
     func bindUpComingList() {
         viewModel.upComingMovies.bind(to: upComingList.rx.items(cellIdentifier: "upcomingCell", cellType: UpComingCell.self)) {
             (row, item, cell) in
@@ -192,7 +212,7 @@ extension HomeViewController {
         
         pagerView.anchor(top: navBar.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 45, right: 0), size: .init(width: scrollView.width, height: 300))
 
-        pagerControl.anchor(top: nil, leading: scrollView.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: nil)
+        pagerControl.anchor(top: nil, leading: pagerView.leadingAnchor, bottom: pagerView.bottomAnchor, trailing: pagerView.trailingAnchor)
         
         popularLabel.anchor(top: pagerView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
         
