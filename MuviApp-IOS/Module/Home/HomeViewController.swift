@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: "bannerCell")
-        collectionView.backgroundColor = UIColor(named: "BackgroundColor")
+        collectionView.backgroundColor = UIColor(named: "BrandColor")
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PopularCell.self, forCellWithReuseIdentifier: "popularCell")
-        collectionView.backgroundColor = UIColor(named: "BackgroundColor")
+        collectionView.backgroundColor = UIColor(named: "BrandColor")
         return collectionView
     }()
     
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UpComingCell.self, forCellWithReuseIdentifier: "upcomingCell")
-        collectionView.backgroundColor = UIColor(named: "BackgroundColor")
+        collectionView.backgroundColor = UIColor(named: "BrandColor")
         return collectionView
     }()
     
@@ -140,7 +140,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         pagerView.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("banner \(item)")
-            self.showDetail(idGame: item.id)
+            self.showDetail(idMovie: item.id)
         }).disposed(by: bag)
         
         viewModel.getBannerMovies(year: "2021", page: 2)
@@ -153,7 +153,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         popularList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected popular: \(item)")
-            self.showDetail(idGame: item.id)
+            self.showDetail(idMovie: item.id)
         }).disposed(by: bag)
         
         viewModel.getDiscoverMovies(year: "2021", page: 1)
@@ -167,14 +167,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         upComingList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected upcoming \(item)")
-            self.showDetail(idGame: item.id)
+            self.showDetail(idMovie: item.id)
         }).disposed(by: bag)
         
         viewModel.getUpComingMovies(year: "2022")
     }
 
-    func showDetail(idGame: Int) {
-        let vc = DetailViewController(idGame: idGame)
+    func showDetail(idMovie: Int) {
+        let vc = DetailViewController(idMovie: idMovie)
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

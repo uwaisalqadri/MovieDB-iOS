@@ -15,10 +15,10 @@ class DetailViewController: UIViewController {
     
     private var viewModel = DetailViewModel(detailUseCase: Injection.init().provideDetail())
     private let bag = DisposeBag()
-    let idGame: Int
+    let idMovie: Int
     
-    init(idGame: Int) {
-        self.idGame = idGame
+    init(idMovie: Int) {
+        self.idMovie = idMovie
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -125,9 +125,9 @@ class DetailViewController: UIViewController {
         
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
 
-        viewModel.getDetailMovie(idMovie: idGame)
-        viewModel.getMovieCast(idMovie: idGame)
-        viewModel.getMovieTrailer(idMovie: idGame)
+        viewModel.getDetailMovie(idMovie: idMovie)
+        viewModel.getMovieCast(idMovie: idMovie)
+        viewModel.getMovieTrailer(idMovie: idMovie)
         castList.rx.setDelegate(self).disposed(by: bag)
         
         viewModel.trailers.subscribe(onNext: { [self] result in
@@ -152,7 +152,7 @@ class DetailViewController: UIViewController {
         }
         
         viewModel.errorMessage.observe { result in
-            print("ERROR: \(result)")
+            !result.isEmpty ? print("ERROR: \(result)") : print("cool")
         }
     }
     
@@ -162,8 +162,10 @@ class DetailViewController: UIViewController {
     
     @objc private func openTrailer(_ sender: CustomTapGesture) {
         guard let key = sender.customValue else { return }
-        guard let url = URL(string: "\(Constants.youtubeUrl)\(key)") else { return }
+        
+        guard let url = URL(string: "\(Constants.youtubeUrl + key)") else { return }
         present(SFSafariViewController(url: url), animated: true, completion: nil)
+
     }
 
 }
@@ -191,7 +193,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         scrollView.addSubview(contentView)
         scrollView.frame = view.bounds
         contentView.frame = scrollView.bounds
-        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height * 2)
+        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 800)
                 
         [movieImage, gradientView, movieTitle, movieGenre, moviePlaytime, buttonPlay, buttonFavorite, movieOverview, backButton, castLabel, castList].forEach { contentView.addSubview($0) }
                 

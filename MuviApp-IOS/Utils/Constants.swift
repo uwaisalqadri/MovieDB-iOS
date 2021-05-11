@@ -19,7 +19,7 @@ struct Constants {
     static let formatFromApi = "yyyy-MM-dd"
     static let dateFormat = "dd MMM, yyyy"
     static let typeMovie = "movie"
-    static let youtubeUrl = "https://www.youtube.com/watch?v="
+    static let youtubeUrl = "https://www.youtube.com/embed/"
     
 }
 

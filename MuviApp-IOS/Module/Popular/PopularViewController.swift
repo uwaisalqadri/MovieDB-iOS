@@ -94,12 +94,12 @@ extension PopularViewController: UICollectionViewDelegateFlowLayout {
         
         movieList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
             print("selected result \(item)")
-            self.showDetail(idGame: item.id)
+            self.showDetail(idMovie: item.id)
         }).disposed(by: bag)
     }
     
-    func showDetail(idGame: Int) {
-        let vc = DetailViewController(idGame: idGame)
+    func showDetail(idMovie: Int) {
+        let vc = DetailViewController(idMovie: idMovie)
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
