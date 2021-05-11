@@ -193,7 +193,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         scrollView.addSubview(contentView)
         scrollView.frame = view.bounds
         contentView.frame = scrollView.bounds
-        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 800)
+        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 300)
                 
         [movieImage, gradientView, movieTitle, movieGenre, moviePlaytime, buttonPlay, buttonFavorite, movieOverview, backButton, castLabel, castList].forEach { contentView.addSubview($0) }
                 
