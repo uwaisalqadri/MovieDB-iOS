@@ -28,15 +28,13 @@ class DetailViewController: UIViewController {
     
     private let scrollView = configure(UIScrollView()) {
         $0.isScrollEnabled = true
-        $0.isUserInteractionEnabled = true
+        //$0.isUserInteractionEnabled = true
         $0.contentInsetAdjustmentBehavior = .never
     }
     
     private let progress = JGProgressHUD(style: .dark)
     
-    private let contentView = configure(UIView()) {
-        $0.isUserInteractionEnabled = true
-    }
+    private let contentView = UIView()
     
     private let movieImage = configure(UIImageView()) {
         $0.contentMode = .scaleAspectFill
@@ -107,6 +105,7 @@ class DetailViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isUserInteractionEnabled = true
         collectionView.register(CastCell.self, forCellWithReuseIdentifier: "castCell")
         collectionView.backgroundColor = UIColor(named: "BackgroundColor")
         return collectionView
