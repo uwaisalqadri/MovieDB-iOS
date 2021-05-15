@@ -106,11 +106,6 @@ class HomeViewController: UIViewController {
             print("ERROR: \(result)")
         }
         
-        viewModel.popularMovies.subscribe(onNext: { item in
-            print("oke \(item)")
-            self.pagerControl.numberOfPages = 10
-        }).disposed(by: bag)
-        
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
     }
     
@@ -192,6 +187,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController {
     func addLayoutAndSubViews() {
+        pagerControl.numberOfPages = 10
         view.backgroundColor = UIColor(named: "BrandColor")
         view.addSubview(scrollView)
         

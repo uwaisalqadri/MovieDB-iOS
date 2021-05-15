@@ -119,26 +119,27 @@ class DetailViewController: UIViewController {
         viewModel.getDetailMovie(idMovie: idMovie)
         viewModel.getMovieCast(idMovie: idMovie)
         viewModel.getMovieTrailer(idMovie: idMovie)
+        viewModel.getFavoriteMovie()
         castList.rx.setDelegate(self).disposed(by: bag)
         
         viewModel.trailers.subscribe(onNext: { [self] result in
             result.forEach {
-                print("trailers \($0.key)")
                 let tapGesture = CustomTapGesture(target: self, action: #selector(playTrailer(_:)))
                 tapGesture.customValue = $0.key
                 buttonPlay.addGestureRecognizer(tapGesture)
             }
         }).disposed(by: bag)
         
-        viewModel.favMovies.subscribe(onNext: { [self] result in
+        viewModel.favMovies.observe { [self] result in
             result.forEach { item in
+                print("checkFav \(item.id)")
                 if item.id == idMovie {
                     isFavorite = true
                 } else {
                     isFavorite = false
                 }
             }
-        }).disposed(by: bag)
+        }
         
         viewModel.movie.subscribe(onNext: { [self] result in
             self.movieTitle.text = result.title
@@ -162,7 +163,7 @@ class DetailViewController: UIViewController {
         }
         
         if isFavorite {
-            buttonFavorite.setImage(UIImage(named: "AddIcon"), for: .normal)
+            buttonFavorite.setImage(UIImage(systemName: "checkmark"), for: .normal)
             buttonFavorite.setTitle("Remove from Favorite", for: .normal)
         } else {
             buttonFavorite.setImage(UIImage(named: "AddIcon"), for: .normal)

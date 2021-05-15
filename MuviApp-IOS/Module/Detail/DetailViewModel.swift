@@ -14,9 +14,9 @@ class DetailViewModel: ObservableObject {
     private let detailUseCase: DetailUseCase
     
     var movie = PublishSubject<Movie>()
-    var favMovies = PublishSubject<[Movie]>()
     var casts = PublishSubject<[Cast]>()
     var trailers = PublishSubject<[Video]>()
+    var favMovies: Box<[Movie]> = Box([])
     var errorMessage: Box<String> = Box("")
     var loadingState: Box<Bool> = Box(false)
     
@@ -69,10 +69,8 @@ class DetailViewModel: ObservableObject {
     func getFavoriteMovie() {
         detailUseCase.getFavoriteMovie()
             .observe(on: MainScheduler.instance)
-            .subscribe{ result in
-                print("from viewModel directly \(result)")
-                self.favMovies.onNext(result)
-                self.favMovies.onCompleted()
+            .subscribe { result in
+                self.favMovies.value = result
             } onError: { error in
                 self.errorMessage.value = String(describing: error)
             }.disposed(by: disposeBag)
