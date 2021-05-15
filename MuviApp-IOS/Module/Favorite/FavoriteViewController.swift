@@ -45,6 +45,10 @@ class FavoriteViewController: UIViewController {
         bindFavoriteList()
         
         favoriteList.rx.setDelegate(self).disposed(by: bag)
+        
+        viewModel.favMovies.subscribe(onDisposed:  {
+            self.favoriteList.reloadData()
+        }).disposed(by: bag)
     }
 }
 
