@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     private let bag = DisposeBag()
     var isFavorite = false
     let idMovie: Int
+    var ids: [String] = []
     
     init(idMovie: Int) {
         self.idMovie = idMovie
@@ -132,8 +133,9 @@ class DetailViewController: UIViewController {
         
         viewModel.favMovies.observe { [self] result in
             result.forEach { item in
-                print("checkFav \(item.id)")
-                if item.id == idMovie {
+                ids.append(String(item.id))
+                let listId = ids.joined(separator: ",")
+                if listId.contains(String(idMovie)) {
                     isFavorite = true
                 } else {
                     isFavorite = false
