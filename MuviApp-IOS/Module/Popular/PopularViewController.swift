@@ -72,20 +72,23 @@ class PopularViewController: UIViewController {
             print("ERROR: \(result)")
         }
         
-//        searchIcon.addGestureRecognizer(CustomTapGesture(target: self, action: #selector(searchMovie(_:))))
+        viewModel.movies.subscribe(onNext: { result in
+            self.movieList.reloadData()
+        }).disposed(by: bag)
         
-        if !searchField.text!.isEmpty {
-            [navBar, movieList, beforeSearchedText, searchedText].forEach { $0.isHidden = true }
-        } else {
-            [navBar, movieList, beforeSearchedText, searchedText].forEach { $0.isHidden = false }
-        }
+        searchIcon.addGestureRecognizer(CustomTapGesture(target: self, action: #selector(searchMovie(_:))))
     }
     
-//    @objc func searchMovie(_ sender: CustomTapGesture) {
-//        let query = searchField.text ?? ""
-//        viewModel.searchMovies(query: query)
-//        searchedText.text = "'\(query)'"
-//    }
+    @objc func searchMovie(_ sender: CustomTapGesture) {
+        let query = searchField.text ?? ""
+        if searchField.text == "" {
+            [movieList, searchedText, beforeSearchedText].forEach { $0.isHidden = true }
+        } else {
+            viewModel.searchMovies(query: query)
+            searchedText.text = "'\(query)'"
+            [movieList, searchedText, beforeSearchedText].forEach { $0.isHidden = false }
+        }
+    }
     
 }
 
