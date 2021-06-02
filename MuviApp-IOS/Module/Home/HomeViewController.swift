@@ -11,211 +11,219 @@ import RxCocoa
 import JGProgressHUD
 
 class HomeViewController: UIViewController {
-    
-    private var viewModel = HomeViewModel(movieUseCase: Injection.init().provideHome())
-    
-    private let bag = DisposeBag()
-    
-    private let progress = JGProgressHUD(style: .dark)
-    
-    private let scrollView = configure(UIScrollView()) {
-        $0.isScrollEnabled = true
-        $0.isUserInteractionEnabled = true
+
+  private let viewModel: HomeViewModel
+  private let bag = DisposeBag()
+
+  init(viewModel: HomeViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private let progress = JGProgressHUD(style: .dark)
+
+  private let scrollView = configure(UIScrollView()) {
+    $0.isScrollEnabled = true
+    $0.isUserInteractionEnabled = true
+  }
+
+  private let navBar = configure(UIStackView()) {
+    $0.backgroundColor = UIColor(named: "BrandColor")
+  }
+
+  private let notifIcon = configure(UIImageView()) {
+    $0.image = UIImage(named: "NotifIcon")
+  }
+
+  private let appIcon = configure(UIImageView()) {
+    $0.image = UIImage(named: "MovieDB")
+    $0.contentMode = .scaleAspectFit
+  }
+
+  private let pagerView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.minimumLineSpacing = 0
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(BannerCell.self, forCellWithReuseIdentifier: "bannerCell")
+    collectionView.backgroundColor = UIColor(named: "BrandColor")
+    collectionView.showsHorizontalScrollIndicator = false
+    collectionView.showsVerticalScrollIndicator = false
+    collectionView.isPagingEnabled = true
+    collectionView.isScrollEnabled = true
+    return collectionView
+  }()
+
+  private let pagerControl = UIPageControl()
+
+  private let popularLabel = configure(UILabel()) {
+    $0.text = "Popular Movies"
+    $0.textAlignment = .left
+    $0.textColor = .white
+    $0.font = .systemFont(ofSize: 18, weight: .bold)
+  }
+
+  private let popularList: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(PopularCell.self, forCellWithReuseIdentifier: "popularCell")
+    collectionView.backgroundColor = UIColor(named: "BrandColor")
+    return collectionView
+  }()
+
+  private let upComingLabel = configure(UILabel()) {
+    $0.text = "Coming Soon"
+    $0.textAlignment = .left
+    $0.textColor = .white
+    $0.font = .systemFont(ofSize: 18, weight: .bold)
+  }
+
+  private let upComingList: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(UpComingCell.self, forCellWithReuseIdentifier: "upcomingCell")
+    collectionView.backgroundColor = UIColor(named: "BrandColor")
+    return collectionView
+  }()
+
+  var timer = Timer()
+  var counter = 0
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    addLayoutAndSubViews()
+    bindPagerList()
+    bindPopularList()
+    bindUpComingList()
+
+    pagerView.rx.setDelegate(self).disposed(by: bag)
+    popularList.rx.setDelegate(self).disposed(by: bag)
+    upComingList.rx.setDelegate(self).disposed(by: bag)
+
+    viewModel.loadingState.observe { result in
+      result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
     }
-    
-    private let navBar = configure(UIStackView()) {
-        $0.backgroundColor = UIColor(named: "BrandColor")
+
+    viewModel.errorMessage.observe { result in
+      print("ERROR: \(result)")
     }
-    
-    private let notifIcon = configure(UIImageView()) {
-        $0.image = UIImage(named: "NotifIcon")
+
+    timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
+  }
+
+  @objc func slideMovie() {
+    if counter < 10 {
+      let index = IndexPath.init(item: counter, section: 0)
+      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+      pagerControl.currentPage = counter
+      counter += 1
+    } else {
+      counter = 0
+      let index = IndexPath.init(item: counter, section: 0)
+      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+      pagerControl.currentPage = counter
     }
-    
-    private let appIcon = configure(UIImageView()) {
-        $0.image = UIImage(named: "MovieDB")
-        $0.contentMode = .scaleAspectFit
-    }
-    
-    private let pagerView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: "bannerCell")
-        collectionView.backgroundColor = UIColor(named: "BrandColor")
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.isPagingEnabled = true
-        collectionView.isScrollEnabled = true
-        return collectionView
-    }()
-    
-    private let pagerControl = UIPageControl()
-    
-    private let popularLabel = configure(UILabel()) {
-        $0.text = "Popular Movies"
-        $0.textAlignment = .left
-        $0.textColor = .white
-        $0.font = .systemFont(ofSize: 18, weight: .bold)
-    }
-    
-    private let popularList: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(PopularCell.self, forCellWithReuseIdentifier: "popularCell")
-        collectionView.backgroundColor = UIColor(named: "BrandColor")
-        return collectionView
-    }()
-    
-    private let upComingLabel = configure(UILabel()) {
-        $0.text = "Coming Soon"
-        $0.textAlignment = .left
-        $0.textColor = .white
-        $0.font = .systemFont(ofSize: 18, weight: .bold)
-    }
-    
-    private let upComingList: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UpComingCell.self, forCellWithReuseIdentifier: "upcomingCell")
-        collectionView.backgroundColor = UIColor(named: "BrandColor")
-        return collectionView
-    }()
-    
-    var timer = Timer()
-    var counter = 0
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addLayoutAndSubViews()
-        bindPagerList()
-        bindPopularList()
-        bindUpComingList()
-                                
-        pagerView.rx.setDelegate(self).disposed(by: bag)
-        popularList.rx.setDelegate(self).disposed(by: bag)
-        upComingList.rx.setDelegate(self).disposed(by: bag)
-        
-        viewModel.loadingState.observe { result in
-            result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
-        }
-        
-        viewModel.errorMessage.observe { result in
-            print("ERROR: \(result)")
-        }
-        
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
-    }
-    
-    @objc func slideMovie() {
-        if counter < 10 {
-            let index = IndexPath.init(item: counter, section: 0)
-            self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pagerControl.currentPage = counter
-            counter += 1
-        } else {
-            counter = 0
-            let index = IndexPath.init(item: counter, section: 0)
-            self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
-            pagerControl.currentPage = counter
-        }
-    }
-    
+  }
+
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    
-    func bindPagerList() {
-        viewModel.bannerMovies.bind(to: pagerView.rx.items(cellIdentifier: "bannerCell", cellType: BannerCell.self)) {
-            (row, item, cell) in
-            cell.set(movie: item)
-        }.disposed(by: bag)
-        
-        pagerView.rx.modelSelected(Movie.self).subscribe(onNext: { item in
-            print("banner \(item)")
-            self.showDetail(idMovie: item.id)
-        }).disposed(by: bag)
-        
-        viewModel.getBannerMovies(year: "2021", page: 2)
-    }
-    
-    func bindPopularList() {
-        viewModel.popularMovies.bind(to: popularList.rx.items(cellIdentifier: "popularCell", cellType: PopularCell.self)) { (row, item, cell) in
-            cell.set(movie: item)
-        }.disposed(by: bag)
-        
-        popularList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
-            print("selected popular: \(item)")
-            self.showDetail(idMovie: item.id)
-        }).disposed(by: bag)
-        
-        viewModel.getDiscoverMovies(year: "2021", page: 1)
-    }
-     
-    func bindUpComingList() {
-        viewModel.upComingMovies.bind(to: upComingList.rx.items(cellIdentifier: "upcomingCell", cellType: UpComingCell.self)) {
-            (row, item, cell) in
-            cell.set(movie: item)
-        }.disposed(by: bag)
-        
-        upComingList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
-            print("selected upcoming \(item)")
-            self.showDetail(idMovie: item.id)
-        }).disposed(by: bag)
-        
-        viewModel.getUpComingMovies(year: "2022")
-    }
 
-    func showDetail(idMovie: Int) {
-        let vc = DetailViewController(idMovie: idMovie)
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+  func bindPagerList() {
+    viewModel.bannerMovies.bind(to: pagerView.rx.items(cellIdentifier: "bannerCell", cellType: BannerCell.self)) {
+      (row, item, cell) in
+      cell.set(movie: item)
+    }.disposed(by: bag)
+
+    pagerView.rx.modelSelected(Movie.self).subscribe(onNext: { item in
+      print("banner \(item)")
+//      self.showDetail(idMovie: item.id)
+    }).disposed(by: bag)
+
+    viewModel.getBannerMovies(year: "2021", page: 2)
+  }
+
+  func bindPopularList() {
+    viewModel.popularMovies.bind(to: popularList.rx.items(cellIdentifier: "popularCell", cellType: PopularCell.self)) { (row, item, cell) in
+      cell.set(movie: item)
+    }.disposed(by: bag)
+
+    popularList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
+      print("selected popular: \(item)")
+//      self.showDetail(idMovie: item.id)
+    }).disposed(by: bag)
+
+    viewModel.getDiscoverMovies(year: "2021", page: 1)
+  }
+
+  func bindUpComingList() {
+    viewModel.upComingMovies.bind(to: upComingList.rx.items(cellIdentifier: "upcomingCell", cellType: UpComingCell.self)) {
+      (row, item, cell) in
+      cell.set(movie: item)
+    }.disposed(by: bag)
+
+    upComingList.rx.modelSelected(Movie.self).subscribe(onNext: { item in
+      //print("selected upcoming \(item)")
+      //self.showDetail(idMovie: item.id)
+    }).disposed(by: bag)
+
+    viewModel.getUpComingMovies(year: "2022")
+  }
+
+//  func showDetail(idMovie: Int) {
+//    let vc = DetailViewController(idMovie: idMovie)
+//    vc.modalPresentationStyle = .fullScreen
+//    self.present(vc, animated: true)
+//  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let size = pagerView.frame.size
+    if collectionView == upComingList {
+      return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
+    } else if collectionView == pagerView {
+      return CGSize(width: scrollView.width, height: size.height)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = pagerView.frame.size
-        if collectionView == upComingList {
-            return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
-        } else if collectionView == pagerView {
-            return CGSize(width: scrollView.width, height: size.height)
-        }
-        return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
-    }
+    return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
+  }
 }
 
 extension HomeViewController {
-    func addLayoutAndSubViews() {
-        pagerControl.numberOfPages = 10
-        view.backgroundColor = UIColor(named: "BrandColor")
-        view.addSubview(scrollView)
-        
-        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height * 2)
-        scrollView.frame = view.bounds
-        
-        [notifIcon, appIcon].forEach { navBar.addSubview($0) }
+  func addLayoutAndSubViews() {
+    pagerControl.numberOfPages = 10
+    view.backgroundColor = UIColor(named: "BrandColor")
+    view.addSubview(scrollView)
 
-        [navBar, pagerView, pagerControl, popularLabel, popularList, upComingList, upComingLabel].forEach { scrollView.addSubview($0) }
-        
-        scrollView.anchorSize(to: view)
-        
-        navBar.anchor(top: scrollView.topAnchor, leading: scrollView.leadingAnchor, bottom: pagerView.topAnchor, trailing: scrollView.trailingAnchor, size: .init(width: scrollView.width, height: 95))
-        
-        appIcon.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: navBar.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 30, left: 20, bottom: 0, right: 0), size: .init(width: 100, height: 20))
-        
-        notifIcon.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: nil, bottom: nil, trailing: navBar.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 0, right: 20), size: .init(width: 20, height: 20))
-        
-        pagerView.anchor(top: navBar.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 45, right: 0), size: .init(width: scrollView.width, height: 300))
+    scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height * 2)
+    scrollView.frame = view.bounds
 
-        pagerControl.anchor(top: nil, leading: pagerView.leadingAnchor, bottom: pagerView.bottomAnchor, trailing: pagerView.trailingAnchor)
-        
-        popularLabel.anchor(top: pagerView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
-        
-        popularList.anchor(top: popularLabel.bottomAnchor, leading: scrollView.leadingAnchor, bottom: upComingLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 8, left: 10, bottom: 35, right: 0), size: .init(width: scrollView.width, height: 200))
-        
-        upComingLabel.anchor(top: popularList.bottomAnchor, leading: scrollView.leadingAnchor, bottom: upComingList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
-        
-        upComingList.anchor(top: upComingLabel.bottomAnchor, leading: scrollView.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 20, right: 0), size: .init(width: scrollView.width, height: 200))
-    }
+    [notifIcon, appIcon].forEach { navBar.addSubview($0) }
+
+    [navBar, pagerView, pagerControl, popularLabel, popularList, upComingList, upComingLabel].forEach { scrollView.addSubview($0) }
+
+    scrollView.anchorSize(to: view)
+
+    navBar.anchor(top: scrollView.topAnchor, leading: scrollView.leadingAnchor, bottom: pagerView.topAnchor, trailing: scrollView.trailingAnchor, size: .init(width: scrollView.width, height: 95))
+
+    appIcon.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: navBar.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 30, left: 20, bottom: 0, right: 0), size: .init(width: 100, height: 20))
+
+    notifIcon.anchor(top: navBar.safeAreaLayoutGuide.topAnchor, leading: nil, bottom: nil, trailing: navBar.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 0, right: 20), size: .init(width: 20, height: 20))
+
+    pagerView.anchor(top: navBar.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 45, right: 0), size: .init(width: scrollView.width, height: 300))
+
+    pagerControl.anchor(top: nil, leading: pagerView.leadingAnchor, bottom: pagerView.bottomAnchor, trailing: pagerView.trailingAnchor)
+
+    popularLabel.anchor(top: pagerView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: popularList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
+
+    popularList.anchor(top: popularLabel.bottomAnchor, leading: scrollView.leadingAnchor, bottom: upComingLabel.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 8, left: 10, bottom: 35, right: 0), size: .init(width: scrollView.width, height: 200))
+
+    upComingLabel.anchor(top: popularList.bottomAnchor, leading: scrollView.leadingAnchor, bottom: upComingList.topAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 15, left: 10, bottom: 15, right: 10), size: .init(width: scrollView.width, height: 23))
+
+    upComingList.anchor(top: upComingLabel.bottomAnchor, leading: scrollView.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 20, right: 0), size: .init(width: scrollView.width, height: 200))
+  }
 }
