@@ -14,9 +14,7 @@ class DetailViewModel: ObservableObject {
   private let getDetailUseCase: GetDetailUseCase
   private let getMovieCastUseCase: GetCastUseCase
   private let getMovieTrailerUseCase: GetVideoUseCase
-  private let getFavoriteUseCase: GetFavoriteUseCase
   private let addToFavoriteUseCase: AddFavoriteUseCase
-  private let removeFavoriteUseCase: RemoveFavoriteUseCase
 
   var movie = PublishSubject<Movie>()
   var casts = PublishSubject<[Cast]>()
@@ -28,16 +26,12 @@ class DetailViewModel: ObservableObject {
   init(getDetailUseCase: GetDetailUseCase,
        getMovieCastUseCase: GetCastUseCase,
        getMovieTrailerUseCase: GetVideoUseCase,
-       getFavoriteUseCase: GetFavoriteUseCase,
-       addToFavoriteUseCase: AddFavoriteUseCase,
-       removeFavoriteUseCase: RemoveFavoriteUseCase
+       addToFavoriteUseCase: AddFavoriteUseCase
   ) {
     self.getDetailUseCase = getDetailUseCase
     self.getMovieCastUseCase = getMovieCastUseCase
     self.getMovieTrailerUseCase = getMovieTrailerUseCase
-    self.getFavoriteUseCase = getFavoriteUseCase
     self.addToFavoriteUseCase = addToFavoriteUseCase
-    self.removeFavoriteUseCase = removeFavoriteUseCase
   }
 
   func getDetailMovie(idMovie: Int) {
@@ -83,13 +77,13 @@ class DetailViewModel: ObservableObject {
   }
 
   func getFavoriteMovie() {
-    getFavoriteUseCase.execute()
-      .observe(on: MainScheduler.instance)
-      .subscribe { result in
-        self.favMovies.value = result
-      } onError: { error in
-        self.errorMessage.value = String(describing: error)
-      }.disposed(by: disposeBag)
+//    getFavoriteUseCase.execute()
+//      .observe(on: MainScheduler.instance)
+//      .subscribe { result in
+//        self.favMovies.value = result
+//      } onError: { error in
+//        self.errorMessage.value = String(describing: error)
+//      }.disposed(by: disposeBag)
   }
 
   func addFavoriteMovie(from movie: Movie) {
@@ -103,13 +97,7 @@ class DetailViewModel: ObservableObject {
   }
 
   func removeFavoriteMovie(idMovie: Int) {
-    removeFavoriteUseCase.execute(idMovie: idMovie)
-      .observe(on: MainScheduler.instance)
-      .subscribe { result in
-        print(result)
-      } onError: { error in
-        self.errorMessage.value = String(describing: error)
-      }.disposed(by: disposeBag)
+
   }
 
 }

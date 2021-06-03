@@ -1,13 +1,11 @@
 //
-//  Extension.swift
+//  View+Ext.swift
 //  MuviApp-IOS
 //
-//  Created by Uwais Alqadri on 01/05/21.
+//  Created by Uwais Alqadri on 03/06/21.
 //
 
-import Foundation
 import UIKit
-import RealmSwift
 
 extension UIView {
 
@@ -34,9 +32,6 @@ extension UIView {
   public var right: CGFloat {
     return self.frame.size.width + self.frame.origin.x
   }
-}
-
-extension UIView {
 
   func fillSuperView() {
     anchor(top: superview?.topAnchor, leading: superview?.leadingAnchor, bottom: superview?.bottomAnchor, trailing: superview?.trailingAnchor)
@@ -74,24 +69,5 @@ extension UIView {
     if size.height != 0 {
       heightAnchor.constraint(equalToConstant: size.height).isActive = true
     }
-  }
-}
-
-
-public func configure<T>(_ value: T, using closure: (inout T) throws -> Void) rethrows -> T {
-  var value = value
-  try closure(&value)
-  return value
-}
-
-extension Results {
-  func toArray<T>(ofType: T.Type) -> [T] {
-    var array = [T]()
-    for index in 0 ..< count {
-      if let result = self[index] as? T {
-        array.append(result)
-      }
-    }
-    return array
   }
 }

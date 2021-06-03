@@ -27,7 +27,6 @@
 		5273D2A8263CB59E004FF8E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2A6263CB59E004FF8E0 /* Main.storyboard */; };
 		5273D2AA263CB5A2004FF8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */; };
 		5273D2AD263CB5A2004FF8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2AB263CB5A2004FF8E0 /* LaunchScreen.storyboard */; };
-		5273D2C1263CB74C004FF8E0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2C0263CB74C004FF8E0 /* Extensions.swift */; };
 		5273D2C6263CB770004FF8E0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2C5263CB770004FF8E0 /* Constants.swift */; };
 		5273D2D0263CB85B004FF8E0 /* DefaultHomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2CF263CB85B004FF8E0 /* DefaultHomeRepository.swift */; };
 		5273D2D4263CB86F004FF8E0 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2D3263CB86F004FF8E0 /* LocalDataSource.swift */; };
@@ -48,6 +47,9 @@
 		5273D342263D4494004FF8E0 /* CastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D341263D4494004FF8E0 /* CastResponse.swift */; };
 		5273D345263D4788004FF8E0 /* VideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D344263D4788004FF8E0 /* VideoResponse.swift */; };
 		527A5B1126412D90008CC946 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A5B1026412D90008CC946 /* GradientView.swift */; };
+		527F32092668B1B500A89317 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F32082668B1B500A89317 /* Endpoint.swift */; };
+		527F320D2668B21A00A89317 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F320C2668B21A00A89317 /* View+Ext.swift */; };
+		527F32122668B26900A89317 /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F32112668B26900A89317 /* Configure.swift */; };
 		52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30ACB2667368A00E7C067 /* AppAssembler.swift */; };
 		52F30AD0266736FB00E7C067 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30ACF266736FB00E7C067 /* HomeAssembler.swift */; };
 		52F30AD32667370700E7C067 /* DetailAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30AD22667370700E7C067 /* DetailAssembler.swift */; };
@@ -93,7 +95,6 @@
 		5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5273D2AC263CB5A2004FF8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5273D2AE263CB5A2004FF8E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5273D2C0263CB74C004FF8E0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5273D2C5263CB770004FF8E0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5273D2CF263CB85B004FF8E0 /* DefaultHomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHomeRepository.swift; sourceTree = "<group>"; };
 		5273D2D3263CB86F004FF8E0 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
@@ -114,6 +115,9 @@
 		5273D341263D4494004FF8E0 /* CastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResponse.swift; sourceTree = "<group>"; };
 		5273D344263D4788004FF8E0 /* VideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResponse.swift; sourceTree = "<group>"; };
 		527A5B1026412D90008CC946 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		527F32082668B1B500A89317 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		527F320C2668B21A00A89317 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		527F32112668B26900A89317 /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		52F30ACB2667368A00E7C067 /* AppAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
 		52F30ACF266736FB00E7C067 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
 		52F30AD22667370700E7C067 /* DetailAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembler.swift; sourceTree = "<group>"; };
@@ -203,12 +207,10 @@
 		5273D29F263CB59E004FF8E0 /* MuviApp-IOS */ = {
 			isa = PBXGroup;
 			children = (
-				5273D2CB263CB7B8004FF8E0 /* Domain */,
 				5273D2CA263CB7B0004FF8E0 /* Dependency */,
-				5273D2C9263CB79A004FF8E0 /* Data */,
 				5273D2B5263CB5C9004FF8E0 /* App */,
-				5273D2B7263CB601004FF8E0 /* Module */,
-				5273D2B9263CB610004FF8E0 /* Supporting Files */,
+				5273D2CB263CB7B8004FF8E0 /* Domain */,
+				5273D2C9263CB79A004FF8E0 /* Data */,
 				5273D2B8263CB607004FF8E0 /* Utils */,
 			);
 			path = "MuviApp-IOS";
@@ -217,8 +219,9 @@
 		5273D2B5263CB5C9004FF8E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */,
-				5273D2A2263CB59E004FF8E0 /* SceneDelegate.swift */,
+				5273D2B7263CB601004FF8E0 /* Module */,
+				5273D2B9263CB610004FF8E0 /* Supporting Files */,
+				527F32042668B0D100A89317 /* Main */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -237,13 +240,13 @@
 		5273D2B8263CB607004FF8E0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				527F32072668B18500A89317 /* Views */,
+				527F32062668B17A00A89317 /* Extension */,
 				520E1712264A1A3800B49069 /* CustomTapGesture.swift */,
 				5273D2C5263CB770004FF8E0 /* Constants.swift */,
-				5273D2C0263CB74C004FF8E0 /* Extensions.swift */,
 				5273D2F4263CB96E004FF8E0 /* CustomError.swift */,
-				52508A2226404BDC0079DDBE /* PaddingLabel.swift */,
-				527A5B1026412D90008CC946 /* GradientView.swift */,
 				5238F0952646E3D500EA5ACC /* Box.swift */,
+				527F32082668B1B500A89317 /* Endpoint.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -382,6 +385,33 @@
 				5273D344263D4788004FF8E0 /* VideoResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		527F32042668B0D100A89317 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */,
+				5273D2A2263CB59E004FF8E0 /* SceneDelegate.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		527F32062668B17A00A89317 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				527F320C2668B21A00A89317 /* View+Ext.swift */,
+				527F32112668B26900A89317 /* Configure.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		527F32072668B18500A89317 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				527A5B1026412D90008CC946 /* GradientView.swift */,
+				52508A2226404BDC0079DDBE /* PaddingLabel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		52F30ACE266736E800E7C067 /* Module */ = {
@@ -596,6 +626,7 @@
 				52F30AE5266738E200E7C067 /* SearchRepository.swift in Sources */,
 				5273D345263D4788004FF8E0 /* VideoResponse.swift in Sources */,
 				5273D2C6263CB770004FF8E0 /* Constants.swift in Sources */,
+				527F320D2668B21A00A89317 /* View+Ext.swift in Sources */,
 				52F30AF1266739CD00E7C067 /* DefaultSearchRepository.swift in Sources */,
 				52029874263FD19200A5790E /* GetSearchUseCase.swift in Sources */,
 				52F30B152667575A00E7C067 /* GetVideoUseCase.swift in Sources */,
@@ -610,6 +641,7 @@
 				52029871263FA72600A5790E /* FavoriteCell.swift in Sources */,
 				5273D2F5263CB96E004FF8E0 /* CustomError.swift in Sources */,
 				52F30AF4266739DD00E7C067 /* DefaultFavoriteRepository.swift in Sources */,
+				527F32122668B26900A89317 /* Configure.swift in Sources */,
 				52F30AD32667370700E7C067 /* DetailAssembler.swift in Sources */,
 				5273D316263D00C2004FF8E0 /* FavoriteViewModel.swift in Sources */,
 				520E1713264A1A3800B49069 /* CustomTapGesture.swift in Sources */,
@@ -627,6 +659,7 @@
 				52F30AEB2667395800E7C067 /* FavoriteRepository.swift in Sources */,
 				52F30B0E2667400200E7C067 /* GetDetailUseCase.swift in Sources */,
 				52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */,
+				527F32092668B1B500A89317 /* Endpoint.swift in Sources */,
 				5273D31A263D00DB004FF8E0 /* FavoriteViewController.swift in Sources */,
 				52F30AF726673A0200E7C067 /* DefaultDetailRepository.swift in Sources */,
 				520E170B2649CE7400B49069 /* BannerCell.swift in Sources */,
@@ -637,7 +670,6 @@
 				5273D33F263D4456004FF8E0 /* GenreItem.swift in Sources */,
 				5273D2E4263CB8DF004FF8E0 /* Movie.swift in Sources */,
 				5273D2E9263CB8F5004FF8E0 /* GetDiscoverUseCase.swift in Sources */,
-				5273D2C1263CB74C004FF8E0 /* Extensions.swift in Sources */,
 				5245B264263DA3AF00914123 /* DetailViewController.swift in Sources */,
 				5238F0962646E3D500EA5ACC /* Box.swift in Sources */,
 			);
@@ -789,7 +821,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM8JGRFPQU;
-				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -809,7 +841,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM8JGRFPQU;
-				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
