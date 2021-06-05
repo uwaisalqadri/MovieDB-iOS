@@ -13,10 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   private let assembler = AppAssembler()
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    guard let _ = (scene as? UIWindowScene) else {
-      return
-    }
-    _ = HomeViewController(viewModel: assembler.resolve())
+    guard let windowScene = (scene as? UIWindowScene) else { return }
+
+    window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+    window?.windowScene = windowScene
+    window?.rootViewController = HomeViewController(viewModel: assembler.resolve())
+    window?.makeKeyAndVisible()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

@@ -92,8 +92,8 @@ class HomeViewController: UIViewController {
     return collectionView
   }()
 
-  var timer = Timer()
-  var counter = 0
+//  var timer = Timer()
+//  var counter = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -106,6 +106,10 @@ class HomeViewController: UIViewController {
     popularList.rx.setDelegate(self).disposed(by: bag)
     upComingList.rx.setDelegate(self).disposed(by: bag)
 
+    viewModel.bannerMovies.subscribe(onNext: { item in
+      self.pagerControl.numberOfPages = item.count
+    }).disposed(by: bag)
+
     viewModel.loadingState.observe { result in
       result == true ? self.progress.show(in: self.view) : self.progress.dismiss()
     }
@@ -114,22 +118,22 @@ class HomeViewController: UIViewController {
       print("ERROR: \(result)")
     }
 
-    timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
+//    timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(slideMovie), userInfo: nil, repeats: true)
   }
 
-  @objc func slideMovie() {
-    if counter < 10 {
-      let index = IndexPath.init(item: counter, section: 0)
-      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-      pagerControl.currentPage = counter
-      counter += 1
-    } else {
-      counter = 0
-      let index = IndexPath.init(item: counter, section: 0)
-      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
-      pagerControl.currentPage = counter
-    }
-  }
+//  @objc func slideMovie() {
+//    if counter < 10 {
+//      let index = IndexPath.init(item: counter, section: 0)
+//      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//      pagerControl.currentPage = counter
+//      counter += 1
+//    } else {
+//      counter = 0
+//      let index = IndexPath.init(item: counter, section: 0)
+//      self.pagerView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+//      pagerControl.currentPage = counter
+//    }
+//  }
 
 }
 
@@ -191,11 +195,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     return CGSize(width: collectionView.width/2.5, height: collectionView.width/2)
   }
+
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    pagerControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+  }
 }
 
 extension HomeViewController {
   func addLayoutAndSubViews() {
-    pagerControl.numberOfPages = 10
     view.backgroundColor = UIColor(named: "BrandColor")
     view.addSubview(scrollView)
 
