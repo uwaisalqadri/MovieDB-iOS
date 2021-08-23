@@ -8,13 +8,18 @@
 import UIKit
 
 protocol HomeAssembler {
-  func resolve() -> HomeTabBarViewController
   func resolve() -> HomeNavigator
+  func resolve() -> HomeTabBarViewController
+  func resolve() -> HomeViewController
 }
 
 extension HomeAssembler where Self: Assembler {
   func resolve() -> HomeTabBarViewController {
-    return HomeTabBarViewController()
+    return HomeTabBarViewController(navigator: resolve())
+  }
+
+  func resolve() -> HomeViewController {
+    return HomeViewController()
   }
 
   func resolve() -> HomeNavigator {

@@ -21,6 +21,21 @@ protocol NavigationBarButtonHandler {
 
 extension UIViewController {
 
+  private func setDefaultNavigationTheme() {
+    navigationController?.setNavigationBarHidden(false, animated: true)
+    navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    navigationController?.navigationBar.isTranslucent = false
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController?.navigationBar.backgroundColor = UIColor.primaryColor
+    navigationController?.navigationBar.barTintColor = UIColor.primaryColor
+    view.backgroundColor = UIColor.backgroundColor
+
+    navigationController?.navigationBar.titleTextAttributes = [
+      NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20, weight: .heavy),
+      NSAttributedString.Key.foregroundColor: UIColor.primaryColor as Any
+    ]
+  }
+
   private func setTransparentNavigationTheme() {
     navigationController?.navigationBar.backgroundColor = .clear
     navigationController?.navigationBar.barTintColor = .clear
@@ -30,6 +45,8 @@ extension UIViewController {
   }
 
   func setNavigationBar(type: NavigationBarType) {
+    setDefaultNavigationTheme()
+
     switch type {
     case .logoAndIcon:
       navigationItem.rightBarButtonItem = createNotifButton()
@@ -56,20 +73,19 @@ extension UIViewController: NavigationBarButtonHandler {
 extension UIViewController {
   private func createBackButton() -> UIBarButtonItem {
     let backButton = UIBarButtonItem(image: .iconBack, style: .plain, target: self, action: #selector(self.leftNavigationBarButtonTapped(sender:)))
-    backButton.tintColor = .black
+    backButton.tintColor = .yellow
     backButton.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
     return backButton
   }
 
   private func createNotifButton() -> UIBarButtonItem {
     let notifButton = UIBarButtonItem(image: .iconNotif, style: .plain, target: self, action: #selector(self.leftNavigationBarButtonTapped(sender:)))
-    notifButton.tintColor = .black
-    notifButton.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
+    notifButton.tintColor = .white
     return notifButton
   }
 
   private func addLogo() {
-    let logo = UIImageView(frame: .init(x: 0, y: 0, width: 20, height: 19))
+    let logo = UIImageView(frame: .init(x: 0, y: 0, width: 0, height: 0))
     logo.image = UIImage.logo?.withRenderingMode(.alwaysOriginal)
     logo.contentMode = .scaleAspectFit
     logo.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.leftNavigationBarButtonTapped(sender:))))

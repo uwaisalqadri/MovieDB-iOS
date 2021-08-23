@@ -24,6 +24,11 @@
 		52D6DCDA26D3354300E7C0C7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCD926D3354300E7C0C7 /* FavoriteViewController.swift */; };
 		52D6DCDD26D3359C00E7C0C7 /* PopularNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCDC26D3359C00E7C0C7 /* PopularNavigator.swift */; };
 		52D6DCE126D335E500E7C0C7 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCE026D335E500E7C0C7 /* PopularViewController.swift */; };
+		52D6DCE826D33A1700E7C0C7 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCE726D33A1700E7C0C7 /* RemoteDataSource.swift */; };
+		52D6DCEC26D33AF300E7C0C7 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCEB26D33AF300E7C0C7 /* LocalDataSource.swift */; };
+		52D6DCEF26D33B0600E7C0C7 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCEE26D33B0600E7C0C7 /* MovieRepository.swift */; };
+		52D6DCF226D33B7700E7C0C7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCF126D33B7700E7C0C7 /* UIColor.swift */; };
+		52D6DCF526D3450700E7C0C7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCF426D3450700E7C0C7 /* HomeViewController.swift */; };
 		52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30ACB2667368A00E7C067 /* AppAssembler.swift */; };
 		7928D3B8B005D4C356A8987F /* Pods_MuviApp_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E55A79432118CA2EAB6ECAF /* Pods_MuviApp_IOS.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +55,11 @@
 		52D6DCD926D3354300E7C0C7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		52D6DCDC26D3359C00E7C0C7 /* PopularNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularNavigator.swift; sourceTree = "<group>"; };
 		52D6DCE026D335E500E7C0C7 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		52D6DCE726D33A1700E7C0C7 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		52D6DCEB26D33AF300E7C0C7 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		52D6DCEE26D33B0600E7C0C7 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		52D6DCF126D33B7700E7C0C7 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		52D6DCF426D3450700E7C0C7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		52F30ACB2667368A00E7C067 /* AppAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
 		8BB9078D4E283A02B91A32A9 /* Pods-MuviApp-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuviApp-IOS.debug.xcconfig"; path = "Target Support Files/Pods-MuviApp-IOS/Pods-MuviApp-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +134,7 @@
 			children = (
 				52D6DCCE26D32ECE00E7C0C7 /* UIViewController.swift */,
 				52D6DCD126D3313100E7C0C7 /* UIImage.swift */,
+				52D6DCF126D33B7700E7C0C7 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -167,6 +178,8 @@
 		522FF8E726D25D75004E829C /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				52D6DCE626D33A0700E7C0C7 /* Remote */,
+				52D6DCE526D33A0200E7C0C7 /* Local */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -174,6 +187,7 @@
 		522FF8E826D25D8B004E829C /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				52D6DCEE26D33B0600E7C0C7 /* MovieRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -274,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				522FF8F726D25F15004E829C /* HomeTabBarViewController.swift */,
+				52D6DCF426D3450700E7C0C7 /* HomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -470,6 +485,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		52D6DCE526D33A0200E7C0C7 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				52D6DCEB26D33AF300E7C0C7 /* LocalDataSource.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		52D6DCE626D33A0700E7C0C7 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				52D6DCE726D33A1700E7C0C7 /* RemoteDataSource.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		74ECB06E7FBCC7158E5D7140 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,11 +628,16 @@
 				522FF91126D2634F004E829C /* FavoriteAssembler.swift in Sources */,
 				52D6DCCF26D32ECE00E7C0C7 /* UIViewController.swift in Sources */,
 				522FF90226D261F7004E829C /* HomeAssembler.swift in Sources */,
+				52D6DCF526D3450700E7C0C7 /* HomeViewController.swift in Sources */,
 				522FF90726D26272004E829C /* DetailNavigator.swift in Sources */,
+				52D6DCEC26D33AF300E7C0C7 /* LocalDataSource.swift in Sources */,
 				5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */,
+				52D6DCEF26D33B0600E7C0C7 /* MovieRepository.swift in Sources */,
+				52D6DCF226D33B7700E7C0C7 /* UIColor.swift in Sources */,
 				522FF91426D26363004E829C /* PopularAssembler.swift in Sources */,
 				52D6DCE126D335E500E7C0C7 /* PopularViewController.swift in Sources */,
 				522FF8FF26D2614E004E829C /* HomeNavigator.swift in Sources */,
+				52D6DCE826D33A1700E7C0C7 /* RemoteDataSource.swift in Sources */,
 				52D6DCD226D3313100E7C0C7 /* UIImage.swift in Sources */,
 				52D6DCDD26D3359C00E7C0C7 /* PopularNavigator.swift in Sources */,
 				52D6DCDA26D3354300E7C0C7 /* FavoriteViewController.swift in Sources */,
