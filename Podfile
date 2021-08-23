@@ -10,8 +10,9 @@ target 'MuviApp-IOS' do
   pod 'RxCocoa'
   pod 'Alamofire'
   pod 'RealmSwift'
-  pod 'FSPagerView'
   pod 'SDWebImage'
-  pod 'JGProgressHUD'
+  pod 'SVProgressHUD'
+  pod 'PinLayout'
+  pod 'ObjectMapper', '~> 4.2.0'
 
 end

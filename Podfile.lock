@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (5.4.3)
-  - FSPagerView (0.8.3)
-  - JGProgressHUD (2.2)
+  - ObjectMapper (4.2.0)
+  - PinLayout (1.10.0)
   - Realm (10.7.4):
     - Realm/Headers (= 10.7.4)
   - Realm/Headers (10.7.4)
@@ -16,39 +16,43 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire
-  - FSPagerView
-  - JGProgressHUD
+  - ObjectMapper (~> 4.2.0)
+  - PinLayout
   - RealmSwift
   - RxCocoa
   - RxSwift
   - SDWebImage
+  - SVProgressHUD
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - FSPagerView
-    - JGProgressHUD
+    - ObjectMapper
+    - PinLayout
     - Realm
     - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
     - SDWebImage
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
-  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  PinLayout: e50e9a748b632905fca6e67043ea4b05d6c92186
   Realm: f08ce1a85649a41303ecfe1cbd914c62e9e6d710
   RealmSwift: 60ec49d165f23d040ab48811d8dd177e09baf4d3
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 924dfae04c836fbc8af8f43e80799ed7e06ddcd4
+PODFILE CHECKSUM: 8faffea3a4b3524e52447f7b449573b65d47e960
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2
