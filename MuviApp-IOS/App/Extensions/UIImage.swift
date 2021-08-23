@@ -14,4 +14,5 @@ extension UIImage {
   static let iconHome = UIImage(named: "HomeIcon")
   static let iconPopular = UIImage(named: "PopularIcon")
   static let iconFavorite = UIImage(named: "FavIcon")
+  static let iconSearch = UIImage(named: "SearchIcon")
 }

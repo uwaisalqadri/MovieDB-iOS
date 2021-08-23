@@ -52,7 +52,7 @@ extension UIViewController {
       navigationItem.rightBarButtonItem = createNotifButton()
       addLogo()
     case .searchBar:
-      print("")
+      navigationItem.rightBarButtonItem = createSearchButton()
     case .backTransparent:
       navigationItem.leftBarButtonItem = createBackButton()
       setTransparentNavigationTheme()
@@ -73,15 +73,21 @@ extension UIViewController: NavigationBarButtonHandler {
 extension UIViewController {
   private func createBackButton() -> UIBarButtonItem {
     let backButton = UIBarButtonItem(image: .iconBack, style: .plain, target: self, action: #selector(self.leftNavigationBarButtonTapped(sender:)))
-    backButton.tintColor = .yellow
+    backButton.tintColor = .accentColor
     backButton.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
     return backButton
   }
 
   private func createNotifButton() -> UIBarButtonItem {
-    let notifButton = UIBarButtonItem(image: .iconNotif, style: .plain, target: self, action: #selector(self.leftNavigationBarButtonTapped(sender:)))
+    let notifButton = UIBarButtonItem(image: .iconNotif, style: .plain, target: self, action: #selector(self.rightNavigationBarButtonTapped(sender:)))
     notifButton.tintColor = .white
     return notifButton
+  }
+
+  private func createSearchButton() -> UIBarButtonItem {
+    let searchButton = UIBarButtonItem(image: .iconSearch, style: .plain, target: self, action: #selector(self.rightNavigationBarButtonTapped(sender:)))
+    searchButton.tintColor = .accentColor
+    return searchButton
   }
 
   private func addLogo() {
@@ -111,7 +117,7 @@ extension UIViewController {
   }
 }
 
-extension UIViewController{
+extension UIViewController {
   func hideLoading(){
     SVProgressHUD.dismiss()
   }
@@ -120,3 +126,4 @@ extension UIViewController{
     SVProgressHUD.show()
   }
 }
+

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MovieDB.png",
+      "filename" : "MovieDB (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MovieDB-1.png",
+      "filename" : "MovieDB (1)-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MovieDB-2.png",
+      "filename" : "MovieDB (1)-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
