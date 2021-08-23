@@ -15,7 +15,22 @@ class HomeViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    let homeView = HomeView()
+    view = homeView
+    homeView.tableView.delegate = self
+    homeView.tableView.dataSource = self
   }
 
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
+    cell.lblMovie.text = "Hello World"
+    return cell
+  }
 }

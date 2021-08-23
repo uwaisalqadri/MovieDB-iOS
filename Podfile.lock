@@ -7,6 +7,11 @@ PODS:
   - Realm/Headers (10.7.4)
   - RealmSwift (10.7.4):
     - Realm (= 10.7.4)
+  - Reusable (4.1.1):
+    - Reusable/Storyboard (= 4.1.1)
+    - Reusable/View (= 4.1.1)
+  - Reusable/Storyboard (4.1.1)
+  - Reusable/View (4.1.1)
   - RxCocoa (6.1.0):
     - RxRelay (= 6.1.0)
     - RxSwift (= 6.1.0)
@@ -23,6 +28,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 4.2.0)
   - PinLayout
   - RealmSwift
+  - Reusable
   - RxCocoa
   - RxSwift
   - SDWebImage
@@ -35,6 +41,7 @@ SPEC REPOS:
     - PinLayout
     - Realm
     - RealmSwift
+    - Reusable
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -47,12 +54,13 @@ SPEC CHECKSUMS:
   PinLayout: e50e9a748b632905fca6e67043ea4b05d6c92186
   Realm: f08ce1a85649a41303ecfe1cbd914c62e9e6d710
   RealmSwift: 60ec49d165f23d040ab48811d8dd177e09baf4d3
+  Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 8faffea3a4b3524e52447f7b449573b65d47e960
+PODFILE CHECKSUM: 25800b11481f1632c4cd6fa462130b769a52c498
 
 COCOAPODS: 1.10.2

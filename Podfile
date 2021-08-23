@@ -14,5 +14,6 @@ target 'MuviApp-IOS' do
   pod 'SVProgressHUD'
   pod 'PinLayout'
   pod 'ObjectMapper', '~> 4.2.0'
+  pod 'Reusable'
 
 end
