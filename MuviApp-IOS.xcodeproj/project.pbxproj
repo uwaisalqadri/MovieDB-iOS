@@ -33,7 +33,9 @@
 		52D6DCFE26D37CE800E7C0C7 /* HasApply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DCFD26D37CE800E7C0C7 /* HasApply.swift */; };
 		52D6DD0126D37D2A00E7C0C7 /* Weakifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD0026D37D2A00E7C0C7 /* Weakifiable.swift */; };
 		52D6DD0626D37EBC00E7C0C7 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD0526D37EBC00E7C0C7 /* HomeViewCell.swift */; };
-		52D6DD0926D37EDE00E7C0C7 /* HomeSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD0826D37EDE00E7C0C7 /* HomeSliderViewCell.swift */; };
+		52D6DD0926D37EDE00E7C0C7 /* HomeBannerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */; };
+		52D6DD2526D39B8A00E7C0C7 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD2426D39B8A00E7C0C7 /* HomeCollectionViewCell.swift */; };
+		52D6DD2926D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */; };
 		52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30ACB2667368A00E7C067 /* AppAssembler.swift */; };
 		7928D3B8B005D4C356A8987F /* Pods_MuviApp_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E55A79432118CA2EAB6ECAF /* Pods_MuviApp_IOS.framework */; };
 /* End PBXBuildFile section */
@@ -69,7 +71,9 @@
 		52D6DCFD26D37CE800E7C0C7 /* HasApply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasApply.swift; sourceTree = "<group>"; };
 		52D6DD0026D37D2A00E7C0C7 /* Weakifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weakifiable.swift; sourceTree = "<group>"; };
 		52D6DD0526D37EBC00E7C0C7 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
-		52D6DD0826D37EDE00E7C0C7 /* HomeSliderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSliderViewCell.swift; sourceTree = "<group>"; };
+		52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerViewCell.swift; sourceTree = "<group>"; };
+		52D6DD2426D39B8A00E7C0C7 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		52F30ACB2667368A00E7C067 /* AppAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
 		8BB9078D4E283A02B91A32A9 /* Pods-MuviApp-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuviApp-IOS.debug.xcconfig"; path = "Target Support Files/Pods-MuviApp-IOS/Pods-MuviApp-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,8 +336,10 @@
 			isa = PBXGroup;
 			children = (
 				52D6DCFA26D37CA100E7C0C7 /* HomeView.swift */,
+				52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */,
 				52D6DD0526D37EBC00E7C0C7 /* HomeViewCell.swift */,
-				52D6DD0826D37EDE00E7C0C7 /* HomeSliderViewCell.swift */,
+				52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */,
+				52D6DD2426D39B8A00E7C0C7 /* HomeCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -638,11 +644,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D6DD0926D37EDE00E7C0C7 /* HomeSliderViewCell.swift in Sources */,
+				52D6DD0926D37EDE00E7C0C7 /* HomeBannerViewCell.swift in Sources */,
 				52D6DD0126D37D2A00E7C0C7 /* Weakifiable.swift in Sources */,
 				522FF8F826D25F15004E829C /* HomeTabBarViewController.swift in Sources */,
 				522FF90E26D26342004E829C /* DetailAssembler.swift in Sources */,
 				522FF91126D2634F004E829C /* FavoriteAssembler.swift in Sources */,
+				52D6DD2526D39B8A00E7C0C7 /* HomeCollectionViewCell.swift in Sources */,
 				52D6DCCF26D32ECE00E7C0C7 /* UIViewController.swift in Sources */,
 				522FF90226D261F7004E829C /* HomeAssembler.swift in Sources */,
 				52D6DCFB26D37CA100E7C0C7 /* HomeView.swift in Sources */,
@@ -656,6 +663,7 @@
 				522FF91426D26363004E829C /* PopularAssembler.swift in Sources */,
 				52D6DCE126D335E500E7C0C7 /* PopularViewController.swift in Sources */,
 				522FF8FF26D2614E004E829C /* HomeNavigator.swift in Sources */,
+				52D6DD2926D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift in Sources */,
 				52D6DD0626D37EBC00E7C0C7 /* HomeViewCell.swift in Sources */,
 				52D6DCE826D33A1700E7C0C7 /* RemoteDataSource.swift in Sources */,
 				52D6DCD226D3313100E7C0C7 /* UIImage.swift in Sources */,

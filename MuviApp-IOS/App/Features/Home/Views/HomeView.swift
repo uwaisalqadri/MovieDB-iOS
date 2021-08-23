@@ -10,28 +10,20 @@ import PinLayout
 
 class HomeView: UIView {
 
-  lazy var scrollView: UIScrollView = {
-    return UIScrollView()
-  }()
-
-  lazy var contentView: UIView = {
-    return UIView()
-  }()
-
   lazy var tableView: UITableView = {
     return UITableView().apply {
       $0.backgroundColor = .backgroundColor
       $0.tableFooterView = UIView()
       $0.register(cellType: HomeViewCell.self)
-      $0.register(cellType: HomeSliderViewCell.self)
+      $0.register(cellType: HomeBannerViewCell.self)
     }
   }()
 
+  let refreshControl = UIRefreshControl()
+
   init() {
     super.init(frame: .zero)
-    addSubview(scrollView)
-    scrollView.addSubview(contentView)
-    contentView.addSubview(tableView)
+    addSubview(tableView)
   }
 
   required init?(coder: NSCoder) {
@@ -40,14 +32,11 @@ class HomeView: UIView {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-
     configureViews()
   }
 
   private func configureViews() {
 
-    scrollView.pin.all()
-    contentView.pin.size(of: scrollView)
-    tableView.pin.size(of: contentView)
+    tableView.pin.all()
   }
 }

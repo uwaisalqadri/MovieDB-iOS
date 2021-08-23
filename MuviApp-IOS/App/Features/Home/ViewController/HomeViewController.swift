@@ -29,8 +29,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
-    cell.lblMovie.text = "Hello World"
-    return cell
+    switch indexPath.row {
+    case 0:
+      let cell: HomeBannerViewCell = tableView.dequeueReusableCell(for: indexPath)
+      cell.selectionStyle = .none
+      return cell
+    default:
+      let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
+      cell.lblMovie.text = "Hello World"
+      cell.selectionStyle = .none
+      return cell
+    }
   }
 }

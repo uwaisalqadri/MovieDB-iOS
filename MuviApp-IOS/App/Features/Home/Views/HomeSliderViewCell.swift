@@ -1,5 +1,5 @@
 //
-//  HomeSliderViewCell.swift
+//  HomeBannerViewCell.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -8,7 +8,7 @@
 import UIKit
 import Reusable
 
-class HomeSliderViewCell: UITableViewCell, Reusable {
+class HomeBannerViewCell: UITableViewCell, Reusable {
 
   override func awakeFromNib() {
     super.awakeFromNib()

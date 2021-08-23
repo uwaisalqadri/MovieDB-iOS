@@ -16,12 +16,14 @@ class HomeViewCell: UITableViewCell, Reusable {
     return label
   }()
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    configureViews()
-  }
-
   private func configureViews() {
     addSubview(lblMovie)
+    lblMovie.pin.all()
+  }
+
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
+    contentView.pin.width(size.width)
+    configureViews()
+    return CGSize(width: contentView.frame.width, height: lblMovie.frame.maxY + 10)
   }
 }
