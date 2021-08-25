@@ -21,7 +21,7 @@ class PopularView: UIView {
 
   init() {
     super.init(frame: .zero)
-    addSubview(tableView)
+    subviews(tableView)
   }
 
   required init?(coder: NSCoder) {

@@ -14,6 +14,9 @@ class HomeView: UIView {
     return UITableView().apply {
       $0.backgroundColor = .backgroundColor
       $0.tableFooterView = UIView()
+      $0.allowsMultipleSelection = false
+      $0.showsVerticalScrollIndicator = false
+      $0.showsHorizontalScrollIndicator = false
       $0.separatorEffect = .none
       $0.register(cellType: HomeViewCell.self)
       $0.register(cellType: HomeBannerViewCell.self)
@@ -37,7 +40,6 @@ class HomeView: UIView {
   }
 
   private func configureViews() {
-
     tableView.pin.all()
   }
 }
