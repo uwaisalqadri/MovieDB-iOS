@@ -24,6 +24,7 @@ class HomeViewCell: UITableViewCell, Reusable {
     return UICollectionView(frame: .zero, collectionViewLayout: layout).apply { cl in
       cl.allowsMultipleSelection = false
       cl.showsVerticalScrollIndicator = false
+      cl.showsHorizontalScrollIndicator = false
       cl.backgroundColor = .backgroundColor
       cl.delegate = self
       cl.dataSource = self
@@ -38,14 +39,16 @@ class HomeViewCell: UITableViewCell, Reusable {
   private func configureViews() {
     lblCategory.pin
       .top(20)
-      .bottom(5)
+      .bottom(20)
       .left(10)
-      .height(20)
+      .height(50)
       .width(contentView.frame.width)
 
     clCategory.pin
       .below(of: lblCategory)
-      .all()
+      .horizontally(10)
+      .bottom()
+      .top(20)
 
     [lblCategory, clCategory].forEach {
       addSubview($0)
@@ -53,15 +56,17 @@ class HomeViewCell: UITableViewCell, Reusable {
   }
 
   override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin.width(size.width)
+    contentView.pin
+      .width(size.width)
+
     configureViews()
-    return CGSize(width: contentView.frame.width, height: 200)
+    return CGSize(width: contentView.frame.width - 10, height: 220)
   }
 }
 
 extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.width/4, height: collectionView.frame.width/2)
+    return CGSize(width: collectionView.frame.width/3.8, height: collectionView.frame.width/2)
   }
 }
 

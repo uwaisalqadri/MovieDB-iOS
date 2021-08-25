@@ -19,6 +19,7 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     return UICollectionView(frame: .zero, collectionViewLayout: layout).apply {
       $0.allowsMultipleSelection = false
       $0.showsVerticalScrollIndicator = false
+      $0.showsHorizontalScrollIndicator = false
       $0.backgroundColor = .backgroundColor
       $0.isPagingEnabled = true
       $0.delegate = self
@@ -27,25 +28,35 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     }
   }()
 
-  let pageControl = UIPageControl()
-
-  private func configureViews() {
-    [collectionView, pageControl].forEach {
-      contentView.addSubview($0)
+  lazy var pageControl: UIPageControl = {
+    return UIPageControl().apply { control in
+      control.numberOfPages = 5
+      control.currentPage = 2
+      control.currentPageIndicatorTintColor = .accentColor
     }
-  }
-
+  }()
 
   override func layoutSubviews() {
     configureViews()
   }
 
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin
-      .width(size.width)
+  private func configureViews() {
 
     collectionView.pin
       .all()
+
+    pageControl.pin
+      .horizontally()
+      .bottom(15)
+
+    [collectionView, pageControl].forEach {
+      contentView.addSubview($0)
+    }
+  }
+
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
+    contentView.pin
+      .width(size.width)
 
     configureViews()
     return CGSize(width: frame.width, height: 230)
@@ -54,7 +65,7 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
 
 extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: frame.width, height: collectionView.frame.size.width)
+    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.width)
   }
 }
 

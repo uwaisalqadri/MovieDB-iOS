@@ -23,15 +23,12 @@ class HomeBannerCollectionViewCell: UICollectionViewCell, Reusable {
   }
 
   private func configureViews() {
-    contentView.backgroundColor = .blue
-    imgBanner.pin.all(10)
-    imgBanner.sd_setImage(with: URL(string: "https://miro.medium.com/max/1400/1*_ygwCINLIqSJdaxO71Sm6Q.png"), completed: nil)
+    imgBanner.pin
+      .height(frame.height)
+      .width(frame.width)
+
+    imgBanner.sd_setImage(with: URL(string: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.downgraf.com%2Fwp-content%2Fuploads%2F2015%2F06%2FClassic-Movie-Posters-5.jpg&f=1&nofb=1"), completed: nil)
 
     addSubview(imgBanner)
-  }
-
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin.width(size.width).height(size.height)
-    return CGSize(width: contentView.frame.width, height: imgBanner.frame.height - 20)
   }
 }
