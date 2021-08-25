@@ -14,6 +14,7 @@ class HomeView: UIView {
     return UITableView().apply {
       $0.backgroundColor = .backgroundColor
       $0.tableFooterView = UIView()
+      $0.separatorEffect = .none
       $0.register(cellType: HomeViewCell.self)
       $0.register(cellType: HomeBannerViewCell.self)
     }

@@ -19,8 +19,10 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     return UICollectionView(frame: .zero, collectionViewLayout: layout).apply {
       $0.allowsMultipleSelection = false
       $0.showsVerticalScrollIndicator = false
-      $0.showsVerticalScrollIndicator = false
+      $0.backgroundColor = .backgroundColor
       $0.isPagingEnabled = true
+      $0.delegate = self
+      $0.dataSource = self
       $0.register(cellType: HomeBannerCollectionViewCell.self)
     }
   }()
@@ -31,11 +33,20 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     [collectionView, pageControl].forEach {
       contentView.addSubview($0)
     }
-    contentView.backgroundColor = .backgroundColor
+  }
+
+
+  override func layoutSubviews() {
+    configureViews()
   }
 
   override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin.width(size.width)
+    contentView.pin
+      .width(size.width)
+
+    collectionView.pin
+      .all()
+
     configureViews()
     return CGSize(width: frame.width, height: 230)
   }

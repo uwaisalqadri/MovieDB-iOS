@@ -36,7 +36,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       return cell
     default:
       let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
-      cell.lblMovie.text = "Hello World"
+      cell.lblCategory.text = "Popular"
       cell.selectionStyle = .none
       return cell
     }

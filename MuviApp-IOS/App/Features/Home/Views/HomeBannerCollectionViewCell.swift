@@ -18,14 +18,20 @@ class HomeBannerCollectionViewCell: UICollectionViewCell, Reusable {
     }
   }()
 
+  override func layoutSubviews() {
+    configureViews()
+  }
+
   private func configureViews() {
-    addSubview(imgBanner)
+    contentView.backgroundColor = .blue
+    imgBanner.pin.all(10)
     imgBanner.sd_setImage(with: URL(string: "https://miro.medium.com/max/1400/1*_ygwCINLIqSJdaxO71Sm6Q.png"), completed: nil)
+
+    addSubview(imgBanner)
   }
 
   override func sizeThatFits(_ size: CGSize) -> CGSize {
     contentView.pin.width(size.width).height(size.height)
-    configureViews()
-    return CGSize(width: contentView.frame.width, height: 230)
+    return CGSize(width: contentView.frame.width, height: imgBanner.frame.height - 20)
   }
 }
