@@ -22,20 +22,24 @@ class PopularViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view = contentView
-    contentView.tableView.delegate = self
-    contentView.tableView.dataSource = self
+    contentView.collectionView.delegate = self
+    contentView.collectionView.dataSource = self
   }
 }
 
-extension PopularViewController: UITableViewDataSource, UITableViewDelegate {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+extension PopularViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.width)
+  }
+}
+
+extension PopularViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 3
   }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: PopularCell = tableView.dequeueReusableCell(for: indexPath)
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell: PopularCell = collectionView.dequeueReusableCell(for: indexPath)
     return cell
   }
-
-
 }

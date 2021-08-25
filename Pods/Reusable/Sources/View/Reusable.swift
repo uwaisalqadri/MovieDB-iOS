@@ -6,7 +6,6 @@
  *
  *********************************************/
 
-#if canImport(UIKit)
 import UIKit
 
 // MARK: Protocol definition
@@ -32,4 +31,3 @@ public extension Reusable {
     return String(describing: self)
   }
 }
-#endif

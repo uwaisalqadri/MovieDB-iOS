@@ -9,7 +9,7 @@ import UIKit
 import Reusable
 import PinLayout
 
-class PopularCell: UITableViewCell, Reusable {
+class PopularCell: UICollectionViewCell, Reusable {
 
   lazy var imgPoster: UIImageView = {
     return UIImageView().apply { img in
@@ -56,10 +56,10 @@ class PopularCell: UITableViewCell, Reusable {
       .height(30)
 
     subviews {
-      imgPoster
       lblGenre
       lblDesc
       lblTitle
+      imgPoster
     }
   }
 

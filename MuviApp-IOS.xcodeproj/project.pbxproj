@@ -344,10 +344,10 @@
 		5245B258263DA09800914123 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */,
 				52D6DD0526D37EBC00E7C0C7 /* HomeViewCell.swift */,
-				52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */,
 				52D6DD2426D39B8A00E7C0C7 /* HomeCollectionViewCell.swift */,
+				52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */,
+				52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

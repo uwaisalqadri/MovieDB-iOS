@@ -8,12 +8,16 @@
 import UIKit
 
 class PopularView: UIView {
-  lazy var tableView: UITableView = {
-    return UITableView().apply {
-      $0.backgroundColor = .backgroundColor
-      $0.tableFooterView = UIView()
-      $0.separatorEffect = .none
-      $0.register(cellType: PopularCell.self)
+  lazy var collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
+
+    return UICollectionView(frame: .zero, collectionViewLayout: layout).apply { cl in
+      cl.allowsMultipleSelection = false
+      cl.showsVerticalScrollIndicator = false
+      cl.showsHorizontalScrollIndicator = false
+      cl.backgroundColor = .backgroundColor
+      cl.register(cellType: PopularCell.self)
     }
   }()
 
@@ -21,7 +25,7 @@ class PopularView: UIView {
 
   init() {
     super.init(frame: .zero)
-    subviews(tableView)
+    subviews(collectionView)
   }
 
   required init?(coder: NSCoder) {
@@ -34,6 +38,6 @@ class PopularView: UIView {
   }
 
   private func configureViews() {
-    tableView.pin.all()
+    collectionView.pin.all()
   }
 }

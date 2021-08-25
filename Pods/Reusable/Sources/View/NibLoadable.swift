@@ -6,7 +6,6 @@
  *
  *********************************************/
 
-#if canImport(UIKit)
 import UIKit
 
 // MARK: Protocol Definition
@@ -46,4 +45,3 @@ public extension NibLoadable where Self: UIView {
     return view
   }
 }
-#endif
