@@ -49,8 +49,9 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
       .horizontally()
       .bottom(15)
 
-    [collectionView, pageControl].forEach {
-      contentView.addSubview($0)
+    subviews {
+      collectionView
+      pageControl
     }
   }
 

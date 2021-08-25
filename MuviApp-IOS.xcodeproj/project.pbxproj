@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520E1DFF26D61D7F00EE788C /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E1DFE26D61D7F00EE788C /* PopularView.swift */; };
+		520E1E0326D61E7300EE788C /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E1E0226D61E7300EE788C /* PopularCell.swift */; };
+		520E1E0A26D6254600EE788C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E1E0926D6254600EE788C /* UIView.swift */; };
 		522FF8F826D25F15004E829C /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF8F726D25F15004E829C /* HomeTabBarViewController.swift */; };
 		522FF8FF26D2614E004E829C /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF8FE26D2614E004E829C /* HomeNavigator.swift */; };
 		522FF90226D261F7004E829C /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF90126D261F7004E829C /* HomeAssembler.swift */; };
@@ -43,6 +46,9 @@
 /* Begin PBXFileReference section */
 		0189269CB965696DA3620426 /* Pods-MuviApp-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuviApp-IOS.release.xcconfig"; path = "Target Support Files/Pods-MuviApp-IOS/Pods-MuviApp-IOS.release.xcconfig"; sourceTree = "<group>"; };
 		0E55A79432118CA2EAB6ECAF /* Pods_MuviApp_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuviApp_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		520E1DFE26D61D7F00EE788C /* PopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
+		520E1E0226D61E7300EE788C /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
+		520E1E0926D6254600EE788C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		522FF8F726D25F15004E829C /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		522FF8FE26D2614E004E829C /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		522FF90126D261F7004E829C /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		522FF8D226D25A65004E829C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				520E1E0226D61E7300EE788C /* PopularCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +156,7 @@
 				52D6DCCE26D32ECE00E7C0C7 /* UIViewController.swift */,
 				52D6DCD126D3313100E7C0C7 /* UIImage.swift */,
 				52D6DCF126D33B7700E7C0C7 /* UIColor.swift */,
+				520E1E0926D6254600EE788C /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,6 +311,7 @@
 		522FF8FB26D25F48004E829C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				52D6DCFA26D37CA100E7C0C7 /* HomeView.swift */,
 				522FF8F726D25F15004E829C /* HomeTabBarViewController.swift */,
 				52D6DCF426D3450700E7C0C7 /* HomeViewController.swift */,
 			);
@@ -335,7 +344,6 @@
 		5245B258263DA09800914123 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				52D6DCFA26D37CA100E7C0C7 /* HomeView.swift */,
 				52D6DD0826D37EDE00E7C0C7 /* HomeBannerViewCell.swift */,
 				52D6DD0526D37EBC00E7C0C7 /* HomeViewCell.swift */,
 				52D6DD2826D39BB900E7C0C7 /* HomeBannerCollectionViewCell.swift */,
@@ -502,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				52D6DCE026D335E500E7C0C7 /* PopularViewController.swift */,
+				520E1DFE26D61D7F00EE788C /* PopularView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -647,8 +656,10 @@
 				52D6DD0926D37EDE00E7C0C7 /* HomeBannerViewCell.swift in Sources */,
 				52D6DD0126D37D2A00E7C0C7 /* Weakifiable.swift in Sources */,
 				522FF8F826D25F15004E829C /* HomeTabBarViewController.swift in Sources */,
+				520E1E0326D61E7300EE788C /* PopularCell.swift in Sources */,
 				522FF90E26D26342004E829C /* DetailAssembler.swift in Sources */,
 				522FF91126D2634F004E829C /* FavoriteAssembler.swift in Sources */,
+				520E1DFF26D61D7F00EE788C /* PopularView.swift in Sources */,
 				52D6DD2526D39B8A00E7C0C7 /* HomeCollectionViewCell.swift in Sources */,
 				52D6DCCF26D32ECE00E7C0C7 /* UIViewController.swift in Sources */,
 				522FF90226D261F7004E829C /* HomeAssembler.swift in Sources */,
@@ -659,6 +670,7 @@
 				5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */,
 				52D6DCEF26D33B0600E7C0C7 /* MovieRepository.swift in Sources */,
 				52D6DCFE26D37CE800E7C0C7 /* HasApply.swift in Sources */,
+				520E1E0A26D6254600EE788C /* UIView.swift in Sources */,
 				52D6DCF226D33B7700E7C0C7 /* UIColor.swift in Sources */,
 				522FF91426D26363004E829C /* PopularAssembler.swift in Sources */,
 				52D6DCE126D335E500E7C0C7 /* PopularViewController.swift in Sources */,

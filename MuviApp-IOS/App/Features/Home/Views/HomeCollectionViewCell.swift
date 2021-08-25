@@ -28,6 +28,6 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
       .height(frame.height)
       .width(102)
 
-    addSubview(imgPoster)
+    subviews(imgPoster)
   }
 }

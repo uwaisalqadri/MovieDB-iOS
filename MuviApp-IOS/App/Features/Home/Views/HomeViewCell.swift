@@ -50,8 +50,9 @@ class HomeViewCell: UITableViewCell, Reusable {
       .bottom()
       .top(20)
 
-    [lblCategory, clCategory].forEach {
-      addSubview($0)
+    subviews {
+      lblCategory
+      clCategory
     }
   }
 
@@ -79,6 +80,4 @@ extension HomeViewCell: UICollectionViewDataSource {
     let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
     return cell
   }
-
-
 }

@@ -29,6 +29,6 @@ class HomeBannerCollectionViewCell: UICollectionViewCell, Reusable {
 
     imgBanner.sd_setImage(with: URL(string: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.downgraf.com%2Fwp-content%2Fuploads%2F2015%2F06%2FClassic-Movie-Posters-5.jpg&f=1&nofb=1"), completed: nil)
 
-    addSubview(imgBanner)
+    subviews(imgBanner)
   }
 }
