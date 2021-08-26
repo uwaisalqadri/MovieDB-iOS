@@ -11,7 +11,7 @@ protocol HomeNavigator {
   func navigateToHome(window: UIWindow?)
 
   var homeViewController: HomeViewController { get }
-  var popularViewController: PopularViewController { get }
+  var popularViewController: SearchViewController { get }
   var favoriteViewController: FavoriteViewController { get }
 }
 
@@ -32,7 +32,7 @@ struct DefaultHomeNavigator: HomeNavigator {
     assembler.resolve()
   }
 
-  var popularViewController: PopularViewController {
+  var popularViewController: SearchViewController {
     assembler.resolve()
   }
 

@@ -8,16 +8,16 @@
 import UIKit
 
 protocol PopularAssembler {
-  func resolve() -> PopularViewController
-  func resolve() -> PopularNavigator
+  func resolve() -> SearchViewController
+  func resolve() -> SearchNavigator
 }
 
 extension PopularAssembler where Self: Assembler {
-  func resolve() -> PopularNavigator {
+  func resolve() -> SearchNavigator {
     return DefaultPopularNavigator(assembler: self)
   }
 
-  func resolve() -> PopularViewController {
-    return PopularViewController()
+  func resolve() -> SearchViewController {
+    return SearchViewController()
   }
 }

@@ -1,5 +1,5 @@
 //
-//  PopularNavigator.swift
+//  SearchNavigator.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-protocol PopularNavigator {
-
+protocol SearchNavigator {
 }
 
-struct DefaultPopularNavigator: PopularNavigator {
+struct DefaultPopularNavigator: SearchNavigator {
 
   private let assembler: Assembler
 

@@ -1,5 +1,5 @@
 //
-//  PopularViewController.swift
+//  SearchViewController.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class PopularViewController: UIViewController {
+class SearchViewController: UIViewController {
 
-  private let contentView = PopularView()
+  private let contentView = SearchView()
 
   override func viewWillAppear(_ animated: Bool) {
     setNavigationBar(type: .searchBar)
@@ -27,19 +27,19 @@ class PopularViewController: UIViewController {
   }
 }
 
-extension PopularViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.width)
+    return CGSize(width: collectionView.frame.width / 2.2, height: 270)
   }
 }
 
-extension PopularViewController: UICollectionViewDataSource {
+extension SearchViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+    return 5
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: PopularCell = collectionView.dequeueReusableCell(for: indexPath)
+    let cell: SearchCell = collectionView.dequeueReusableCell(for: indexPath)
     return cell
   }
 }

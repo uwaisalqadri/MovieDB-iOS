@@ -40,6 +40,8 @@ class HomeView: UIView {
   }
 
   private func configureViews() {
-    tableView.pin.all()
+    tableView.pin
+      .all()
+      .marginBottom(20)
   }
 }

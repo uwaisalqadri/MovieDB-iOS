@@ -66,7 +66,7 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
 
 extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.width)
+    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.height)
   }
 }
 
