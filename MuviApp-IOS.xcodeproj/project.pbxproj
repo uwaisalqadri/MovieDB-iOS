@@ -17,6 +17,7 @@
 		522FF90E26D26342004E829C /* DetailAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF90D26D26342004E829C /* DetailAssembler.swift */; };
 		522FF91126D2634F004E829C /* FavoriteAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF91026D2634F004E829C /* FavoriteAssembler.swift */; };
 		522FF91426D26363004E829C /* PopularAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FF91326D26363004E829C /* PopularAssembler.swift */; };
+		526CAB3626D8E19A00C403C3 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526CAB3526D8E19A00C403C3 /* PaddedLabel.swift */; };
 		5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */; };
 		5273D2AA263CB5A2004FF8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */; };
 		5273D2AD263CB5A2004FF8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2AB263CB5A2004FF8E0 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 		522FF90D26D26342004E829C /* DetailAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembler.swift; sourceTree = "<group>"; };
 		522FF91026D2634F004E829C /* FavoriteAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAssembler.swift; sourceTree = "<group>"; };
 		522FF91326D26363004E829C /* PopularAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularAssembler.swift; sourceTree = "<group>"; };
+		526CAB3526D8E19A00C403C3 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		5273D29D263CB59E004FF8E0 /* MuviApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MuviApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		522FF8D826D25AEA004E829C /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				526CAB3526D8E19A00C403C3 /* PaddedLabel.swift */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				52C0889426D73DF500AF8725 /* FavoriteCell.swift in Sources */,
 				52D6DCDA26D3354300E7C0C7 /* FavoriteViewController.swift in Sources */,
 				52C0888D26D73CBE00AF8725 /* FavoriteView.swift in Sources */,
+				526CAB3626D8E19A00C403C3 /* PaddedLabel.swift in Sources */,
 				52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */,
 				52D6DCD626D3350000E7C0C7 /* FavoriteNavigator.swift in Sources */,
 				522FF90B26D262E6004E829C /* DetailViewController.swift in Sources */,

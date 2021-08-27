@@ -20,45 +20,98 @@ class FavoriteCell: UITableViewCell, Reusable {
   lazy var lblTitle: UILabel = {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
+      lbl.textColor = .white
     }
   }()
 
   lazy var lblYear: UILabel = {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
+      lbl.textColor = .lightGray
     }
   }()
 
   lazy var lblGenre: UILabel = {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
+      lbl.textColor = .gray
     }
   }()
 
   lazy var btnFavorite: UIButton = {
     return UIButton().apply { (btn) in
-
+      btn.setImage(.iconHeart, for: .normal)
     }
   }()
+
+  private func configureViews() {
+
+    let content = UIView()
+
+    imgFavorite.backgroundColor = .blue
+    lblYear.text = "2020"
+    lblTitle.text = "Kim jong un"
+    lblGenre.text = "nwodnw0djq09whowhhw"
+
+    subviews {
+      content
+      imgFavorite
+      btnFavorite
+    }
+
+    content.subviews {
+      lblTitle
+      lblYear
+      lblGenre
+    }
+
+    contentView.pin.all()
+
+    btnFavorite.pin
+      .height(24)
+      .width(24)
+      .right()
+      .top()
+      .margin(14)
+
+    imgFavorite.pin
+      .vertically()
+      .left()
+      .width(160)
+      .margin(14)
+
+    content.pin
+      .vertically()
+      .right(of: imgFavorite)
+      .horizontally()
+      .margin(14)
+
+    lblTitle.pin
+      .horizontally()
+      .height(20)
+      .top(10)
+
+    lblYear.pin
+      .below(of: lblTitle)
+      .horizontally()
+      .top(10)
+      .height(20)
+
+    lblGenre.pin
+      .below(of: lblYear)
+      .horizontally()
+      .top(10)
+      .height(20)
+
+  }
 
   override func layoutSubviews() {
     configureViews()
   }
 
-  private func configureViews() {
-    contentView.pin.all()
-
-    subviews {
-      imgFavorite
-      lblTitle
-      lblYear
-      lblGenre
-      btnFavorite
-    }
-  }
-
   override func sizeThatFits(_ size: CGSize) -> CGSize {
     contentView.pin.width(size.width).height(size.height)
-    return CGSize(width: frame.width, height: frame.height)
+    configureViews()
+    return CGSize(width: frame.width, height: 100)
   }
 }

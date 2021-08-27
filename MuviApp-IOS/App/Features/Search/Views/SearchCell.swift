@@ -19,9 +19,10 @@ class SearchCell: UICollectionViewCell, Reusable {
   }()
 
   lazy var lblGenre: UILabel = {
-    return UILabel().apply { lbl in
+    return PaddedLabel().apply { lbl in
       lbl.textColor = .black
       lbl.numberOfLines = 1
+      lbl.insets = .init(top: 10, left: 10, bottom: 10, right: 10)
       lbl.font = .boldSystemFont(ofSize: 10)
       lbl.backgroundColor = .accentColor
       lbl.layer.cornerRadius = 5
@@ -52,6 +53,14 @@ class SearchCell: UICollectionViewCell, Reusable {
     lblDesc.text = "Dylan O'Brien, Kaya Scodelario, Will Poulter "
     lblGenre.text = "Action, Adventure, Drama, Gore, Slice of Life"
 
+    imgPoster.subviews(lblGenre)
+
+    subviews {
+      imgPoster
+      lblDesc
+      lblTitle
+    }
+
     imgPoster.pin
       .width(frame.width)
       .height(214)
@@ -76,14 +85,6 @@ class SearchCell: UICollectionViewCell, Reusable {
       .top()
       .bottom()
       .height(12)
-
-    imgPoster.subviews(lblGenre)
-
-    subviews {
-      imgPoster
-      lblDesc
-      lblTitle
-    }
   }
 
   override func layoutSubviews() {
