@@ -22,6 +22,7 @@ class FavoriteViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view = contentView
+    view.configureForAutoLayout()
     contentView.tblFavorite.delegate = self
     contentView.tblFavorite.dataSource = self
   }
@@ -30,10 +31,6 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 7
-  }
-
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 89
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

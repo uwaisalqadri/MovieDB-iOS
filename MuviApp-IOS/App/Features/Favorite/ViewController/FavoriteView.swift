@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PureLayout
 
 class FavoriteView: UIView {
 
@@ -35,6 +36,6 @@ class FavoriteView: UIView {
   }
 
   private func configureViews() {
-
+    tblFavorite.pin.all()
   }
 }
