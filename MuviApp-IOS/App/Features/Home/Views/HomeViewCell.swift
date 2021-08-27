@@ -33,10 +33,6 @@ class HomeViewCell: UITableViewCell, Reusable {
     }
   }()
 
-  override func layoutSubviews() {
-    configureViews()
-  }
-
   private func configureViews() {
 
     subviews {
@@ -70,14 +66,18 @@ class HomeViewCell: UITableViewCell, Reusable {
 //    clCategory.autoPinEdgesToSuperviewEdges(with: .init(top: 20, left: 10, bottom: 0, right: 10))
   }
 
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin
-      .width(size.width)
+  override func layoutSubviews() {
+    configureViews()
+  }
 
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
+    contentView.pin.width(size.width).height(size.height)
     configureViews()
     return CGSize(width: contentView.frame.width - 10, height: 220)
   }
 }
+
+
 
 extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

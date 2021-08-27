@@ -17,6 +17,8 @@ class FavoriteCell: UITableViewCell, Reusable {
     }
   }()
 
+  private let content = UIView()
+
   lazy var lblTitle: UILabel = {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
@@ -44,9 +46,8 @@ class FavoriteCell: UITableViewCell, Reusable {
     }
   }()
 
-  private func configureViews() {
 
-    let content = UIView()
+  private func configureViews() {
 
     imgFavorite.backgroundColor = .blue
     lblYear.text = "2020"
