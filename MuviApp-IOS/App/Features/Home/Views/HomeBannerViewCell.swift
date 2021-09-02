@@ -36,11 +36,18 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     }
   }()
 
+  var bannerClickHandler: (() -> Void)?
+
   override func layoutSubviews() {
     configureViews()
   }
 
   private func configureViews() {
+
+    subviews {
+      collectionView
+      pageControl
+    }
 
     collectionView.pin
       .all()
@@ -49,16 +56,10 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
       .horizontally()
       .bottom(15)
 
-    subviews {
-      collectionView
-      pageControl
-    }
   }
 
   override func sizeThatFits(_ size: CGSize) -> CGSize {
-    contentView.pin
-      .width(size.width)
-
+    contentView.pin.size(size)
     configureViews()
     return CGSize(width: frame.width, height: 230)
   }
@@ -67,6 +68,10 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
 extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.height)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    bannerClickHandler?()
   }
 }
 

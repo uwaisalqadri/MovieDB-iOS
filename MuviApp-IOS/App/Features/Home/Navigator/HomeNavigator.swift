@@ -9,6 +9,7 @@ import UIKit
 
 protocol HomeNavigator {
   func navigateToHome(window: UIWindow?)
+  func navigateToDetail(from viewController: UIViewController)
 
   var homeViewController: HomeViewController { get }
   var popularViewController: SearchViewController { get }
@@ -26,6 +27,11 @@ struct DefaultHomeNavigator: HomeNavigator {
   func navigateToHome(window: UIWindow?) {
     let homeTabBar: HomeTabBarViewController = assembler.resolve()
     window?.rootViewController = homeTabBar
+  }
+
+  func navigateToDetail(from viewController: UIViewController) {
+    let navigator: DetailNavigator = assembler.resolve()
+    navigator.navigateToDetail(from: viewController)
   }
 
   var homeViewController: HomeViewController {

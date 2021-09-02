@@ -7,7 +7,6 @@
 
 import UIKit
 import Reusable
-import PureLayout
 
 class HomeViewCell: UITableViewCell, Reusable {
 
@@ -33,6 +32,9 @@ class HomeViewCell: UITableViewCell, Reusable {
     }
   }()
 
+  var movieClickHandler: ((Movie) -> Void)?
+  var movie = [Movie]()
+
   private func configureViews() {
 
     subviews {
@@ -47,23 +49,11 @@ class HomeViewCell: UITableViewCell, Reusable {
       .height(50)
       .width(contentView.frame.width)
 
-//    lblCategory.autoPinEdge(.top, to: .top, of: contentView, withOffset: 20)
-//    lblCategory.autoPinEdge(.leading, to: .leading, of: contentView, withOffset: 10)
-//    lblCategory.autoPinEdge(.trailing, to: .trailing, of: contentView, withOffset: 10)
-//    lblCategory.autoSetDimensions(to: .init(width: frame.width, height: 50))
-
     clCategory.pin
       .below(of: lblCategory)
       .horizontally(10)
       .bottom()
       .top(20)
-
-//    clCategory.autoPinEdge(.top, to: .bottom, of: lblCategory)
-//    clCategory.autoPinEdge(.bottom, to: .bottom, of: contentView)
-//    clCategory.autoPinEdge(.leading, to: .leading, of: contentView)
-//    clCategory.autoPinEdge(.trailing, to: .trailing, of: contentView)
-//    clCategory.autoSetDimension(.width, toSize: frame.width - 20)
-//    clCategory.autoPinEdgesToSuperviewEdges(with: .init(top: 20, left: 10, bottom: 0, right: 10))
   }
 
   override func layoutSubviews() {
@@ -83,11 +73,15 @@ extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.width/3.8, height: collectionView.frame.width/2)
   }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    movieClickHandler?(movie[indexPath.row])
+  }
 }
 
 extension HomeViewCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return movie.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

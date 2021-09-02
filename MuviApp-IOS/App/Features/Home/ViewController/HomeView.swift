@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PureLayout
 
 class HomeView: UIView {
 
@@ -40,6 +39,8 @@ class HomeView: UIView {
   }
 
   private func configureViews() {
-    tableView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    tableView.pin
+      .all()
+      .marginBottom(20)
   }
 }

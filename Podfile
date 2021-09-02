@@ -15,6 +15,6 @@ target 'MuviApp-IOS' do
   pod 'PinLayout'
   pod 'ObjectMapper', '~> 4.2.0'
   pod 'Reusable'
-  pod 'PureLayout'
+  pod 'Moya'
 
 end

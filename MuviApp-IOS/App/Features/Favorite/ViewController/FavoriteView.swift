@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PureLayout
 
 class FavoriteView: UIView {
 

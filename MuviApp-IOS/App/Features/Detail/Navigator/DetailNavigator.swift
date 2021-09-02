@@ -8,6 +8,7 @@
 import UIKit
 
 protocol DetailNavigator {
+  func navigateToDetail(from viewController: UIViewController)
 }
 
 struct DefaultDetailNavigator: DetailNavigator {
@@ -16,5 +17,11 @@ struct DefaultDetailNavigator: DetailNavigator {
 
   init(assembler: Assembler) {
     self.assembler = assembler
+  }
+
+  func navigateToDetail(from viewController: UIViewController) {
+    let nextViewController = DetailViewController(navigator: assembler.resolve())
+    nextViewController.hidesBottomBarWhenPushed = true
+    viewController.navigationController?.pushViewController(nextViewController, animated: true)
   }
 }

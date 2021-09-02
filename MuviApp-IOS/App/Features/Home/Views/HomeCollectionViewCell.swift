@@ -17,6 +17,16 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
     }
   }()
 
+  var movie: Movie? {
+    didSet {
+      setContent()
+    }
+  }
+
+  func setContent() {
+    imgPoster.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.posterPath)!))
+  }
+
   override func layoutSubviews() {
     configureViews()
   }
@@ -24,10 +34,11 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
   private func configureViews() {
     imgPoster.backgroundColor = .orange
 
+    subviews(imgPoster)
+
     imgPoster.pin
       .height(frame.height)
       .width(102)
 
-    subviews(imgPoster)
   }
 }

@@ -22,7 +22,6 @@ class FavoriteViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view = contentView
-    view.configureForAutoLayout()
     contentView.tblFavorite.delegate = self
     contentView.tblFavorite.dataSource = self
   }

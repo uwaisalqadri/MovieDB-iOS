@@ -16,4 +16,6 @@ extension UIImage {
   static let iconFavorite = UIImage(named: "FavIcon")
   static let iconSearch = UIImage(named: "SearchIcon")
   static let iconHeart = UIImage(named: "heart-circle")
+  static let iconAdd = UIImage(named: "AddIcon")
+  static let iconPlay = UIImage(named: "PlayIcon")
 }

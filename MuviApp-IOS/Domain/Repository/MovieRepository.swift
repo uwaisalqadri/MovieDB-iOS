@@ -1,0 +1,15 @@
+//
+//  MovieRepository.swift
+//  MuviApp-IOS
+//
+//  Created by Uwais Alqadri on 02/09/21.
+//
+
+import Foundation
+import RxSwift
+
+protocol MovieRepository {
+  func getDiscover(discoverParam: DiscoverParamater) -> Observable<[Movie]>
+  func getDetail(movieId: Int) -> Observable<Movie>
+  func getSearch(searchParam: SearchParamater) -> Observable<[Movie]>
+}

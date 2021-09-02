@@ -53,12 +53,11 @@ class SearchCell: UICollectionViewCell, Reusable {
     lblDesc.text = "Dylan O'Brien, Kaya Scodelario, Will Poulter "
     lblGenre.text = "Action, Adventure, Drama, Gore, Slice of Life"
 
-    imgPoster.subviews(lblGenre)
-
     subviews {
       imgPoster
       lblDesc
       lblTitle
+      lblGenre
     }
 
     imgPoster.pin
@@ -67,7 +66,7 @@ class SearchCell: UICollectionViewCell, Reusable {
       .all()
 
     lblGenre.pin
-      .bottom()
+      .bottom(to: imgPoster.edge.bottom)
       .horizontally()
       .height(16)
       .margin(7)
