@@ -37,6 +37,10 @@
 		52C0888D26D73CBE00AF8725 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0888C26D73CBE00AF8725 /* FavoriteView.swift */; };
 		52C0889126D73DA500AF8725 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E1DFE26D61D7F00EE788C /* SearchView.swift */; };
 		52C0889426D73DF500AF8725 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0889326D73DF500AF8725 /* FavoriteCell.swift */; };
+		52C96B4426E0E39800C1BD6D /* DetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4326E0E39800C1BD6D /* DetailUseCase.swift */; };
+		52C96B4726E0E49A00C1BD6D /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4626E0E49A00C1BD6D /* SearchUseCase.swift */; };
+		52C96B4B26E0E52100C1BD6D /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4A26E0E52100C1BD6D /* SearchViewModel.swift */; };
+		52C96B4F26E0E63900C1BD6D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4E26E0E63900C1BD6D /* DetailViewModel.swift */; };
 		52CD88B526E05745005B8B2A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88AF26E04A16005B8B2A /* DetailViewController.swift */; };
 		52CD88B826E05BA3005B8B2A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CD88B026E04A16005B8B2A /* DetailViewController.xib */; };
 		52CD88BC26E0608A005B8B2A /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88BB26E0608A005B8B2A /* MovieAPI.swift */; };
@@ -98,6 +102,10 @@
 		5273D2AE263CB5A2004FF8E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52C0888C26D73CBE00AF8725 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		52C0889326D73DF500AF8725 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		52C96B4326E0E39800C1BD6D /* DetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUseCase.swift; sourceTree = "<group>"; };
+		52C96B4626E0E49A00C1BD6D /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		52C96B4A26E0E52100C1BD6D /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		52C96B4E26E0E63900C1BD6D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		52CD88AF26E04A16005B8B2A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		52CD88B026E04A16005B8B2A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		52CD88BB26E0608A005B8B2A /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
@@ -263,15 +271,17 @@
 		522FF8E926D25DB3004E829C /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				52C96B4326E0E39800C1BD6D /* DetailUseCase.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		522FF8EA26D25DB8004E829C /* Favorite */ = {
+		522FF8EA26D25DB8004E829C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				52C96B4626E0E49A00C1BD6D /* SearchUseCase.swift */,
 			);
-			path = Favorite;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		522FF8EB26D25DC0004E829C /* Popular */ = {
@@ -294,7 +304,7 @@
 			children = (
 				522FF8EB26D25DC0004E829C /* Popular */,
 				522FF8EC26D25DC9004E829C /* Home */,
-				522FF8EA26D25DB8004E829C /* Favorite */,
+				522FF8EA26D25DB8004E829C /* Search */,
 				522FF8E926D25DB3004E829C /* Detail */,
 			);
 			path = UseCase;
@@ -340,6 +350,7 @@
 		522FF91626D263D5004E829C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				52C96B4E26E0E63900C1BD6D /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -479,6 +490,7 @@
 		5273D2BB263CB650004FF8E0 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				52C96B4926E0E51200C1BD6D /* ViewModel */,
 				522FF8D326D25A69004E829C /* Navigator */,
 				52D6DCDF26D335D500E7C0C7 /* ViewController */,
 				522FF8D226D25A65004E829C /* Views */,
@@ -538,6 +550,14 @@
 				5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		52C96B4926E0E51200C1BD6D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52C96B4A26E0E52100C1BD6D /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52CD88BA26E0602A005B8B2A /* API */ = {
@@ -739,6 +759,8 @@
 				52708C0E26E0A2A800742027 /* MovieResponse.swift in Sources */,
 				52D6DCFB26D37CA100E7C0C7 /* HomeView.swift in Sources */,
 				52708C0A26E0A0CA00742027 /* DefaultMovieRepository.swift in Sources */,
+				52C96B4B26E0E52100C1BD6D /* SearchViewModel.swift in Sources */,
+				52C96B4726E0E49A00C1BD6D /* SearchUseCase.swift in Sources */,
 				52708BF126E0764B00742027 /* APIError.swift in Sources */,
 				52D6DCF526D3450700E7C0C7 /* HomeViewController.swift in Sources */,
 				522FF90726D26272004E829C /* DetailNavigator.swift in Sources */,
@@ -751,6 +773,7 @@
 				520E1E0A26D6254600EE788C /* UIView.swift in Sources */,
 				52D6DCF226D33B7700E7C0C7 /* UIColor.swift in Sources */,
 				522FF91426D26363004E829C /* PopularAssembler.swift in Sources */,
+				52C96B4F26E0E63900C1BD6D /* DetailViewModel.swift in Sources */,
 				52D6DCE126D335E500E7C0C7 /* SearchViewController.swift in Sources */,
 				522FF8FF26D2614E004E829C /* HomeNavigator.swift in Sources */,
 				52708BF426E076B900742027 /* ApiError.swift in Sources */,
@@ -769,6 +792,7 @@
 				52D3959426DA11C200FDEEF4 /* CastCell.swift in Sources */,
 				52CD88D226E063C9005B8B2A /* SearchParameter.swift in Sources */,
 				52C0888D26D73CBE00AF8725 /* FavoriteView.swift in Sources */,
+				52C96B4426E0E39800C1BD6D /* DetailUseCase.swift in Sources */,
 				526CAB3626D8E19A00C403C3 /* PaddedLabel.swift in Sources */,
 				52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */,
 				52D6DCD626D3350000E7C0C7 /* FavoriteNavigator.swift in Sources */,

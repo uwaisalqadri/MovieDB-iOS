@@ -49,16 +49,16 @@ class HomeViewController: UIViewController {
     homeView.tableView.dataSource = self
 
     observeValues()
+    viewModel.requestDiscoverMovie()
   }
 
 
   private func observeValues() {
     showLoading()
-    viewModel.requestDiscoverMovie()
 
-    viewModel.discoverMovie.subscribe(onNext: { result in
+    viewModel.discoverMovie.subscribe(onNext: { [weak self] result in
       print("vc", result)
-      self.hideLoading()
+      self?.hideLoading()
     }).disposed(by: disposeBag)
   }
 

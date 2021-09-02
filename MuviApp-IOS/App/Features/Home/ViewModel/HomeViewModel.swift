@@ -15,17 +15,16 @@ class HomeViewModel {
 
   private let disposeBag = DisposeBag()
   private let discoverUseCase: DiscoverUseCase
+  private let discoverParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2020")
 
   init(discoverUseCase: DiscoverUseCase) {
     self.discoverUseCase = discoverUseCase
   }
 
   func requestDiscoverMovie() {
-    discoverUseCase.execute(param: .init(apiKey: "270363a57bb9637a16bdd04f9979e433", language: "en-US", sortBy: .popularity, year: "2020")).subscribe(onNext: { [weak self] result in
+    discoverUseCase.execute(param: discoverParam).subscribe(onNext: { [weak self] result in
       self?.discoverMovie.accept(result)
       print("viewmodel", result)
-    }, onError: { error in
-      print(error)
     }).disposed(by: disposeBag)
   }
 }

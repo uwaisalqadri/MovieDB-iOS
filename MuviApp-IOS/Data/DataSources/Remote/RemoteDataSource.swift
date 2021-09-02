@@ -10,7 +10,7 @@ import Alamofire
 
 protocol RemoteDataSource {
   func getDiscover(param: DiscoverParamater) -> Observable<[Movie]>
-  func getDetail(movieId: Int) -> Observable<Movie>
+  func getDetail(param: DetailParameter) -> Observable<Movie>
   func getSearch(param: SearchParamater) -> Observable<[Movie]>
 }
 
@@ -19,8 +19,8 @@ struct DefaultRemoteDataSource: RemoteDataSource {
     return NetworkService.shared.connect(api: .movieApi(api: .discover(param: param)), mappableType: MovieResponse.self).compactMap { $0.results }
   }
 
-  func getDetail(movieId: Int) -> Observable<Movie> {
-    return NetworkService.shared.connect(api: .movieApi(api: .detail(id: movieId)), mappableType: MovieItem.self).compactMap { $0 }
+  func getDetail(param: DetailParameter) -> Observable<Movie> {
+    return NetworkService.shared.connect(api: .movieApi(api: .detail(param: param)), mappableType: MovieItem.self).compactMap { $0 }
   }
 
   func getSearch(param: SearchParamater) -> Observable<[Movie]> {

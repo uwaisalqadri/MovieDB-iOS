@@ -10,13 +10,13 @@ import ObjectMapper
 
 class MovieResponse: Movies, Mappable {
   var page: Int?
-  var _results: [MovieItem]?
   var totalPages: Int?
   var totalResults: Int?
 
   var results: [Movie]? {
     _results
   }
+  var _results: [MovieItem]?
 
   required init?(map: Map) {
     mapping(map: map)
@@ -30,7 +30,6 @@ class MovieResponse: Movies, Mappable {
   }
 }
 
-// MARK: - Result
 class MovieItem: Movie, Mappable {
   var adult: Bool?
   var backdropPath: String?
@@ -45,6 +44,7 @@ class MovieItem: Movie, Mappable {
   var video: Bool?
   var voteAverage: Double?
   var voteCount: Int?
+  
 
   required init?(map: Map) {
     mapping(map: map)

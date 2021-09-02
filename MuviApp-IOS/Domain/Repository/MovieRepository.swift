@@ -10,6 +10,6 @@ import RxSwift
 
 protocol MovieRepository {
   func getDiscover(discoverParam: DiscoverParamater) -> Observable<[Movie]>
-  func getDetail(movieId: Int) -> Observable<Movie>
+  func getDetail(detailParam: DetailParameter) -> Observable<Movie>
   func getSearch(searchParam: SearchParamater) -> Observable<[Movie]>
 }

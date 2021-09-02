@@ -13,8 +13,8 @@ struct SearchParamater: Encodable {
   let query: String
   let page: Int
 
-  init(apiKey: String, query: String, language: String, page: Int = 1) {
-    self.api_key = apiKey
+  init(query: String, language: String, page: Int = 1) {
+    self.api_key = Constants.token
     self.language = language
     self.query = query
     self.page = page

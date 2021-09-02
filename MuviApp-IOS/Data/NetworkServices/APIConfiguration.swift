@@ -14,7 +14,7 @@ struct APIConfiguration {
 extension APIConfiguration {
 
   static func configAPI() -> APIConfiguration {
-    APIConfiguration(baseURL: URL(string: "https://api.themoviedb.org/3/")!)
+    APIConfiguration(baseURL: URL(string: Constants.baseUrl)!)
   }
 
 }

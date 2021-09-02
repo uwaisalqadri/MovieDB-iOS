@@ -11,7 +11,7 @@ import Moya
 enum MovieAPI {
   case search(param: SearchParamater)
   case discover(param: DiscoverParamater)
-  case detail(id: Int)
+  case detail(param: DetailParameter)
 }
 
 extension MovieAPI: TargetType {
@@ -22,8 +22,8 @@ extension MovieAPI: TargetType {
       return "search/movie"
     case .discover:
       return "discover/movie"
-    case .detail(let movieId):
-      return "movie/\(movieId)"
+    case .detail(let param):
+      return "movie/\(param.movie_id)"
     }
   }
 
@@ -39,8 +39,8 @@ extension MovieAPI: TargetType {
     case .search(let searchParameter):
       return .requestParameters(parameters: searchParameter.parameters ?? [:], encoding: URLEncoding.default)
 
-    case .detail:
-      return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+    case .detail(let detailParameter):
+      return .requestParameters(parameters: detailParameter.parameters ?? [:], encoding: URLEncoding.default)
     }
   }
 

@@ -69,10 +69,24 @@ class NetworkService {
       switch result {
       case .success(let response):
         do {
-          guard let _ = try response.mapJSON() as? [String: Any]
+          guard let json = try response.mapJSON() as? [String: Any]
           else { throw ApiError.invalidJSONError }
 
           print("[NETWORK][\(response.statusCode)] \(apiCall.path)")
+          print("JSON", json)
+
+          switch response.statusCode {
+          case 200:
+
+            guard let data = outType.init(map: Map(mappingType: .fromJSON, JSON: json))
+            else { throw ApiError.failedMappingError }
+
+            subject.onNext(data)
+            subject.onCompleted()
+
+          default:
+            fatalError("Unknown statusCode: \(response.statusCode)")
+          }
         } catch {
           subject.onError(error)
         }

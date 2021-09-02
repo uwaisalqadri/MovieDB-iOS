@@ -19,8 +19,8 @@ struct DefaultMovieRepository: MovieRepository {
     return remoteDataSource.getDiscover(param: discoverParam)
   }
 
-  func getDetail(movieId: Int) -> Observable<Movie> {
-    return remoteDataSource.getDetail(movieId: movieId)
+  func getDetail(detailParam: DetailParameter) -> Observable<Movie> {
+    return remoteDataSource.getDetail(param: detailParam)
   }
 
   func getSearch(searchParam: SearchParamater) -> Observable<[Movie]> {

@@ -20,8 +20,8 @@ struct DiscoverParamater: Encodable {
     case voteAverage = "vote_average.desc"
   }
 
-  init(apiKey: String, language: String, sortBy: SortType, page: Int = 1, year: String) {
-    self.api_key = apiKey
+  init(language: String, sortBy: SortType, page: Int = 1, year: String) {
+    self.api_key = Constants.token
     self.language = language
     self.sort_by = sortBy
     self.page = page
@@ -34,8 +34,8 @@ struct DetailParameter: Encodable {
   let language: String
   let movie_id: Int
 
-  init(apiKey: String, language: String, movieId: Int) {
-    self.api_key = apiKey
+  init(language: String, movieId: Int) {
+    self.api_key = Constants.token
     self.language = language
     self.movie_id = movieId
   }
