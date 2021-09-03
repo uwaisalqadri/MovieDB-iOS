@@ -108,7 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.selectionStyle = .none
       cell.bannerMovies = popularMovies
       cell.bannerClickHandler = { movie in
-        self.navigator.navigateToDetail(from: self)
+        print("click", movie)
       }
       return cell
     }

@@ -28,14 +28,12 @@ class HomeViewModel {
   func requestPopularMovie() {
     popularUseCase.execute(param: popularParam).subscribe(onNext: { [weak self] result in
       self?.popularMovies.accept(result)
-      print("POPULAR", result[0].title)
     }).disposed(by: disposeBag)
   }
 
   func requestUpComingMovie() {
     upComingUseCase.execute(param: upComingParam).subscribe(onNext: { [weak self] result in
       self?.upComingMovies.accept(result)
-      print("UPCOMING", result[0].title)
     }).disposed(by: disposeBag)
   }
 }

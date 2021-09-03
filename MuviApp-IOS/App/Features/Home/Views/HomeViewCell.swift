@@ -78,7 +78,8 @@ extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    movieClickHandler?(movies?[indexPath.row] as! Movie)
+    guard let selectedMovie = movies?[indexPath.row] else { return }
+    movieClickHandler?(selectedMovie)
   }
 }
 
