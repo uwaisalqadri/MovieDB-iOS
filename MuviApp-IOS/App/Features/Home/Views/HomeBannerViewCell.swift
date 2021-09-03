@@ -30,13 +30,17 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
 
   lazy var pageControl: UIPageControl = {
     return UIPageControl().apply { control in
-      control.numberOfPages = 5
-      control.currentPage = 2
       control.currentPageIndicatorTintColor = .accentColor
     }
   }()
 
-  var bannerClickHandler: (() -> Void)?
+  var bannerClickHandler: ((Movie) -> Void)?
+  var bannerMovies: [Movie]? {
+    didSet {
+      collectionView.reloadData()
+      pageControl.numberOfPages = bannerMovies?.count ?? 0
+    }
+  }
 
   override func layoutSubviews() {
     configureViews()
@@ -55,7 +59,6 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
     pageControl.pin
       .horizontally()
       .bottom(15)
-
   }
 
   override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -71,17 +74,24 @@ extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegate
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    bannerClickHandler?()
+    bannerClickHandler?(bannerMovies?[indexPath.row] as! Movie)
   }
 }
 
 extension HomeBannerViewCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return bannerMovies?.count ?? 0
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+    cell.movie = bannerMovies?[indexPath.row]
     return cell
+  }
+
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    if let indexPath = collectionView.indexPathsForVisibleItems.first {
+      pageControl.currentPage = indexPath.row
+    }
   }
 }

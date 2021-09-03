@@ -25,20 +25,15 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
 
   func setContent() {
     imgPoster.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.posterPath)!))
-  }
-
-  override func layoutSubviews() {
-    configureViews()
-  }
-
-  private func configureViews() {
-    imgPoster.backgroundColor = .orange
 
     subviews(imgPoster)
 
     imgPoster.pin
       .height(frame.height)
       .width(102)
+  }
 
+  override func layoutSubviews() {
+    setContent()
   }
 }

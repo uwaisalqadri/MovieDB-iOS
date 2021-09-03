@@ -33,7 +33,11 @@ class HomeViewCell: UITableViewCell, Reusable {
   }()
 
   var movieClickHandler: ((Movie) -> Void)?
-  var movie = [Movie]()
+  var movies: [Movie]? {
+    didSet {
+      clCategory.reloadData()
+    }
+  }
 
   private func configureViews() {
 
@@ -53,7 +57,6 @@ class HomeViewCell: UITableViewCell, Reusable {
       .below(of: lblCategory)
       .horizontally(10)
       .bottom()
-      .top(20)
   }
 
   override func layoutSubviews() {
@@ -75,17 +78,18 @@ extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    movieClickHandler?(movie[indexPath.row])
+    movieClickHandler?(movies?[indexPath.row] as! Movie)
   }
 }
 
 extension HomeViewCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return movie.count
+    return movies?.count ?? 0
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+    cell.movie = movies?[indexPath.row]
     return cell
   }
 }

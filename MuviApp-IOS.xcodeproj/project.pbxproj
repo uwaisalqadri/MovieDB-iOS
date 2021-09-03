@@ -28,12 +28,13 @@
 		52708C0726E09F5600742027 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0626E09F5600742027 /* Movie.swift */; };
 		52708C0A26E0A0CA00742027 /* DefaultMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0926E0A0CA00742027 /* DefaultMovieRepository.swift */; };
 		52708C0E26E0A2A800742027 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0D26E0A2A800742027 /* MovieResponse.swift */; };
-		52708C1126E0A69600742027 /* DiscoverUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C1026E0A69600742027 /* DiscoverUseCase.swift */; };
+		52708C1126E0A69600742027 /* PopularUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C1026E0A69600742027 /* PopularUseCase.swift */; };
 		52708C1526E0A73100742027 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C1426E0A73100742027 /* HomeViewModel.swift */; };
 		52708C1826E0ABDF00742027 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C1726E0ABDF00742027 /* Constants.swift */; };
 		5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273D2A0263CB59E004FF8E0 /* AppDelegate.swift */; };
 		5273D2AA263CB5A2004FF8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */; };
 		5273D2AD263CB5A2004FF8E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5273D2AB263CB5A2004FF8E0 /* LaunchScreen.storyboard */; };
+		529CEA9026E1F24F00934982 /* UpComingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529CEA8F26E1F24F00934982 /* UpComingUseCase.swift */; };
 		52C0888D26D73CBE00AF8725 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0888C26D73CBE00AF8725 /* FavoriteView.swift */; };
 		52C0889126D73DA500AF8725 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E1DFE26D61D7F00EE788C /* SearchView.swift */; };
 		52C0889426D73DF500AF8725 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0889326D73DF500AF8725 /* FavoriteCell.swift */; };
@@ -92,7 +93,7 @@
 		52708C0626E09F5600742027 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		52708C0926E0A0CA00742027 /* DefaultMovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieRepository.swift; sourceTree = "<group>"; };
 		52708C0D26E0A2A800742027 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
-		52708C1026E0A69600742027 /* DiscoverUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverUseCase.swift; sourceTree = "<group>"; };
+		52708C1026E0A69600742027 /* PopularUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularUseCase.swift; sourceTree = "<group>"; };
 		52708C1426E0A73100742027 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		52708C1726E0ABDF00742027 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5273D29D263CB59E004FF8E0 /* MuviApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MuviApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +101,7 @@
 		5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5273D2AC263CB5A2004FF8E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5273D2AE263CB5A2004FF8E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		529CEA8F26E1F24F00934982 /* UpComingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingUseCase.swift; sourceTree = "<group>"; };
 		52C0888C26D73CBE00AF8725 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		52C0889326D73DF500AF8725 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		52C96B4326E0E39800C1BD6D /* DetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUseCase.swift; sourceTree = "<group>"; };
@@ -294,7 +296,8 @@
 		522FF8EC26D25DC9004E829C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				52708C1026E0A69600742027 /* DiscoverUseCase.swift */,
+				52708C1026E0A69600742027 /* PopularUseCase.swift */,
+				529CEA8F26E1F24F00934982 /* UpComingUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -511,12 +514,12 @@
 		5273D2C9263CB79A004FF8E0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				52708BEA26E0758C00742027 /* NetworkServices */,
-				52708BE426E0709100742027 /* Utils */,
-				52CD88BA26E0602A005B8B2A /* API */,
+				52CD88BA26E0602A005B8B2A /* APIs */,
 				522FF8E726D25D75004E829C /* DataSources */,
 				522FF8E626D25D6B004E829C /* Entities */,
+				52708BEA26E0758C00742027 /* NetworkServices */,
 				522FF8E826D25D8B004E829C /* Repository */,
+				52708BE426E0709100742027 /* Utils */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -560,12 +563,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		52CD88BA26E0602A005B8B2A /* API */ = {
+		52CD88BA26E0602A005B8B2A /* APIs */ = {
 			isa = PBXGroup;
 			children = (
 				52CD88BB26E0608A005B8B2A /* MovieAPI.swift */,
 			);
-			path = API;
+			path = APIs;
 			sourceTree = "<group>";
 		};
 		52CD88CB26E0623D005B8B2A /* Repository */ = {
@@ -772,6 +775,7 @@
 				52708C1826E0ABDF00742027 /* Constants.swift in Sources */,
 				520E1E0A26D6254600EE788C /* UIView.swift in Sources */,
 				52D6DCF226D33B7700E7C0C7 /* UIColor.swift in Sources */,
+				529CEA9026E1F24F00934982 /* UpComingUseCase.swift in Sources */,
 				522FF91426D26363004E829C /* PopularAssembler.swift in Sources */,
 				52C96B4F26E0E63900C1BD6D /* DetailViewModel.swift in Sources */,
 				52D6DCE126D335E500E7C0C7 /* SearchViewController.swift in Sources */,
@@ -787,7 +791,7 @@
 				52C0889426D73DF500AF8725 /* FavoriteCell.swift in Sources */,
 				52D6DCDA26D3354300E7C0C7 /* FavoriteViewController.swift in Sources */,
 				52CD88BC26E0608A005B8B2A /* MovieAPI.swift in Sources */,
-				52708C1126E0A69600742027 /* DiscoverUseCase.swift in Sources */,
+				52708C1126E0A69600742027 /* PopularUseCase.swift in Sources */,
 				52708C0126E09DED00742027 /* MovieRepository.swift in Sources */,
 				52D3959426DA11C200FDEEF4 /* CastCell.swift in Sources */,
 				52CD88D226E063C9005B8B2A /* SearchParameter.swift in Sources */,

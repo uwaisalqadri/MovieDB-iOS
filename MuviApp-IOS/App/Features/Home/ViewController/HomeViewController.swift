@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class HomeViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class HomeViewController: UIViewController {
   private let navigator: HomeNavigator
   private let viewModel: HomeViewModel
   private let disposeBag = DisposeBag()
+  private var popularMovies = [Movie]()
+  private var upComingMovies = [Movie]()
 
   private enum HomeTableSection {
     case banner
@@ -49,15 +52,23 @@ class HomeViewController: UIViewController {
     homeView.tableView.dataSource = self
 
     observeValues()
-    viewModel.requestDiscoverMovie()
+    viewModel.requestPopularMovie()
+    viewModel.requestUpComingMovie()
   }
 
 
   private func observeValues() {
     showLoading()
 
-    viewModel.discoverMovie.subscribe(onNext: { [weak self] result in
-      print("vc", result)
+    viewModel.popularMovies.subscribe(onNext: { [weak self] result in
+      self?.popularMovies = result
+      self?.homeView.tableView.reloadData()
+      self?.hideLoading()
+    }).disposed(by: disposeBag)
+
+    viewModel.upComingMovies.subscribe(onNext: { [weak self] result in
+      self?.upComingMovies = result
+      self?.homeView.tableView.reloadData()
       self?.hideLoading()
     }).disposed(by: disposeBag)
   }
@@ -79,6 +90,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     case .popular:
       let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
       cell.lblCategory.text = "Popular"
+      cell.movies = popularMovies
       cell.movieClickHandler = { movie in
         print("click", movie)
       }
@@ -86,6 +98,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     case .upcoming:
       let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
       cell.lblCategory.text = "Coming Soon"
+      cell.movies = upComingMovies
       cell.movieClickHandler = { movie in
         print("click", movie)
       }
@@ -93,7 +106,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     case .banner:
       let cell: HomeBannerViewCell = tableView.dequeueReusableCell(for: indexPath)
       cell.selectionStyle = .none
-      cell.bannerClickHandler = {
+      cell.bannerMovies = popularMovies
+      cell.bannerClickHandler = { movie in
         self.navigator.navigateToDetail(from: self)
       }
       return cell

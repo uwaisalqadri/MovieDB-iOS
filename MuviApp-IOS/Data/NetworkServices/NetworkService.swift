@@ -73,7 +73,6 @@ class NetworkService {
           else { throw ApiError.invalidJSONError }
 
           print("[NETWORK][\(response.statusCode)] \(apiCall.path)")
-          print("JSON", json)
 
           switch response.statusCode {
           case 200:
@@ -96,5 +95,4 @@ class NetworkService {
       }
     }
   }
-
 }

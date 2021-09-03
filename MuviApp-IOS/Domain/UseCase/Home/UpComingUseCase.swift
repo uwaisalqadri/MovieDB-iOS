@@ -1,18 +1,18 @@
 //
-//  DiscoverUseCase.swift
+//  UpComingUseCase.swift
 //  MuviApp-IOS
 //
-//  Created by Uwais Alqadri on 02/09/21.
+//  Created by Uwais Alqadri on 03/09/21.
 //
 
 import Foundation
 import RxSwift
 
-protocol DiscoverUseCase {
+protocol UpComingUseCase {
   func execute(param: DiscoverParamater) -> Observable<[Movie]>
 }
 
-class Discover: DiscoverUseCase {
+class UpComing: UpComingUseCase {
   private let repository: MovieRepository
 
   init(repository: MovieRepository) {

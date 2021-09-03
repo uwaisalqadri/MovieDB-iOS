@@ -11,20 +11,31 @@ import RxCocoa
 
 class HomeViewModel {
 
-  let discoverMovie: BehaviorRelay<[Movie]> = .init(value: [Movie]())
+  let popularMovies: BehaviorRelay<[Movie]> = .init(value: [Movie]())
+  let upComingMovies: BehaviorRelay<[Movie]> = .init(value: [Movie]())
 
   private let disposeBag = DisposeBag()
-  private let discoverUseCase: DiscoverUseCase
-  private let discoverParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2020")
+  private let popularUseCase: PopularUseCase
+  private let upComingUseCase: UpComingUseCase
+  private let popularParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2021")
+  private let upComingParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2022")
 
-  init(discoverUseCase: DiscoverUseCase) {
-    self.discoverUseCase = discoverUseCase
+  init(popularUseCase: PopularUseCase, upComingUseCase: UpComingUseCase) {
+    self.popularUseCase = popularUseCase
+    self.upComingUseCase = upComingUseCase
   }
 
-  func requestDiscoverMovie() {
-    discoverUseCase.execute(param: discoverParam).subscribe(onNext: { [weak self] result in
-      self?.discoverMovie.accept(result)
-      print("viewmodel", result)
+  func requestPopularMovie() {
+    popularUseCase.execute(param: popularParam).subscribe(onNext: { [weak self] result in
+      self?.popularMovies.accept(result)
+      print("POPULAR", result[0].title)
+    }).disposed(by: disposeBag)
+  }
+
+  func requestUpComingMovie() {
+    upComingUseCase.execute(param: upComingParam).subscribe(onNext: { [weak self] result in
+      self?.upComingMovies.accept(result)
+      print("UPCOMING", result[0].title)
     }).disposed(by: disposeBag)
   }
 }

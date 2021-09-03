@@ -10,13 +10,12 @@ import ObjectMapper
 
 class MovieResponse: Movies, Mappable {
   var page: Int?
-  var totalPages: Int?
-  var totalResults: Int?
-
   var results: [Movie]? {
     _results
   }
   var _results: [MovieItem]?
+  var totalPages: Int?
+  var totalResults: Int?
 
   required init?(map: Map) {
     mapping(map: map)

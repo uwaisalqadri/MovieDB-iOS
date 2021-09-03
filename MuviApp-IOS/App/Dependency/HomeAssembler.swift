@@ -13,7 +13,8 @@ protocol HomeAssembler {
   func resolve() -> HomeViewController
 
   func resolve() -> HomeViewModel
-  func resolve() -> DiscoverUseCase
+  func resolve() -> PopularUseCase
+  func resolve() -> UpComingUseCase
   func resolve() -> MovieRepository
 
   func resolve() -> RemoteDataSource
@@ -33,11 +34,15 @@ extension HomeAssembler where Self: Assembler {
   }
 
   func resolve() -> HomeViewModel {
-    return HomeViewModel(discoverUseCase: resolve())
+    return HomeViewModel(popularUseCase: resolve(), upComingUseCase: resolve())
   }
 
-  func resolve() -> DiscoverUseCase {
-    return Discover(repository: resolve())
+  func resolve() -> PopularUseCase {
+    return Popular(repository: resolve())
+  }
+
+  func resolve() -> UpComingUseCase {
+    return UpComing(repository: resolve())
   }
 
   func resolve() -> MovieRepository {
