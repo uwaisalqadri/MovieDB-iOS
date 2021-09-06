@@ -51,26 +51,41 @@ class HomeViewController: UIViewController {
     homeView.tableView.delegate = self
     homeView.tableView.dataSource = self
 
+    if #available(iOS 10.0, *) {
+      homeView.tableView.refreshControl = homeView.refreshControl
+    } else {
+      homeView.tableView.addSubview(homeView.refreshControl)
+    }
+    homeView.refreshControl.addTarget(self, action: #selector(onPullToRefresh(_:)), for: .valueChanged)
+
     observeValues()
-    viewModel.requestPopularMovie()
-    viewModel.requestUpComingMovie()
+    reloadHomeData()
+  }
+
+  @objc func onPullToRefresh(_ sender: Any) {
+    reloadHomeData()
   }
 
 
   private func observeValues() {
-    showLoading()
+    homeView.refreshControl.beginRefreshing()
 
     viewModel.popularMovies.subscribe(onNext: { [weak self] result in
       self?.popularMovies = result
       self?.homeView.tableView.reloadData()
-      self?.hideLoading()
+      self?.homeView.refreshControl.endRefreshing()
     }).disposed(by: disposeBag)
 
     viewModel.upComingMovies.subscribe(onNext: { [weak self] result in
       self?.upComingMovies = result
       self?.homeView.tableView.reloadData()
-      self?.hideLoading()
+      self?.homeView.refreshControl.endRefreshing()
     }).disposed(by: disposeBag)
+  }
+
+  private func reloadHomeData() {
+    viewModel.requestPopularMovie()
+    viewModel.requestUpComingMovie()
   }
 
 }

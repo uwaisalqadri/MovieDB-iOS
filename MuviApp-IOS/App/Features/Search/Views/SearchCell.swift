@@ -14,7 +14,6 @@ class SearchCell: UICollectionViewCell, Reusable {
   lazy var imgPoster: UIImageView = {
     return UIImageView().apply { img in
       img.contentMode = .scaleToFill
-      img.backgroundColor = .yellow
     }
   }()
 
@@ -45,13 +44,19 @@ class SearchCell: UICollectionViewCell, Reusable {
     }
   }()
 
+  var movie: Movie? {
+    didSet {
+      configureViews()
+    }
+  }
+
   private func configureViews() {
 
-    imgPoster.sd_setImage(with: URL(string: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.downgraf.com%2Fwp-content%2Fuploads%2F2015%2F06%2FClassic-Movie-Posters-5.jpg&f=1&nofb=1"), completed: nil)
+    imgPoster.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.posterPath ?? "")), completed: nil)
 
-    lblTitle.text = "Maze Runner - Guide to Hell or something"
-    lblDesc.text = "Dylan O'Brien, Kaya Scodelario, Will Poulter "
-    lblGenre.text = "Action, Adventure, Drama, Gore, Slice of Life"
+    lblTitle.text = movie?.title
+    lblDesc.text = movie?.overview
+    lblGenre.text = movie?.releaseDate
 
     subviews {
       imgPoster

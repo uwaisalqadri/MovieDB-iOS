@@ -36,6 +36,16 @@ class SearchView: UIView {
     }
   }()
 
+  lazy var txtSearch: UITextField = {
+    return UITextField(frame: .init(x: 0, y: 0, width: 300, height: 50)).apply { (searchBar) in
+      searchBar.textColor = .white
+      searchBar.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray as Any])
+      searchBar.tintColor = .accentColor
+      searchBar.autocorrectionType = .no
+      searchBar.autocapitalizationType = .none
+    }
+  }()
+
   let refreshControl = UIRefreshControl()
 
   init() {

@@ -68,7 +68,7 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
   }
 
   private func setupAutoScroll() {
-    timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(scrollBanner), userInfo: nil, repeats: true)
+    timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(scrollBanner), userInfo: nil, repeats: true)
   }
 
   @objc func scrollBanner() {

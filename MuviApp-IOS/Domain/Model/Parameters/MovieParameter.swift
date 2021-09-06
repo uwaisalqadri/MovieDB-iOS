@@ -20,9 +20,9 @@ struct DiscoverParamater: Encodable {
     case voteAverage = "vote_average.desc"
   }
 
-  init(language: String, sortBy: SortType, page: Int = 1, year: String) {
+  init(sortBy: SortType, page: Int = 1, year: String) {
     self.api_key = Constants.token
-    self.language = language
+    self.language = Constants.enUs
     self.sort_by = sortBy
     self.page = page
     self.year = year

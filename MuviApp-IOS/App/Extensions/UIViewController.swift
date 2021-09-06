@@ -53,7 +53,6 @@ extension UIViewController {
       addLogo()
     case .searchBar:
       navigationItem.rightBarButtonItem = createSearchButton()
-      navigationItem.leftBarButtonItem = createSearchBar()
     case .backTransparent:
       navigationItem.leftBarButtonItem = createBackButton()
       setTransparentNavigationTheme()
@@ -91,15 +90,6 @@ extension UIViewController {
     return searchButton
   }
 
-  private func createSearchBar() -> UIBarButtonItem {
-    let searchBar = UITextField(frame: .init(x: 0, y: 0, width: 300, height: 50))
-    searchBar.textColor = .white
-    searchBar.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray as Any])
-    searchBar.tintColor = .accentColor
-    searchBar.autocorrectionType = .no
-    searchBar.autocapitalizationType = .none
-    return UIBarButtonItem(customView: searchBar)
-  }
 
   private func addLogo() {
     let logo = UIImageView(frame: .init(x: 0, y: 0, width: 0, height: 0))

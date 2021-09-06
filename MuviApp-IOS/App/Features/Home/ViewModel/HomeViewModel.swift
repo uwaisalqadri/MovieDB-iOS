@@ -17,8 +17,8 @@ class HomeViewModel {
   private let disposeBag = DisposeBag()
   private let popularUseCase: PopularUseCase
   private let upComingUseCase: UpComingUseCase
-  private let popularParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2021")
-  private let upComingParam: DiscoverParamater = .init(language: "en-US", sortBy: .popularity, year: "2022")
+  private let popularParam: DiscoverParamater = .init(sortBy: .popularity, year: "2021")
+  private let upComingParam: DiscoverParamater = .init(sortBy: .popularity, year: "2022")
 
   init(popularUseCase: PopularUseCase, upComingUseCase: UpComingUseCase) {
     self.popularUseCase = popularUseCase

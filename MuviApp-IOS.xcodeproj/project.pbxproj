@@ -493,9 +493,9 @@
 		5273D2BB263CB650004FF8E0 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				52C96B4926E0E51200C1BD6D /* ViewModel */,
 				522FF8D326D25A69004E829C /* Navigator */,
 				52D6DCDF26D335D500E7C0C7 /* ViewController */,
+				52C96B4926E0E51200C1BD6D /* ViewModel */,
 				522FF8D226D25A65004E829C /* Views */,
 			);
 			path = Search;
