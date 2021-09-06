@@ -76,6 +76,7 @@ class SearchViewController: UIViewController {
   }
 
   @objc func textFieldDidChange(_ sender: UITextField) {
+    contentView.refreshControl.beginRefreshing()
     guard let text = sender.text, text != "" else { return }
     viewModel.searchParam = .init(query: text)
     viewModel.requestSearch()
