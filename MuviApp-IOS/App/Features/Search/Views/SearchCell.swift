@@ -85,14 +85,12 @@ class SearchCell: UICollectionViewCell, Reusable {
       .marginHorizontal(15)
       .horizontally()
       .bottom()
-      .top()
       .height(16)
 
     lblDesc.pin
       .below(of: lblTitle)
       .marginHorizontal(15)
       .horizontally()
-      .top()
       .bottom()
       .height(12)
   }

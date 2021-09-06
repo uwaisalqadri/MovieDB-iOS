@@ -17,7 +17,9 @@
                 <outlet property="imgPoster" destination="AIv-ti-NOL" id="8k4-9r-0bc"/>
                 <outlet property="lblDate" destination="OdR-eB-UWT" id="IfM-A3-pCc"/>
                 <outlet property="lblGenre" destination="VVj-n1-ACb" id="X7G-4q-fHP"/>
+                <outlet property="lblOverview" destination="XXj-cp-yD8" id="8vi-0g-T24"/>
                 <outlet property="lblTitle" destination="b7x-5i-5Hc" id="dbx-80-aoH"/>
+                <outlet property="scrollDetail" destination="biH-20-Wej" id="44V-1I-YbO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -65,7 +67,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXj-cp-yD8">
                                     <rect key="frame" x="20" y="642" width="374" height="345"/>
-                                    <mutableString key="text">Eighteen months after outwitting the FBI, the fugitive Four Horsemen – J. Daniel Atlas, Merritt McKinney, Jack Wilder, and new member Lula May – await orders from the Eye, the secret society of magicians. The Horsemen’s handler, FBI Special Agent Dylan Rhodes, delivers their instructions: the Horsemen are to expose corrupt tech CEO Owen Case, whose latest cell phone will secretly collect users’ personal data to sell on the black market. In New York City, the Horsemen hijack the phone’s launch, but are interrupted by a mysterious figure who reveals to the public that Jack faked his death, and that Dylan is working with the Horsemen. Dylan eludes the FBI as the Horsemen escape down a construction chute only to find themselves in Macau.</mutableString>
+                                    <string key="text">Eighteen months after outwitting the FBI, the fugitive Four Horsemen – J. Daniel Atlas, Merritt McKinney, Jack Wilder, and new member Lula May – await orders from the Eye, the secret society of magicians. The Horsemen’s handler, FBI Special Agent Dylan Rhodes, delivers their instructions: the Horsemen are to expose corrupt tech CEO Owen Case, whose latest cell phone will secretly collect users’ personal data to sell on the black market. In New York City, the Horsemen hijack the phone’s launch, but are interrupted by a mysterious figure who reveals to the public that Jack faked his death, and that Dylan is working with the Horsemen. Dylan eludes the FBI as the Horsemen escape down a construction chute only to find themselves in Macau.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>

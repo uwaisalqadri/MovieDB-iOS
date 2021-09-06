@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailNavigator {
-  func navigateToDetail(from viewController: UIViewController)
+  func navigateToDetail(from viewController: UIViewController?, with id: Int)
 }
 
 struct DefaultDetailNavigator: DetailNavigator {
@@ -19,9 +19,9 @@ struct DefaultDetailNavigator: DetailNavigator {
     self.assembler = assembler
   }
 
-  func navigateToDetail(from viewController: UIViewController) {
-    let nextViewController = DetailViewController(navigator: assembler.resolve())
-    nextViewController.hidesBottomBarWhenPushed = true
-    viewController.navigationController?.pushViewController(nextViewController, animated: true)
+  func navigateToDetail(from viewController: UIViewController?, with id: Int) {
+    let nextViewController = DetailViewController(navigator: assembler.resolve(), viewModel: assembler.resolve(with: id))
+    nextViewController.modalPresentationStyle = .overFullScreen
+    viewController?.present(nextViewController, animated: true)
   }
 }

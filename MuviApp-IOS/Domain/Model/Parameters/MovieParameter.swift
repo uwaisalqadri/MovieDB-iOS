@@ -34,9 +34,9 @@ struct DetailParameter: Encodable {
   let language: String
   let movie_id: Int
 
-  init(language: String, movieId: Int) {
+  init(movieId: Int) {
     self.api_key = Constants.token
-    self.language = language
+    self.language = Constants.enUs
     self.movie_id = movieId
   }
 }

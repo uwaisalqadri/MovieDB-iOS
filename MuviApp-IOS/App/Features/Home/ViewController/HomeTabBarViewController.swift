@@ -47,8 +47,7 @@ class HomeTabBarViewController: UITabBarController {
   }
 
   private func createTabController(vc: UIViewController, image: UIImage) -> UINavigationController {
-    let viewController = vc
-    let tabController = UINavigationController(rootViewController: viewController)
+    let tabController = UINavigationController(rootViewController: vc)
     tabController.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
     tabController.tabBarItem.selectedImage = image.withRenderingMode(.alwaysTemplate)
 

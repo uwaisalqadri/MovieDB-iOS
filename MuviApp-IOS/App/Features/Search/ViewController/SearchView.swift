@@ -86,7 +86,8 @@ class SearchView: UIView {
 
     collectionView.pin
       .below(of: lblDesc)
-      .all()
-      .margin(20)
+      .horizontally()
+      .bottom()
+      .margin(30)
   }
 }

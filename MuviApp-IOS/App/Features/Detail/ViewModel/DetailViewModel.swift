@@ -11,18 +11,20 @@ import RxCocoa
 
 class DetailViewModel {
 
-//  let detailMovie: BehaviorRelay<Movie> = .init(value: Movie)
+//  let detailMovie = BehaviorRelay<Movie>(valu)
 
-  private let detailUseCase: DetailUseCase
   private let disposeBag = DisposeBag()
+  private let detailUseCase: DetailUseCase
+  private let idMovie: Int
 
-  init(detailUseCase: DetailUseCase) {
+  init(detailUseCase: DetailUseCase, idMovie: Int) {
     self.detailUseCase = detailUseCase
+    self.idMovie = idMovie
   }
 
   func requestDetail() {
-    detailUseCase.execute(param: .init(language: "", movieId: 0)).subscribe(onNext: { [weak self] result in
-      print(result)
+    detailUseCase.execute(param: .init(movieId: idMovie)).subscribe(onNext: { result in
+      print(result.title)
     }, onError: { error in
       print(error)
     }).disposed(by: disposeBag)

@@ -107,7 +107,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.lblCategory.text = "Popular"
       cell.movies = popularMovies
       cell.movieClickHandler = { movie in
-        print("click", movie)
+        self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
     case .upcoming:
@@ -115,7 +115,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.lblCategory.text = "Coming Soon"
       cell.movies = upComingMovies
       cell.movieClickHandler = { movie in
-        print("click", movie)
+        self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
     case .banner:
@@ -123,7 +123,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.selectionStyle = .none
       cell.bannerMovies = popularMovies
       cell.bannerClickHandler = { movie in
-        print("click", movie)
+        self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
     }
