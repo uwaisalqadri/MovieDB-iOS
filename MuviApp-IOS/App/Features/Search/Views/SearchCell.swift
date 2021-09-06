@@ -68,23 +68,29 @@ class SearchCell: UICollectionViewCell, Reusable {
     imgPoster.pin
       .width(frame.width)
       .height(214)
-      .all()
+      .marginHorizontal(15)
+      .horizontally()
+      .top()
+      .bottom(20)
 
     lblGenre.pin
       .bottom(to: imgPoster.edge.bottom)
-      .horizontally()
+      .right(to: imgPoster.edge.right)
+      .left(to: imgPoster.edge.left)
       .height(16)
       .margin(7)
 
     lblTitle.pin
       .below(of: imgPoster)
+      .marginHorizontal(15)
       .horizontally()
-      .top(10)
       .bottom()
-      .height(14)
+      .top()
+      .height(16)
 
     lblDesc.pin
       .below(of: lblTitle)
+      .marginHorizontal(15)
       .horizontally()
       .top()
       .bottom()

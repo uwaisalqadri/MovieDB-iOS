@@ -61,6 +61,7 @@ class SearchViewController: UIViewController {
   private func configureView() {
     contentView.collectionView.delegate = self
     contentView.collectionView.dataSource = self
+    contentView.txtSearch.delegate = self
 
     if #available(iOS 10.0, *) {
       contentView.collectionView.refreshControl = contentView.refreshControl
@@ -78,12 +79,19 @@ class SearchViewController: UIViewController {
   @objc func textFieldDidChange(_ sender: UITextField) {
     contentView.refreshControl.beginRefreshing()
     guard let text = sender.text, text != "" else { return }
+    contentView.lblSearched.text = "'\(text)'"
     viewModel.searchParam = .init(query: text)
     viewModel.requestSearch()
   }
 
   @objc func onPullToRefresh(_ sender: Any) {
     viewModel.requestSearch()
+  }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    contentView.lblSearched.isHidden = false
   }
 }
 

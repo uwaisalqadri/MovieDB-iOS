@@ -20,6 +20,7 @@ class SearchView: UIView {
     return UILabel().apply { (lbl) in
       lbl.font = .boldSystemFont(ofSize: 16)
       lbl.textColor = .white
+      lbl.isHidden = true
     }
   }()
 
@@ -67,13 +68,12 @@ class SearchView: UIView {
   }
 
   private func configureViews() {
-    lblSearched.text = "'Maze Runner'"
     lblDesc.text = "Showing Result of"
 
     lblSearched.pin
       .height(16)
       .right()
-      .marginLeft(25)
+      .marginLeft(32)
       .marginTop(20)
       .right(of: lblDesc)
       .vertically()
@@ -81,7 +81,7 @@ class SearchView: UIView {
     lblDesc.pin
       .height(16)
       .all()
-      .marginLeft(20)
+      .marginLeft(27)
       .marginTop(20)
 
     collectionView.pin
