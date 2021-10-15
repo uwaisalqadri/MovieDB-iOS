@@ -83,6 +83,9 @@ class NetworkService {
             subject.onNext(data)
             subject.onCompleted()
 
+          case 404:
+            print("NOT FOUND")
+
           default:
             fatalError("Unknown statusCode: \(response.statusCode)")
           }

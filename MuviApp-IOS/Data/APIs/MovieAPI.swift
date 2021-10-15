@@ -12,6 +12,8 @@ enum MovieAPI {
   case search(param: SearchParamater)
   case discover(param: DiscoverParamater)
   case detail(param: DetailParameter)
+  case credits(param: DetailParameter)
+  case video(param: DetailParameter)
 }
 
 extension MovieAPI: TargetType {
@@ -24,6 +26,10 @@ extension MovieAPI: TargetType {
       return "discover/movie"
     case .detail(let param):
       return "movie/\(param.movie_id)"
+    case .credits(let param):
+      return "movie/\(param.movie_id)/credits"
+    case .video(let param):
+      return "movie/\(param.movie_id)/video"
     }
   }
 
@@ -41,7 +47,14 @@ extension MovieAPI: TargetType {
 
     case .detail(let detailParameter):
       return .requestParameters(parameters: detailParameter.parameters ?? [:], encoding: URLEncoding.default)
+
+    case .credits(let detailParamater):
+      return .requestParameters(parameters: detailParamater.parameters ?? [:], encoding: URLEncoding.default)
+
+    case .video(let detailParameter):
+      return .requestParameters(parameters: detailParameter.parameters ?? [:], encoding: URLEncoding.default)
     }
+
   }
 
 

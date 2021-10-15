@@ -1,5 +1,5 @@
 //
-//  HomeBannerViewCell.swift
+//  HomeBannerCell.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -8,7 +8,7 @@
 import UIKit
 import Reusable
 
-class HomeBannerViewCell: UITableViewCell, Reusable {
+class HomeBannerCell: UITableViewCell, Reusable {
 
   lazy var collectionView: UICollectionView = {
 
@@ -24,7 +24,7 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
       $0.isPagingEnabled = true
       $0.delegate = self
       $0.dataSource = self
-      $0.register(cellType: HomeBannerCollectionViewCell.self)
+      $0.register(cellType: HomeBannerItemCell.self)
     }
   }()
 
@@ -42,10 +42,6 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
       collectionView.reloadData()
       pageControl.numberOfPages = bannerMovies?.count ?? 0
     }
-  }
-
-  deinit {
-    timer?.invalidate()
   }
 
   override func layoutSubviews() {
@@ -67,31 +63,16 @@ class HomeBannerViewCell: UITableViewCell, Reusable {
       .bottom(15)
   }
 
-  private func setupAutoScroll() {
-    timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(scrollBanner), userInfo: nil, repeats: true)
-  }
-
-  @objc func scrollBanner() {
-    let currentPage = floor(collectionView.contentOffset.x / collectionView.frame.size.width)
-    collectionView.setContentOffset(CGPoint(x: collectionView.frame.size.width * (currentPage + 1), y: 0), animated: true)
-
-    if let indexPath = collectionView.indexPathsForVisibleItems.first {
-      pageControl.currentPage = indexPath.row
-    }
-  }
-
-
   override func sizeThatFits(_ size: CGSize) -> CGSize {
     contentView.pin.size(size)
     configureViews()
-    setupAutoScroll()
     return CGSize(width: frame.width, height: 230)
   }
 }
 
-extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HomeBannerCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.width, height: collectionView.frame.size.height)
+    return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -100,13 +81,13 @@ extension HomeBannerViewCell: UICollectionViewDelegate, UICollectionViewDelegate
   }
 }
 
-extension HomeBannerViewCell: UICollectionViewDataSource {
+extension HomeBannerCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return bannerMovies?.count ?? 0
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+    let cell: HomeBannerItemCell = collectionView.dequeueReusableCell(for: indexPath)
     cell.movie = bannerMovies?[indexPath.row]
     return cell
   }
@@ -117,3 +98,4 @@ extension HomeBannerViewCell: UICollectionViewDataSource {
     }
   }
 }
+

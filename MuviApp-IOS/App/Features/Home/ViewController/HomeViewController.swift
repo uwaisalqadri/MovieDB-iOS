@@ -2,22 +2,27 @@
 //  HomeViewController.swift
 //  MuviApp-IOS
 //
-//  Created by Uwais Alqadri on 23/08/21.
+//  Created by Uwais Alqadri on 05/10/21.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 import SVProgressHUD
+import SDWebImage
 
 class HomeViewController: UIViewController {
 
-  private let homeView = HomeView()
+  @IBOutlet weak var tblHome: UITableView!
+
   private let navigator: HomeNavigator
   private let viewModel: HomeViewModel
+
   private let disposeBag = DisposeBag()
+
   private var popularMovies = [Movie]()
   private var upComingMovies = [Movie]()
+  private var bannerMovies = [Movie]()
 
   private enum HomeTableSection {
     case banner
@@ -31,10 +36,12 @@ class HomeViewController: UIViewController {
     .upcoming
   ]
 
+  let refreshControl = UIRefreshControl()
+
   init(navigator: HomeNavigator, viewModel: HomeViewModel) {
     self.navigator = navigator
     self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
+    super.init(nibName: String(describing: HomeViewController.self), bundle: nil)
   }
 
   required init?(coder: NSCoder) {
@@ -47,17 +54,7 @@ class HomeViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view = homeView
-    homeView.tableView.delegate = self
-    homeView.tableView.dataSource = self
-
-    if #available(iOS 10.0, *) {
-      homeView.tableView.refreshControl = homeView.refreshControl
-    } else {
-      homeView.tableView.addSubview(homeView.refreshControl)
-    }
-    homeView.refreshControl.addTarget(self, action: #selector(onPullToRefresh(_:)), for: .valueChanged)
-
+    configureViews()
     observeValues()
     reloadHomeData()
   }
@@ -66,31 +63,56 @@ class HomeViewController: UIViewController {
     reloadHomeData()
   }
 
+  private func configureViews() {
+    tblHome.delegate = self
+    tblHome.dataSource = self
+    tblHome.tableFooterView = UIView()
+    tblHome.backgroundColor = .backgroundColor
+    tblHome.register(cellType: HomeCell.self)
+    tblHome.register(cellType: HomeBannerCell.self)
+
+    if #available(iOS 10.0, *) {
+      tblHome.refreshControl = refreshControl
+    } else {
+      tblHome.addSubview(refreshControl)
+    }
+    refreshControl.addTarget(self, action: #selector(onPullToRefresh(_:)), for: .valueChanged)
+  }
 
   private func observeValues() {
-    homeView.refreshControl.beginRefreshing()
+    refreshControl.beginRefreshing()
 
     viewModel.popularMovies.subscribe(onNext: { [weak self] result in
       self?.popularMovies = result
-      self?.homeView.tableView.reloadData()
-      self?.homeView.refreshControl.endRefreshing()
+      self?.didFinish()
     }).disposed(by: disposeBag)
 
     viewModel.upComingMovies.subscribe(onNext: { [weak self] result in
       self?.upComingMovies = result
-      self?.homeView.tableView.reloadData()
-      self?.homeView.refreshControl.endRefreshing()
+      self?.didFinish()
+    }).disposed(by: disposeBag)
+
+    viewModel.bannerMovies.subscribe(onNext: { [weak self] result in
+      self?.bannerMovies = result
+      self?.didFinish()
     }).disposed(by: disposeBag)
   }
 
   private func reloadHomeData() {
     viewModel.requestPopularMovie()
     viewModel.requestUpComingMovie()
+    viewModel.requestBannerMovie()
+  }
+
+  private func didFinish() {
+    tblHome.reloadData()
+    refreshControl.endRefreshing()
   }
 
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 1
   }
@@ -103,26 +125,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     switch allSection[indexPath.section] {
     case .popular:
-      let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
+      let cell: HomeCell = tableView.dequeueReusableCell(for: indexPath)
       cell.lblCategory.text = "Popular"
       cell.movies = popularMovies
-      cell.movieClickHandler = { movie in
+      cell.selectionStyle = .none
+      cell.movieClickHandler = { [weak self] movie in
+        guard let self = self else { return }
         self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
     case .upcoming:
-      let cell: HomeViewCell = tableView.dequeueReusableCell(for: indexPath)
+      let cell: HomeCell = tableView.dequeueReusableCell(for: indexPath)
       cell.lblCategory.text = "Coming Soon"
       cell.movies = upComingMovies
-      cell.movieClickHandler = { movie in
+      cell.selectionStyle = .none
+      cell.movieClickHandler = { [weak self] movie in
+        guard let self = self else { return }
         self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
     case .banner:
-      let cell: HomeBannerViewCell = tableView.dequeueReusableCell(for: indexPath)
+      let cell: HomeBannerCell = tableView.dequeueReusableCell(for: indexPath)
       cell.selectionStyle = .none
-      cell.bannerMovies = popularMovies
-      cell.bannerClickHandler = { movie in
+      cell.bannerMovies = bannerMovies
+      cell.bannerClickHandler = { [weak self] movie in
+        guard let self = self else { return }
         self.navigator.navigateToDetail(from: self, with: movie.id ?? 0)
       }
       return cell
@@ -130,3 +157,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
 }
+

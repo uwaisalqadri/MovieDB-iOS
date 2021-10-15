@@ -12,4 +12,5 @@ struct Constants {
   static let baseUrl = "https://api.themoviedb.org/3/"
   static let token = "270363a57bb9637a16bdd04f9979e433"
   static let enUs = "en-US"
+  static let youtubeUrl = "https://www.youtube.com/watch?v="
 }

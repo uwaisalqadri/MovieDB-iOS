@@ -23,7 +23,6 @@ class SearchViewModel {
   }
 
   func requestSearch() {
-
     guard let param = searchParam else { return }
 
     searchUseCase.execute(param: .init(query: param.query)).subscribe(onNext: { [weak self] result in

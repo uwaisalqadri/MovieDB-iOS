@@ -1,5 +1,5 @@
 //
-//  HomeCollectionViewCell.swift
+//  HomeItemCell.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -9,22 +9,23 @@ import UIKit
 import Reusable
 import SDWebImage
 
-class HomeCollectionViewCell: UICollectionViewCell, Reusable {
+class HomeItemCell: UICollectionViewCell, Reusable {
 
   lazy var imgPoster: UIImageView = {
     return UIImageView().apply { img in
       img.contentMode = .scaleAspectFit
+      img.sd_imageIndicator = SDWebImageActivityIndicator.medium
     }
   }()
 
   var movie: Movie? {
     didSet {
-      setContent()
+      configureViews()
     }
   }
 
-  func setContent() {
-    imgPoster.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.posterPath)!))
+  func configureViews() {
+    imgPoster.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.posterPath ?? "")))
 
     subviews(imgPoster)
 
@@ -33,7 +34,4 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
       .width(102)
   }
 
-  override func layoutSubviews() {
-    setContent()
-  }
 }

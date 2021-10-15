@@ -1,17 +1,17 @@
 //
-//  DetailUseCase.swift
+//  CreditUseCase.swift
 //  MuviApp-IOS
 //
-//  Created by Uwais Alqadri on 02/09/21.
+//  Created by Uwais Alqadri on 05/10/21.
 //
 
 import RxSwift
 
-protocol DetailUseCase {
+protocol CreditUseCase {
   func execute(param: DetailParameter) -> Observable<Movie>
 }
 
-class DetailInteractor: DetailUseCase {
+class CastInteractor: DetailUseCase {
   private let repository: MovieRepository
 
   init(repository: MovieRepository) {

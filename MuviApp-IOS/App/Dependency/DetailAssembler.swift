@@ -13,6 +13,8 @@ protocol DetailAssembler {
 
   func resolve(with id: Int) -> DetailViewModel
   func resolve() -> DetailUseCase
+  func resolve() -> CreditUseCase
+  func resolve() -> VideoUseCase
 }
 
 extension DetailAssembler where Self: Assembler {
@@ -25,11 +27,19 @@ extension DetailAssembler where Self: Assembler {
   }
 
   func resolve(with id: Int) -> DetailViewModel {
-    return DetailViewModel(detailUseCase: resolve(), idMovie: id)
+    return DetailViewModel(detailUseCase: resolve(), creditUseCase: resolve(), videoUseCase: resolve(), idMovie: id)
   }
 
   func resolve() -> DetailUseCase {
-    return Detail(repository: resolve())
+    return DetailInteractor(repository: resolve())
+  }
+
+  func resolve() -> VideoUseCase {
+    return VideoInteractor(repository: resolve())
+  }
+
+  func resolve() -> CreditUseCase {
+    return CreditInteractor(repository: resolve())
   }
 
 }

@@ -8,6 +8,12 @@
 import UIKit
 
 extension UIView {
+  func circle() {
+    self.layer.cornerRadius = self.layer.bounds.size.width / 2
+  }
+}
+
+extension UIView {
 
   @discardableResult
   func subviews(_ subViews: UIView...) -> UIView {

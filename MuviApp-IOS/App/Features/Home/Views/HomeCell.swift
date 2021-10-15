@@ -1,5 +1,5 @@
 //
-//  HomeViewCell.swift
+//  HomeCell.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -7,8 +7,9 @@
 
 import UIKit
 import Reusable
+import PinLayout
 
-class HomeViewCell: UITableViewCell, Reusable {
+class HomeCell: UITableViewCell, Reusable {
 
   lazy var lblCategory: UILabel = {
     return UILabel().apply { lbl in
@@ -28,14 +29,16 @@ class HomeViewCell: UITableViewCell, Reusable {
       cl.backgroundColor = .backgroundColor
       cl.delegate = self
       cl.dataSource = self
-      cl.register(cellType: HomeCollectionViewCell.self)
+      cl.register(cellType: HomeItemCell.self)
     }
   }()
 
   var movieClickHandler: ((Movie) -> Void)?
+
   var movies: [Movie]? {
     didSet {
       clCategory.reloadData()
+      contentView.frame = bounds
     }
   }
 
@@ -71,8 +74,7 @@ class HomeViewCell: UITableViewCell, Reusable {
 }
 
 
-
-extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HomeCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.width/3.8, height: collectionView.frame.width/2)
   }
@@ -83,14 +85,15 @@ extension HomeViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
   }
 }
 
-extension HomeViewCell: UICollectionViewDataSource {
+extension HomeCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return movies?.count ?? 0
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+    let cell: HomeItemCell = collectionView.dequeueReusableCell(for: indexPath)
     cell.movie = movies?[indexPath.row]
     return cell
   }
 }
+

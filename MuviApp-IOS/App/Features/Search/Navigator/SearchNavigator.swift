@@ -8,6 +8,7 @@
 import UIKit
 
 protocol SearchNavigator {
+  func navigateToDetail(from viewController: UIViewController, with id: Int)
 }
 
 struct DefaultPopularNavigator: SearchNavigator {
@@ -16,5 +17,10 @@ struct DefaultPopularNavigator: SearchNavigator {
 
   init(assembler: Assembler) {
     self.assembler = assembler
+  }
+
+  func navigateToDetail(from viewController: UIViewController, with id: Int) {
+    let navigator: DetailNavigator = assembler.resolve()
+    navigator.navigateToDetail(from: viewController, with: id)
   }
 }

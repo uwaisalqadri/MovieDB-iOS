@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PopularAssembler {
+protocol SearchAssembler {
   func resolve() -> SearchViewController
   func resolve() -> SearchNavigator
 
@@ -15,7 +15,7 @@ protocol PopularAssembler {
   func resolve() -> SearchUseCase
 }
 
-extension PopularAssembler where Self: Assembler {
+extension SearchAssembler where Self: Assembler {
   func resolve() -> SearchNavigator {
     return DefaultPopularNavigator(assembler: self)
   }

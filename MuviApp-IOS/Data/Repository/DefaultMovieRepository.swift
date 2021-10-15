@@ -27,5 +27,12 @@ struct DefaultMovieRepository: MovieRepository {
     return remoteDataSource.getSearch(param: searchParam)
   }
 
+  func getVideo(detailParam: DetailParameter) -> Observable<[Video]> {
+    return remoteDataSource.getVideo(param: detailParam)
+  }
+
+  func getCredit(detailParam: DetailParameter) -> Observable<[Credit]> {
+    return remoteDataSource.getCredit(param: detailParam)
+  }
 
 }

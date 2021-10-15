@@ -12,4 +12,6 @@ protocol MovieRepository {
   func getDiscover(discoverParam: DiscoverParamater) -> Observable<[Movie]>
   func getDetail(detailParam: DetailParameter) -> Observable<Movie>
   func getSearch(searchParam: SearchParamater) -> Observable<[Movie]>
+  func getVideo(detailParam: DetailParameter) -> Observable<[Video]>
+  func getCredit(detailParam: DetailParameter) -> Observable<[Credit]>
 }

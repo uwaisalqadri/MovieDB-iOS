@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     window = UIWindow(frame: UIScreen.main.bounds)
 
-    let navigator: HomeNavigator = assembler.resolve()
-    navigator.navigateToHome(window: window)
+//    let navigator: HomeNavigator = assembler.resolve()
+//    navigator.navigateToHome(window: window)
+    window?.rootViewController = DetailViewController(navigator: assembler.resolve(), viewModel: assembler.resolve(with: 703771))
     window?.makeKeyAndVisible()
 
     return true

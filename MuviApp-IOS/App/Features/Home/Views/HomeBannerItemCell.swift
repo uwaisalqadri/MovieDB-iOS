@@ -1,5 +1,5 @@
 //
-//  HomeBannerCollectionViewCell.swift
+//  HomeBannerItemCell.swift
 //  MuviApp-IOS
 //
 //  Created by Uwais Alqadri on 23/08/21.
@@ -9,12 +9,13 @@ import UIKit
 import Reusable
 import SDWebImage
 
-class HomeBannerCollectionViewCell: UICollectionViewCell, Reusable {
+class HomeBannerItemCell: UICollectionViewCell, Reusable {
 
   lazy var imgBanner: UIImageView = {
     return UIImageView().apply {
       $0.contentMode = .scaleAspectFill
       $0.clipsToBounds = true
+      $0.sd_imageIndicator = SDWebImageActivityIndicator.medium
     }
   }()
 
@@ -35,7 +36,4 @@ class HomeBannerCollectionViewCell: UICollectionViewCell, Reusable {
     subviews(imgBanner)
   }
 
-  override func layoutSubviews() {
-    configureViews()
-  }
 }

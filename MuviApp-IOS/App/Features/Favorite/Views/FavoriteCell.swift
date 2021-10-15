@@ -90,18 +90,15 @@ class FavoriteCell: UITableViewCell, Reusable {
     lblTitle.pin
       .horizontally()
       .height(20)
-      .top(10)
 
     lblYear.pin
       .below(of: lblTitle)
       .horizontally()
-      .top(10)
       .height(20)
 
     lblGenre.pin
       .below(of: lblYear)
       .horizontally()
-      .top(10)
       .height(20)
 
   }
