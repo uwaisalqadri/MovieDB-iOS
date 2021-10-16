@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  MuviApp-IOS
 //
-//  Created by Uwais Alqadri on 02/09/21.
+//  Created by Uwais Alqadri on 10/16/21.
 //
 
 import UIKit
@@ -35,6 +35,7 @@ class DetailViewController: UIViewController {
   var movie: Movie? {
     didSet {
       configureViews()
+//      observeValues()
     }
   }
 
@@ -59,15 +60,13 @@ class DetailViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    print("viewLooaded")
-    observeValues()
     configureViews()
-    reloadDetail()
+    observeValues()
   }
 
   private func observeValues() {
     showLoading()
+    reloadDetail()
 
     viewModel.detailMovie.subscribe(onNext: { [weak self] result in
       self?.movie = result
@@ -114,14 +113,11 @@ class DetailViewController: UIViewController {
     lblOverview.text = movie?.overview
     movie?.genres?.forEach { genre in genreNames.append(genre.name ?? "") }
     lblGenre.text = genreNames.joined(separator: ", ")
-
-    print(genreNames.joined(separator: ", "))
   }
 
   private func reloadDetail() {
     viewModel.requestDetailMovie()
     viewModel.requestCreditMovie()
-    viewModel.requestVideoMovie()
   }
 
   private func didFinish() {

@@ -55,8 +55,6 @@
 		52C96B4726E0E49A00C1BD6D /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4626E0E49A00C1BD6D /* SearchUseCase.swift */; };
 		52C96B4B26E0E52100C1BD6D /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4A26E0E52100C1BD6D /* SearchViewModel.swift */; };
 		52C96B4F26E0E63900C1BD6D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C96B4E26E0E63900C1BD6D /* DetailViewModel.swift */; };
-		52CD88B526E05745005B8B2A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88AF26E04A16005B8B2A /* DetailViewController.swift */; };
-		52CD88B826E05BA3005B8B2A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CD88B026E04A16005B8B2A /* DetailViewController.xib */; };
 		52CD88BC26E0608A005B8B2A /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88BB26E0608A005B8B2A /* MovieAPI.swift */; };
 		52CD88CE26E06286005B8B2A /* MovieParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88CD26E06286005B8B2A /* MovieParameter.swift */; };
 		52CD88D226E063C9005B8B2A /* SearchParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD88D126E063C9005B8B2A /* SearchParameter.swift */; };
@@ -76,6 +74,8 @@
 		52D6DD2926D39BB900E7C0C7 /* HomeBannerItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DD2826D39BB900E7C0C7 /* HomeBannerItemCell.swift */; };
 		52F30ACC2667368A00E7C067 /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F30ACB2667368A00E7C067 /* AppAssembler.swift */; };
 		7928D3B8B005D4C356A8987F /* Pods_MuviApp_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E55A79432118CA2EAB6ECAF /* Pods_MuviApp_IOS.framework */; };
+		9164CE3D271A828300944280 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164CE3B271A828300944280 /* DetailViewController.swift */; };
+		9164CE3E271A828300944280 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9164CE3C271A828300944280 /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,8 +131,6 @@
 		52C96B4626E0E49A00C1BD6D /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		52C96B4A26E0E52100C1BD6D /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		52C96B4E26E0E63900C1BD6D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
-		52CD88AF26E04A16005B8B2A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		52CD88B026E04A16005B8B2A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		52CD88BB26E0608A005B8B2A /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		52CD88CD26E06286005B8B2A /* MovieParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieParameter.swift; sourceTree = "<group>"; };
 		52CD88D126E063C9005B8B2A /* SearchParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameter.swift; sourceTree = "<group>"; };
@@ -152,6 +150,8 @@
 		52D6DD2826D39BB900E7C0C7 /* HomeBannerItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerItemCell.swift; sourceTree = "<group>"; };
 		52F30ACB2667368A00E7C067 /* AppAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
 		8BB9078D4E283A02B91A32A9 /* Pods-MuviApp-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuviApp-IOS.debug.xcconfig"; path = "Target Support Files/Pods-MuviApp-IOS/Pods-MuviApp-IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9164CE3B271A828300944280 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9164CE3C271A828300944280 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,8 +371,8 @@
 		522FF90926D262D6004E829C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				52CD88AF26E04A16005B8B2A /* DetailViewController.swift */,
-				52CD88B026E04A16005B8B2A /* DetailViewController.xib */,
+				9164CE3B271A828300944280 /* DetailViewController.swift */,
+				9164CE3C271A828300944280 /* DetailViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -720,9 +720,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52CD88B826E05BA3005B8B2A /* DetailViewController.xib in Resources */,
 				5273D2AD263CB5A2004FF8E0 /* LaunchScreen.storyboard in Resources */,
 				5273D2AA263CB5A2004FF8E0 /* Assets.xcassets in Resources */,
+				9164CE3E271A828300944280 /* DetailViewController.xib in Resources */,
 				5241D156270C194C0033A6A6 /* SearchViewController.xib in Resources */,
 				5241D14D270C0EDB0033A6A6 /* HomeViewController.xib in Resources */,
 			);
@@ -777,7 +777,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52CD88B526E05745005B8B2A /* DetailViewController.swift in Sources */,
 				52CD88CE26E06286005B8B2A /* MovieParameter.swift in Sources */,
 				52D6DD0926D37EDE00E7C0C7 /* HomeBannerCell.swift in Sources */,
 				52708BFB26E078C500742027 /* NetworkService.swift in Sources */,
@@ -805,6 +804,7 @@
 				52D6DCEC26D33AF300E7C0C7 /* LocalDataSource.swift in Sources */,
 				52708BEC26E075A500742027 /* APIConfiguration.swift in Sources */,
 				52708C1526E0A73100742027 /* HomeViewModel.swift in Sources */,
+				9164CE3D271A828300944280 /* DetailViewController.swift in Sources */,
 				5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */,
 				52708C1826E0ABDF00742027 /* Constants.swift in Sources */,
 				520E1E0A26D6254600EE788C /* UIView.swift in Sources */,
