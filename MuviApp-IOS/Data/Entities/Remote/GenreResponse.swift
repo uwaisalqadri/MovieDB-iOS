@@ -9,7 +9,6 @@ import Foundation
 import ObjectMapper
 
 class GenreResponse: Genres, Mappable {
-
   var _genres: [GenreItem]?
   var genres: [Genre]? {
     _genres
@@ -22,8 +21,6 @@ class GenreResponse: Genres, Mappable {
   func mapping(map: Map) {
     _genres <- map["genres"]
   }
-
-
 }
 
 class GenreItem: Genre, Mappable {

@@ -14,7 +14,7 @@ enum BaseApi {
 
 extension BaseApi: TargetType {
   var baseURL: URL {
-    APIConfiguration.configAPI().baseURL
+    return URL(string: Constants.baseUrl)!
   }
 
   var path: String {

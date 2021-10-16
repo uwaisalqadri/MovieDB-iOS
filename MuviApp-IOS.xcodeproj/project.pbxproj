@@ -32,12 +32,10 @@
 		5241D179270C268E0033A6A6 /* GenreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241D178270C268E0033A6A6 /* GenreUseCase.swift */; };
 		526CAB3626D8E19A00C403C3 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526CAB3526D8E19A00C403C3 /* PaddedLabel.swift */; };
 		52708BE626E070AD00742027 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BE526E070AD00742027 /* Encodable.swift */; };
-		52708BEC26E075A500742027 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BEB26E075A500742027 /* APIConfiguration.swift */; };
 		52708BF126E0764B00742027 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BF026E0764B00742027 /* APIError.swift */; };
 		52708BF426E076B900742027 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BF326E076B900742027 /* ApiError.swift */; };
 		52708BF826E0770400742027 /* ApiFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BF726E0770400742027 /* ApiFactory.swift */; };
 		52708BFB26E078C500742027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BFA26E078C500742027 /* NetworkService.swift */; };
-		52708BFE26E0796400742027 /* AlamofireSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708BFD26E0796400742027 /* AlamofireSessionManager.swift */; };
 		52708C0126E09DED00742027 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0026E09DED00742027 /* MovieRepository.swift */; };
 		52708C0726E09F5600742027 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0626E09F5600742027 /* Movie.swift */; };
 		52708C0A26E0A0CA00742027 /* DefaultMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52708C0926E0A0CA00742027 /* DefaultMovieRepository.swift */; };
@@ -106,12 +104,10 @@
 		5241D178270C268E0033A6A6 /* GenreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreUseCase.swift; sourceTree = "<group>"; };
 		526CAB3526D8E19A00C403C3 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		52708BE526E070AD00742027 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
-		52708BEB26E075A500742027 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		52708BF026E0764B00742027 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		52708BF326E076B900742027 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		52708BF726E0770400742027 /* ApiFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFactory.swift; sourceTree = "<group>"; };
 		52708BFA26E078C500742027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		52708BFD26E0796400742027 /* AlamofireSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireSessionManager.swift; sourceTree = "<group>"; };
 		52708C0026E09DED00742027 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		52708C0626E09F5600742027 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		52708C0926E0A0CA00742027 /* DefaultMovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieRepository.swift; sourceTree = "<group>"; };
@@ -251,13 +247,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		522FF8DC26D25B61004E829C /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		522FF8DD26D25B72004E829C /* Plists */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,10 +258,8 @@
 		522FF8E626D25D6B004E829C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				52708C0D26E0A2A800742027 /* MovieResponse.swift */,
-				5241D164270C1FDC0033A6A6 /* GenreResponse.swift */,
-				5241D167270C21D30033A6A6 /* VideoResponse.swift */,
-				5241D16A270C21DB0033A6A6 /* CreditResponse.swift */,
+				9164CE40271A8A3A00944280 /* Local */,
+				9164CE3F271A8A2800944280 /* Remote */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -418,11 +405,9 @@
 		52708BEA26E0758C00742027 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
-				52708BEB26E075A500742027 /* APIConfiguration.swift */,
 				52708BF026E0764B00742027 /* APIError.swift */,
 				52708BF726E0770400742027 /* ApiFactory.swift */,
 				52708BFA26E078C500742027 /* NetworkService.swift */,
-				52708BFD26E0796400742027 /* AlamofireSessionManager.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -503,7 +488,6 @@
 			isa = PBXGroup;
 			children = (
 				5273D2A9263CB5A2004FF8E0 /* Assets.xcassets */,
-				522FF8DC26D25B61004E829C /* Fonts */,
 				522FF8DD26D25B72004E829C /* Plists */,
 			);
 			path = Resources;
@@ -661,6 +645,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9164CE3F271A8A2800944280 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				52708C0D26E0A2A800742027 /* MovieResponse.swift */,
+				5241D164270C1FDC0033A6A6 /* GenreResponse.swift */,
+				5241D167270C21D30033A6A6 /* VideoResponse.swift */,
+				5241D16A270C21DB0033A6A6 /* CreditResponse.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		9164CE40271A8A3A00944280 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -787,7 +789,6 @@
 				522FF90E26D26342004E829C /* DetailAssembler.swift in Sources */,
 				522FF91126D2634F004E829C /* FavoriteAssembler.swift in Sources */,
 				52D6DD2526D39B8A00E7C0C7 /* HomeItemCell.swift in Sources */,
-				52708BFE26E0796400742027 /* AlamofireSessionManager.swift in Sources */,
 				52D6DCCF26D32ECE00E7C0C7 /* UIViewController.swift in Sources */,
 				522FF90226D261F7004E829C /* HomeAssembler.swift in Sources */,
 				52708C0E26E0A2A800742027 /* MovieResponse.swift in Sources */,
@@ -802,7 +803,6 @@
 				522FF90726D26272004E829C /* DetailNavigator.swift in Sources */,
 				52708BE626E070AD00742027 /* Encodable.swift in Sources */,
 				52D6DCEC26D33AF300E7C0C7 /* LocalDataSource.swift in Sources */,
-				52708BEC26E075A500742027 /* APIConfiguration.swift in Sources */,
 				52708C1526E0A73100742027 /* HomeViewModel.swift in Sources */,
 				9164CE3D271A828300944280 /* DetailViewController.swift in Sources */,
 				5273D2A1263CB59E004FF8E0 /* AppDelegate.swift in Sources */,
@@ -982,7 +982,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM8JGRFPQU;
 				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/App/Resources/Plists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1003,7 +1003,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM8JGRFPQU;
 				INFOPLIST_FILE = "$(SRCROOT)/MuviApp-IOS/App/Resources/Plists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
