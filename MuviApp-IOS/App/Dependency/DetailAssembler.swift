@@ -19,7 +19,7 @@ protocol DetailAssembler {
 
 extension DetailAssembler where Self: Assembler {
   func resolve(with id: Int) -> DetailViewController {
-    return DetailViewController(navigator: resolve(), viewModel: resolve(with: id))
+    return DetailViewController(navigator: resolve(), viewModel: resolve(with: id), favoriteViewModel: resolve())
   }
 
   func resolve() -> DetailNavigator {

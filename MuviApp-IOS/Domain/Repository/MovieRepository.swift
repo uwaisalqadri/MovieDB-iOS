@@ -14,4 +14,8 @@ protocol MovieRepository {
   func getSearch(searchParam: SearchParamater) -> Observable<[Movie]>
   func getVideo(detailParam: DetailParameter) -> Observable<[Video]>
   func getCredit(detailParam: DetailParameter) -> Observable<[Credit]>
+
+  func getFavoriteMovie() -> Observable<[Movie]>
+  func addFavoriteMovie(from movie: Movie)
+  func removeFavoriteMovie(from movie: Movie)
 }

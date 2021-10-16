@@ -20,7 +20,7 @@ struct DefaultDetailNavigator: DetailNavigator {
   }
 
   func navigateToDetail(from viewController: UIViewController?, with id: Int) {
-    let nextViewController = DetailViewController(navigator: assembler.resolve(), viewModel: assembler.resolve(with: id))
+    let nextViewController = DetailViewController(navigator: assembler.resolve(), viewModel: assembler.resolve(with: id), favoriteViewModel: assembler.resolve())
     nextViewController.hidesBottomBarWhenPushed = true
     viewController?.navigationController?.pushViewController(nextViewController, animated: true)
   }

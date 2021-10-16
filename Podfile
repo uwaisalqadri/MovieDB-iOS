@@ -7,6 +7,7 @@ def general_pod
   pod 'Alamofire'
   pod 'RealmSwift'
   pod 'ObjectMapper', '~> 4.2.0'
+  pod "ObjectMapper+Realm"
   pod 'Moya'
 
 end

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum DatabaseError: LocalizedError {
+  case invalidInstance
+  case requestFailed
+}

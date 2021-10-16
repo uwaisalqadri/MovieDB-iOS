@@ -10,6 +10,9 @@ import UIKit
 protocol FavoriteAssembler {
   func resolve() -> FavoriteNavigator
   func resolve() -> FavoriteViewController
+
+  func resolve() -> FavoriteViewModel
+  func resolve() -> FavoriteUseCase
 }
 
 extension FavoriteAssembler where Self: Assembler {
@@ -19,6 +22,14 @@ extension FavoriteAssembler where Self: Assembler {
   }
 
   func resolve() -> FavoriteViewController {
-    return FavoriteViewController()
+    return FavoriteViewController(navigator: resolve(), viewModel: resolve())
+  }
+
+  func resolve() -> FavoriteViewModel {
+    return FavoriteViewModel(favoriteUseCase: resolve())
+  }
+
+  func resolve() -> FavoriteUseCase {
+    return FavoriteInteractor(repository: resolve())
   }
 }

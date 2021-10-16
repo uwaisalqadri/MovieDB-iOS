@@ -8,12 +8,14 @@
 import UIKit
 import Reusable
 import PinLayout
+import SDWebImage
 
 class FavoriteCell: UITableViewCell, Reusable {
 
   lazy var imgFavorite: UIImageView = {
     return UIImageView().apply { (img) in
-      img.contentMode = .scaleToFill
+      img.contentMode = .scaleAspectFill
+      img.sd_imageIndicator = SDWebImageActivityIndicator.medium
     }
   }()
 
@@ -23,6 +25,7 @@ class FavoriteCell: UITableViewCell, Reusable {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
       lbl.textColor = .white
+      lbl.font = .systemFont(ofSize: 16)
     }
   }()
 
@@ -30,13 +33,15 @@ class FavoriteCell: UITableViewCell, Reusable {
     return UILabel().apply { (lbl) in
       lbl.numberOfLines = 1
       lbl.textColor = .lightGray
+      lbl.font = .systemFont(ofSize: 14)
     }
   }()
 
   lazy var lblGenre: UILabel = {
     return UILabel().apply { (lbl) in
-      lbl.numberOfLines = 1
+      lbl.numberOfLines = 2
       lbl.textColor = .gray
+      lbl.font = .systemFont(ofSize: 12)
     }
   }()
 
@@ -46,13 +51,22 @@ class FavoriteCell: UITableViewCell, Reusable {
     }
   }()
 
+  var movie: Movie? {
+    didSet {
+      configureViews()
+    }
+  }
+
+  var removeHandler: ((Movie) -> Void)?
 
   private func configureViews() {
 
-    imgFavorite.backgroundColor = .blue
-    lblYear.text = "2020"
-    lblTitle.text = "Kim jong un"
-    lblGenre.text = "nwodnw0djq09whowhhw"
+    imgFavorite.sd_setImage(with: URL(string: Constants.imgUrl + (movie?.backdropPath ?? "")))
+    lblYear.text = movie?.releaseDate?.formatDate(withFormat: "yyyy")
+    lblTitle.text = movie?.title
+    lblGenre.text = movie?.genreNames?.joined(separator: ", ")
+
+    btnFavorite.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
 
     subviews {
       content
@@ -83,9 +97,9 @@ class FavoriteCell: UITableViewCell, Reusable {
 
     content.pin
       .vertically()
-      .right(of: imgFavorite)
-      .horizontally()
-      .margin(14)
+      .right(to: btnFavorite.edge.left)
+      .left(to: imgFavorite.edge.right)
+      .margin(8)
 
     lblTitle.pin
       .horizontally()
@@ -93,14 +107,20 @@ class FavoriteCell: UITableViewCell, Reusable {
 
     lblYear.pin
       .below(of: lblTitle)
+      .bottom()
       .horizontally()
       .height(20)
 
     lblGenre.pin
-      .below(of: lblYear)
       .horizontally()
-      .height(20)
+      .below(of: lblYear)
+      .bottom()
 
+  }
+
+  @objc func didTapButton(_ sender: Any) {
+    guard let movie = movie else { return }
+    removeHandler?(movie)
   }
 
   override func layoutSubviews() {

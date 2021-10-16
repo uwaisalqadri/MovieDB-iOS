@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
 
   private let navigator: DetailNavigator
   private let viewModel: DetailViewModel
-//  private let favoriteViewModel: FavoriteViewModel
+  private let favoriteViewModel: FavoriteViewModel
 
   private let disposeBag = DisposeBag()
   private var isFavorite = false
@@ -39,10 +39,10 @@ class DetailViewController: UIViewController {
     }
   }
 
-  init(navigator: DetailNavigator, viewModel: DetailViewModel) {
+  init(navigator: DetailNavigator, viewModel: DetailViewModel, favoriteViewModel: FavoriteViewModel) {
     self.navigator = navigator
     self.viewModel = viewModel
-//    self.favoriteViewModel = favoriteViewModel
+    self.favoriteViewModel = favoriteViewModel
     super.init(nibName: String(describing: DetailViewController.self), bundle: nil)
   }
 
@@ -138,10 +138,11 @@ class DetailViewController: UIViewController {
   }
 
   @IBAction func didTapFavorite(_ sender: Any) {
-//    guard let favoriteMovie = movie else { return }
+    guard let favoriteMovie = movie else { return }
 //    isFavorite
 //      ? favoriteViewModel.removeFavoriteMovie(idMovie: Int(truncating: (favoriteMovie.id ?? 0)))
 //      : favoriteViewModel.addFavoriteMovie(movie: favoriteMovie)
+    favoriteViewModel.addFavoriteMovie(from: favoriteMovie)
   }
 
 //  private func toggleButton(state: Bool) {

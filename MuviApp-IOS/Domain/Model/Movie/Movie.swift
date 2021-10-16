@@ -18,7 +18,7 @@ protocol Movies {
 protocol Movie {
   var adult: Bool? { get }
   var backdropPath: String? { get }
-  var genreIds: [Int]? { get }
+  var genreNames: [String]? { get }
   var genres: [Genre]? { get }
   var id: Int? { get }
   var originalTitle: String? { get }

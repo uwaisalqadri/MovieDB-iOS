@@ -10,9 +10,11 @@ import RxSwift
 
 struct DefaultMovieRepository: MovieRepository {
   fileprivate let remoteDataSource: RemoteDataSource
+  fileprivate let localDataSource: LocalDataSource
 
-  init(remoteDataSource: RemoteDataSource) {
+  init(remoteDataSource: RemoteDataSource, localDataSource: LocalDataSource) {
     self.remoteDataSource = remoteDataSource
+    self.localDataSource = localDataSource
   }
 
   func getDiscover(discoverParam: DiscoverParamater) -> Observable<[Movie]> {
@@ -33,6 +35,20 @@ struct DefaultMovieRepository: MovieRepository {
 
   func getCredit(detailParam: DetailParameter) -> Observable<[Credit]> {
     return remoteDataSource.getCredit(param: detailParam).map { $0 }
+  }
+
+  func getFavoriteMovie() -> Observable<[Movie]> {
+    return localDataSource.getFavoriteMovie().map { $0 }
+  }
+
+  func addFavoriteMovie(from movie: Movie) {
+    guard let movieEntity = movie as? MovieEntity else { return }
+    localDataSource.addFavoriteMovie(from: movieEntity)
+  }
+
+  func removeFavoriteMovie(from movie: Movie) {
+    guard let movieEntity = movie as? MovieEntity else { return }
+    localDataSource.removeFavoriteMovie(from: movieEntity)
   }
 
 }

@@ -32,7 +32,7 @@ class MovieResponse: Movies, Mappable {
 class MovieItem: Movie, Mappable {
   var adult: Bool?
   var backdropPath: String?
-  var genreIds: [Int]?
+  var genreNames: [String]?
   var id: Int?
   var originalTitle: String?
   var overview: String?
@@ -56,7 +56,6 @@ class MovieItem: Movie, Mappable {
   func mapping(map: Map) {
     adult <- map["adult"]
     backdropPath <- map["backdrop_path"]
-    genreIds <- map["genre_ids"]
     _genres <- map["genres"]
     id <- map["id"]
     originalTitle <- map["original_title"]

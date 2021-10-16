@@ -6,6 +6,9 @@ PODS:
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
   - ObjectMapper (4.2.0)
+  - "ObjectMapper+Realm (1.2)":
+    - ObjectMapper
+    - RealmSwift
   - PinLayout (1.10.0)
   - Realm (10.7.4):
     - Realm/Headers (= 10.7.4)
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - Alamofire
   - Moya
   - ObjectMapper (~> 4.2.0)
+  - "ObjectMapper+Realm"
   - PinLayout
   - RealmSwift
   - Reusable
@@ -46,6 +50,7 @@ SPEC REPOS:
     - Alamofire
     - Moya
     - ObjectMapper
+    - "ObjectMapper+Realm"
     - PinLayout
     - Realm
     - RealmSwift
@@ -61,6 +66,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  "ObjectMapper+Realm": 0f8d0ac5b0e87ba63d2d0bea76a111b4eae98b9a
   PinLayout: e50e9a748b632905fca6e67043ea4b05d6c92186
   Realm: f08ce1a85649a41303ecfe1cbd914c62e9e6d710
   RealmSwift: 60ec49d165f23d040ab48811d8dd177e09baf4d3
@@ -72,6 +78,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 18c0acc08274e777611f526f8048454a1c254f37
+PODFILE CHECKSUM: b0436cd604b7107d590e4bb69b21253ae067d558
 
 COCOAPODS: 1.11.2

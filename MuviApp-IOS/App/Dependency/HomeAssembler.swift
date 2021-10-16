@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol HomeAssembler {
   func resolve() -> HomeNavigator
@@ -18,6 +19,7 @@ protocol HomeAssembler {
   func resolve() -> MovieRepository
 
   func resolve() -> RemoteDataSource
+  func resolve() -> LocalDataSource
 }
 
 extension HomeAssembler where Self: Assembler {
@@ -46,10 +48,15 @@ extension HomeAssembler where Self: Assembler {
   }
 
   func resolve() -> MovieRepository {
-    return DefaultMovieRepository(remoteDataSource: resolve())
+    return DefaultMovieRepository(remoteDataSource: resolve(), localDataSource: resolve())
   }
 
   func resolve() -> RemoteDataSource {
     return DefaultRemoteDataSource()
+  }
+
+  func resolve() -> LocalDataSource {
+    let realm = try? Realm()
+    return DefaultLocalDataSource(realm: realm)
   }
 }
