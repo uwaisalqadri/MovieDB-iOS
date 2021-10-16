@@ -87,7 +87,7 @@ class NetworkService {
             print("NOT FOUND")
 
           default:
-            fatalError("Unknown statusCode: \(response.statusCode)")
+            print("Unknown statusCode: \(response.statusCode)")
           }
         } catch {
           subject.onError(error)

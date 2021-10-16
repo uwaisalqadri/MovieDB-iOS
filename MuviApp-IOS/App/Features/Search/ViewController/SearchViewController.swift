@@ -45,6 +45,8 @@ class SearchViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     setNavigationBar(type: .searchBar)
+    viewModel.requestSearch()
+    clSearch.reloadData()
   }
 
   override func rightNavigationBarButtonTapped(sender: UIBarButtonItem?) {
