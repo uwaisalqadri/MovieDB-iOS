@@ -52,6 +52,7 @@ class DetailViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     setNavigationBar(type: .backTransparent)
+    observeValues()
   }
 
   override func leftNavigationBarButtonTapped(sender: UIBarButtonItem?) {
