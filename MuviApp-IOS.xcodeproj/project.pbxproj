@@ -74,6 +74,7 @@
 		7928D3B8B005D4C356A8987F /* Pods_MuviApp_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E55A79432118CA2EAB6ECAF /* Pods_MuviApp_IOS.framework */; };
 		9164CE3D271A828300944280 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164CE3B271A828300944280 /* DetailViewController.swift */; };
 		9164CE3E271A828300944280 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9164CE3C271A828300944280 /* DetailViewController.xib */; };
+		9164CE43271AD21100944280 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9164CE42271AD21100944280 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,7 @@
 		8BB9078D4E283A02B91A32A9 /* Pods-MuviApp-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuviApp-IOS.debug.xcconfig"; path = "Target Support Files/Pods-MuviApp-IOS/Pods-MuviApp-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9164CE3B271A828300944280 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9164CE3C271A828300944280 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		9164CE42271AD21100944280 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +436,7 @@
 		5273D294263CB59E004FF8E0 = {
 			isa = PBXGroup;
 			children = (
+				9164CE42271AD21100944280 /* .swiftlint.yml */,
 				5273D29F263CB59E004FF8E0 /* MuviApp-IOS */,
 				5273D29E263CB59E004FF8E0 /* Products */,
 				74ECB06E7FBCC7158E5D7140 /* Pods */,
@@ -675,6 +678,7 @@
 				5273D29A263CB59E004FF8E0 /* Frameworks */,
 				5273D29B263CB59E004FF8E0 /* Resources */,
 				FDA54361120EC8B927BE7A7D /* [CP] Embed Pods Frameworks */,
+				9164CE41271AD18E00944280 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -722,6 +726,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9164CE43271AD21100944280 /* .swiftlint.yml in Resources */,
 				5273D2AD263CB5A2004FF8E0 /* LaunchScreen.storyboard in Resources */,
 				5273D2AA263CB5A2004FF8E0 /* Assets.xcassets in Resources */,
 				9164CE3E271A828300944280 /* DetailViewController.xib in Resources */,
@@ -733,6 +738,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9164CE41271AD18E00944280 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then \n    swiftlint \nelse \n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\" \nfi\n";
+		};
 		939AEC2FA1952C84D865E527 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
